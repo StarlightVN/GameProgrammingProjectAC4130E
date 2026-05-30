@@ -8,10 +8,10 @@ public class StudentCard : ScriptableObject
 {
     public string StudentName;
     public string StudentID;
-    public DateTime DateOfBirth;
+    public string DateOfBirth;
     public Sprite StudentImage;
     public string Faculty;
     public string Major;
-    public DateTime ExpirationDate;
+    public string ExpirationDate;
 
 }
