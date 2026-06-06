@@ -146,16 +146,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2284480661385461367}
-  - component: {fileID: 6878192044161852415}
   - component: {fileID: 7997406399957641105}
   - component: {fileID: 6312428660263543292}
+  - component: {fileID: 7129511937972578191}
   m_Layer: 5
   m_Name: Student Card Big
   m_TagString: LargeCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2284480661385461367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2514807769039690411}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -180,30 +180,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 614, y: 2}
+  m_AnchoredPosition: {x: 293, y: 181.50002}
   m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6878192044161852415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2514807769039690411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 025bcaadc20e21649b7217e0d4352c14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StudentCardDisplay
-  studentCard: {fileID: 11400000, guid: 6cf8bc5bfbc896b448122d0af25bc360, type: 2}
-  nameText: {fileID: 937800002128290893}
-  idText: {fileID: 8149498403286499558}
-  dobText: {fileID: 124376805730449521}
-  studentImage: {fileID: 2950029796771554300}
-  facultyText: {fileID: 5620279473467586335}
-  majorText: {fileID: 5987076690985279929}
-  expirationDateText: {fileID: 4692830678550501671}
-  linkedSmallCard: {fileID: 0}
 --- !u!225 &7997406399957641105
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -228,6 +207,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cb91df94bda194a81def8ce29f0990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIDragDrop
+--- !u!114 &7129511937972578191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514807769039690411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025bcaadc20e21649b7217e0d4352c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardDisplay
+  currentProfile: {fileID: 0}
+  studentCardGroup: {fileID: 2514807769039690411}
+  studentNameText: {fileID: 937800002128290893}
+  studentIdText: {fileID: 8149498403286499558}
+  studentDobText: {fileID: 124376805730449521}
+  studentFacultyText: {fileID: 5620279473467586335}
+  studentMajorText: {fileID: 5987076690985279929}
+  studentExpDateText: {fileID: 4692830678550501671}
+  studentPhotoImage: {fileID: 2950029796771554300}
+  staffCardGroup: {fileID: 0}
+  staffNameText: {fileID: 0}
+  staffFacultyText: {fileID: 0}
+  staffDobText: {fileID: 0}
+  staffPhotoImage: {fileID: 0}
+  gatePassGroup: {fileID: 0}
+  passNameText: {fileID: 0}
+  passIdOrTagText: {fileID: 0}
+  passPurposeText: {fileID: 0}
+  passDurationText: {fileID: 0}
+  intlCertGroup: {fileID: 0}
+  intlNameText: {fileID: 0}
+  intlIdText: {fileID: 0}
+  intlFacultyText: {fileID: 0}
+  labCertGroup: {fileID: 0}
+  labNameText: {fileID: 0}
+  labIdText: {fileID: 0}
+  labFacultyText: {fileID: 0}
 --- !u!1 &3226567799119508585
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3207547, g: 0.24873619, b: 0.24873619, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1959713590210813791}
   - component: {fileID: 1886814195075101753}
   m_Layer: 5
-  m_Name: Student Card Small
+  m_Name: LabCert_Small
   m_TagString: SmallCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,11 +150,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025bcaadc20e21649b7217e0d4352c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StudentCardDisplay
+  smallCardDocType: 3
   currentProfile: {fileID: 0}
-  nameText: {fileID: 0}
-  idText: {fileID: 0}
-  dobText: {fileID: 0}
-  studentImage: {fileID: 0}
-  facultyText: {fileID: 0}
-  majorText: {fileID: 0}
-  expirationDateText: {fileID: 0}
+  studentCardGroup: {fileID: 0}
+  studentNameText: {fileID: 0}
+  studentIdText: {fileID: 0}
+  studentDobText: {fileID: 0}
+  studentFacultyText: {fileID: 0}
+  studentMajorText: {fileID: 0}
+  studentExpDateText: {fileID: 0}
+  studentPhotoImage: {fileID: 0}
+  staffCardGroup: {fileID: 0}
+  staffNameText: {fileID: 0}
+  staffFacultyText: {fileID: 0}
+  staffDobText: {fileID: 0}
+  staffPhotoImage: {fileID: 0}
+  gatePassGroup: {fileID: 0}
+  passNameText: {fileID: 0}
+  passIdOrTagText: {fileID: 0}
+  passPurposeText: {fileID: 0}
+  passDurationText: {fileID: 0}
+  intlCertGroup: {fileID: 0}
+  intlNameText: {fileID: 0}
+  intlIdText: {fileID: 0}
+  intlFacultyText: {fileID: 0}
+  labCertGroup: {fileID: 0}
+  labNameText: {fileID: 0}
+  labIdText: {fileID: 0}
+  labFacultyText: {fileID: 0}

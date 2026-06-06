@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 100102
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 0
+  hasIntlCertificate: 0
+  hasLabCertificate: 0
+  cardStudentName: "Tr\u1EA7n Ng\u1ECDc Linh"
+  cardStudentID: 202409638
+  cardStudentDoB: 22082006
+  cardStudentFaculty: SEEE
+  cardStudentMajor: "ET-E16: Truy\u1EC1n th\xF4ng s\u1ED1 v\xE0 K\u1EF9 thu\u1EADt
+    \u0111a ph\u01B0\u01A1ng ti\u1EC7n"
+  cardStudentExpirationDate: 31122028
+  cardStudentImage: {fileID: 0}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: 
+  passIDOrStaffTag: 
+  passPurpose: 0
+  passDurationDate: 
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isPhotoMatching: 1
+  isNameMatching: 1
+  isDataMatching: 1
