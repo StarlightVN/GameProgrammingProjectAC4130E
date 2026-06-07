@@ -199,6 +199,7 @@ namespace LetMeIn.Dialogue.Editor
                     "Hãy đối chiếu tên, ảnh chân dung, khoa/trường, ngành học và thời hạn của giấy tờ trước khi đưa ra quyết định.",
                     "Day1RuleFinished"
                 )
+                
             };
 
             SaveOrReplace(

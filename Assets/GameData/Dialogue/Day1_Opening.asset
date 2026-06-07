@@ -28,7 +28,7 @@ MonoBehaviour:
     changeBackground: 1
     background: {fileID: -4039747514390058332, guid: 889538ee0f6279c4587dc0a241397174, type: 3}
     backgroundColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-    clearBackground: 1
+    clearBackground: 0
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
     eventKey: ChangeBG_Era
@@ -78,7 +78,7 @@ MonoBehaviour:
     changeBackground: 0
     background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-    clearBackground: 0
+    clearBackground: 1
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
     eventKey: 
@@ -129,7 +129,7 @@ MonoBehaviour:
     changeBackground: 0
     background: {fileID: 4233822279838665315, guid: c42a61a37fef72d4e930d30d851e9d54, type: 3}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-    clearBackground: 0
+    clearBackground: 1
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
     eventKey: 
@@ -144,7 +144,7 @@ MonoBehaviour:
     changeBackground: 0
     background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-    clearBackground: 0
+    clearBackground: 1
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
     eventKey: OpeningFinished

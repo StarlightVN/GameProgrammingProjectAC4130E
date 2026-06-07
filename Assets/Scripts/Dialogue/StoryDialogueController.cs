@@ -102,6 +102,11 @@ namespace LetMeIn.Dialogue
             {
                 blackOverlay.gameObject.SetActive(false);
             }
+
+            if (dimOverlay != null)
+            {
+                dimOverlay.gameObject.SetActive(false);
+            }
         }
 
         private void OnDestroy()
@@ -566,6 +571,43 @@ namespace LetMeIn.Dialogue
             {
                 soundEffectAudioSource.Stop();
             }
+        }
+
+        public void ShowDimOverlay(float alpha = 0.6f)
+        {
+            if (dimOverlay == null)
+            {
+                return;
+            }
+
+            Color color = dimOverlay.color;
+            color.r = 0f;
+            color.g = 0f;
+            color.b = 0f;
+            color.a = Mathf.Clamp01(alpha);
+
+            dimOverlay.color = color;
+            dimOverlay.gameObject.SetActive(true);
+        }
+
+        public void HideDimOverlay()
+        {
+            if (dimOverlay != null)
+            {
+                dimOverlay.gameObject.SetActive(false);
+            }
+        }
+
+        public void HideDialogueBackground()
+        {
+            if (backgroundImage == null)
+            {
+                return;
+            }
+
+            backgroundImage.sprite = null;
+            backgroundImage.color = Color.clear;
+            backgroundImage.gameObject.SetActive(false);
         }
     }
 }

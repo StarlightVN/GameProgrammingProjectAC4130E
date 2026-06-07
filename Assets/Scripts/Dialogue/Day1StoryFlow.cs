@@ -90,6 +90,11 @@ namespace LetMeIn.Dialogue
             {
                 case StoryStep.Opening:
                     currentStep = StoryStep.Tutorial;
+
+                    SetGameplayActive(true);
+
+                    controller.HideDialogueBackground();
+                    controller.ShowDimOverlay(0.6f);
                     controller.Play(tutorialSequence);
                     break;
 
@@ -100,6 +105,8 @@ namespace LetMeIn.Dialogue
 
                 case StoryStep.Rule:
                     currentStep = StoryStep.Gameplay;
+
+                    controller.HideDimOverlay();
                     SetGameplayActive(true);
                     break;
 
@@ -113,6 +120,14 @@ namespace LetMeIn.Dialogue
         {
             switch (eventKey)
             {
+
+                case "ShowTutorialOverlay":
+                    controller.ShowDimOverlay(0.6f);
+                    break;
+
+                case "HideTutorialOverlay":
+                    controller.HideDimOverlay();
+                    break;
                 case "Explosion":
                     PlayExplosion();
                     break;
@@ -128,6 +143,7 @@ namespace LetMeIn.Dialogue
                 case "Day1Finished":
                     Debug.Log("Ngày 1 đã hoàn thành.");
                     break;
+
             }
         }
 
