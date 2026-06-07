@@ -6708,15 +6708,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LetMeIn.Dialogue.Day1StoryFlow
   controller: {fileID: 129852502}
-  openingSequence: {fileID: 11400000, guid: 133528c8f9d12d64ca2c64434d934349, type: 2}
   tutorialSequence: {fileID: 11400000, guid: 4670adc3568fca24caec5677ec7e0c01, type: 2}
   ruleSequence: {fileID: 11400000, guid: d08b1e2c1fb1ddf44b1d727aec02e6d9, type: 2}
-  endingSequence: {fileID: 11400000, guid: daaf8589e34369a46955faba1000fce9, type: 2}
-  gameplayRoot: {fileID: 0}
-  explosionEffect: {fileID: 0}
-  sceneAudioSource: {fileID: 0}
-  explosionClip: {fileID: 0}
-  lightOnClip: {fileID: 0}
+  gameplayRoot: {fileID: 1453241166}
+  endingSceneName: Day1_Ending
 --- !u!1 &2035448072
 GameObject:
   m_ObjectHideFlags: 0

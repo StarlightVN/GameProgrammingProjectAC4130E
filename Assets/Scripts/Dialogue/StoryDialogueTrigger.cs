@@ -1,5 +1,5 @@
 /*
-Trigger để phátDialogue.
+Trigger để phátDialogue. 
 */
 
 using System;
