@@ -67,7 +67,6 @@ public class RulebookDisplay : MonoBehaviour
             newBookRect.localPosition = Vector3.zero;
             newBookRect.rotation = Quaternion.identity; 
 
-            // KHẮC PHỤC LỖI MỜ LẦN 2: Ép sổ nhỏ mới sinh luôn ở trạng thái sạch, không bị mờ
             CanvasGroup smallCG = newSmallBook.GetComponent<CanvasGroup>() ?? newSmallBook.AddComponent<CanvasGroup>();
             smallCG.alpha = 1f;
             smallCG.blocksRaycasts = true;
@@ -79,7 +78,13 @@ public class RulebookDisplay : MonoBehaviour
             }
         }
 
-        GetComponent<RectTransform>().localPosition = Vector3.zero;
+        // ĐỒNG BỘ: Đưa RectTransform về vị trí tâm bàn lớn trước khi tắt ẩn
+        RectTransform myRect = GetComponent<RectTransform>();
+        if (myRect != null)
+        {
+            myRect.anchoredPosition = Vector2.zero; // Reset về vị trí trung tâm bàn lớn chuẩn chỉnh
+        }
+        
         gameObject.SetActive(false);
     }
 }

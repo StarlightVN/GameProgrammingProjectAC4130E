@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 200111
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 1
+  hasIntlCertificate: 0
+  hasLabCertificate: 0
+  boothAvatarImage: {fileID: 0}
+  cardStudentName: "Ng\xF4 \u0110\u1EE9c Long"
+  cardStudentID: 20221397
+  cardStudentDoB: 11122004
+  cardStudentFaculty: SoICT
+  cardStudentMajor: IT-E7
+  cardStudentExpirationDate: 31122027
+  cardStudentImage: {fileID: 0}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: "Ng\xF4 \u0110\u1EE9c Long"
+  passIDOrStaffTag: 20221397
+  passPurpose: 1
+  passDurationDate: 04062026
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isPhotoMatching: 1
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

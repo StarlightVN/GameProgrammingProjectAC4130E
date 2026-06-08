@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
@@ -7,6 +8,16 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Canvas canvas;
     private CanvasGroup canvasGroup;
     private Vector3 lastStablePosition; 
+
+    [Header("--- CẤU HÌNH THU HỒI (RULEBOOK STYLE) ---")]
+    [Tooltip("Kéo đối tượng phân vùng gỗ Bàn Nhỏ (Desk_Small) ngoài Hierarchy vào đây")]
+    public RectTransform smallDeskZoneRect;
+
+    [Tooltip("TÍCH CHỌN nếu đây là phôi giấy nhỏ bàn dưới. BỎ TÍCH nếu đây là giấy lớn bàn soi phẳng.")]
+    public bool isSmallCard = false;
+
+    [Tooltip("CHỈ DÀNH CHO GIẤY TỜ LỚN: Xác định loại giấy tờ này để cất về đúng phôi nhỏ")]
+    public DocumentType largeDocType = DocumentType.MainCard;
 
     private void Awake()
     {
@@ -20,9 +31,9 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         lastStablePosition = newPos;
     }
 
-    // Click vào vật nào, vật đó lập tức nhảy lên trên cùng lớp hiển thị (Z-Order)
     public void OnPointerDown(PointerEventData eventData)
     {
+        // Click vào tờ nào, tờ đó lập tức nổi lên trên cùng của lớp vẽ hiện tại
         transform.SetAsLastSibling(); 
     }
 
@@ -31,87 +42,90 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         lastStablePosition = rectTransform.position; 
         transform.SetAsLastSibling();       
 
-        // GIẢI PHÁP ĐÓNG BĂNG TIA CHUỘT KHI ĐANG KÉO:
-        // Cả vật thể LỚN và NHỎ đều cần tắt blocksRaycasts khi đang di chuyển 
-        // để con trỏ chuột không bị trượt/văng trúng vào nền bàn lớn gây khóa cứng.
+        // Xuyên thấu hoàn toàn tia chuột trong lúc di chuyển để không tự chặn chính mình
         canvasGroup.blocksRaycasts = false; 
 
-        if (gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook"))
+        if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook"))
         {
-            canvasGroup.alpha = 0.6f; // Thẻ nhỏ/Sổ nhỏ mờ nhiều tạo hiệu ứng nhấc lên
+            canvasGroup.alpha = 0.6f; 
+
+            // ÉP NỔI TRÊN CÙNG: Giúp phôi nhỏ đè lên trên tấm nền bàn lớn khi đang di chuyển
+            Canvas dynamicCanvas = gameObject.GetComponent<Canvas>();
+            if (dynamicCanvas == null) dynamicCanvas = gameObject.AddComponent<Canvas>();
+            dynamicCanvas.overrideSorting = true;
+            dynamicCanvas.sortingOrder = 999;
+
+            if (gameObject.GetComponent<GraphicRaycaster>() == null) gameObject.AddComponent<GraphicRaycaster>();
         }
         else
         {
-            canvasGroup.alpha = 0.95f; // Thẻ lớn/Sổ lớn giữ nguyên độ sáng rõ để dễ đọc luật
+            canvasGroup.alpha = 0.95f; 
         }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-
-        // Giới hạn ranh giới (Bounds Check) chặn cứng rìa viền bàn lớn không cho lòi ra ngoài
-        if (gameObject.CompareTag("LargeBook") || gameObject.CompareTag("LargeCard"))
+        if (rectTransform != null && canvas != null)
         {
-            RectTransform parentRect = transform.parent as RectTransform;
-            if (parentRect != null)
-            {
-                float minX = parentRect.rect.xMin + (rectTransform.rect.width / 2f);
-                float maxX = parentRect.rect.xMax - (rectTransform.rect.width / 2f);
-                float minY = parentRect.rect.yMin + (rectTransform.rect.height / 2f);
-                float maxY = parentRect.rect.yMax - (rectTransform.rect.height / 2f);
-
-                Vector2 clampedPosition = rectTransform.anchoredPosition;
-                clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
-                clampedPosition.y = Mathf.Clamp(clampedPosition.y, minY, maxY);
-
-                rectTransform.anchoredPosition = clampedPosition;
-            }
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // QUAN TRỌNG: Buông chuột xong mới bật trả lại tính năng nhận tia chuột
         canvasGroup.alpha = 1f;
+
+        // =========================================================================
+        // NHÁNH 1: QUY TRÌNH THẢ DÀNH CHO VẬT THỂ NHỎ (GIỮ NGUYÊN LOGIC GỐC)
+        // =========================================================================
+        if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook"))
+        {
+            canvasGroup.blocksRaycasts = true; 
+
+            if (gameObject.GetComponent<GraphicRaycaster>() != null) Destroy(gameObject.GetComponent<GraphicRaycaster>());
+            if (gameObject.GetComponent<Canvas>() != null) Destroy(gameObject.GetComponent<Canvas>());
+
+            bool droppedOnValidZone = (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<IDropHandler>() != null);
+            
+            if (!droppedOnValidZone) rectTransform.position = lastStablePosition; 
+            else lastStablePosition = rectTransform.position; 
+            
+            return; 
+        }
+
+        // =========================================================================
+        // NHÁNH 2: XỬ LÝ CẤT GIẤY THEO PHONG CÁCH RULEBOOK (CHỈ ẢNH HƯỞNG CHÍNH NÓ)
+        // =========================================================================
+        if (smallDeskZoneRect != null && RectTransformUtility.RectangleContainsScreenPoint(smallDeskZoneRect, eventData.position, eventData.pressEventCamera))
+        {
+            // Trường hợp A: Nếu là SỔ LUẬT LỚN
+            RulebookDisplay rulebookDisplay = GetComponent<RulebookDisplay>();
+            if (rulebookDisplay != null || gameObject.CompareTag("LargeBook"))
+            {
+                canvasGroup.blocksRaycasts = true; 
+                if (rulebookDisplay != null) rulebookDisplay.CloseBook(); 
+                return;
+            }
+
+            // Trường hợp B: Nếu là CÁC TỜ GIẤY TỜ LỚN (studentCardGroup, gatePassGroup...)
+            SchoolGateManager gateManager = Object.FindFirstObjectByType<SchoolGateManager>();
+            if (gateManager != null)
+            {
+                // CHỈ TẮT ẨN DUY NHẤT CHÍNH NÓ (Tờ giấy đang bị kéo thả)
+                gameObject.SetActive(false);
+                
+                // Trả lại vị trí tâm cục bộ để lần sau bấm mở ra không bị lệch vị trí ban đầu
+                rectTransform.anchoredPosition = Vector2.zero;
+                canvasGroup.blocksRaycasts = true;
+
+                // Gọi lệnh GameManager hồi sinh phôi nhỏ tương ứng dưới bàn gỗ
+                gateManager.ReturnToSmallCard(Vector3.zero, largeDocType);
+                return;
+            }
+        }
+
+        // Nếu buông chuột ngoài không trung bàn lớn -> Nằm im tại vị trí đó (Cơ chế Rulebook)
         canvasGroup.blocksRaycasts = true; 
-
-        // Kiểm tra xem vị trí buông chuột cuối cùng có nằm đè lên vùng DropZone nào hợp lệ không
-        bool droppedOnValidZone = false;
-
-        // SỬA LỖI TRƯỢT CHUỘT: Nếu là Thẻ lớn/Sổ lớn và con trỏ chuột đang nằm mấp mé rìa bàn, 
-        // ta ép nhận diện luôn luôn hợp lệ để tránh bị giật ngược về vị trí cũ một cách vô lý.
-        if (gameObject.CompareTag("LargeCard") || gameObject.CompareTag("LargeBook"))
-        {
-            if (eventData.pointerEnter != null)
-            {
-                // Nếu chuột đang đè lên chính nó, hoặc đè lên nền Bàn lớn, hoặc đè lên Bàn nhỏ/Khay hồng
-                if (eventData.pointerEnter == gameObject || 
-                    eventData.pointerEnter.GetComponent<IDropHandler>() != null ||
-                    eventData.pointerEnter.transform.IsChildOf(transform.parent))
-                {
-                    droppedOnValidZone = true;
-                }
-            }
-        }
-        else
-        {
-            // Đối với vật thể nhỏ, giữ nguyên logic kiểm tra DropZone gốc
-            if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<IDropHandler>() != null)
-            {
-                droppedOnValidZone = true;
-            }
-        }
-
-        if (!droppedOnValidZone)
-        {
-            // Thả ra ngoài không trung (vùng xám), giật về vị trí ổn định cũ 
-            rectTransform.position = lastStablePosition;
-        }
-        else
-        {
-            // Thả vào vùng hợp lệ, ghi nhận điểm neo ổn định mới 
-            lastStablePosition = rectTransform.position;
-        }
+        lastStablePosition = rectTransform.position;
     }
 }

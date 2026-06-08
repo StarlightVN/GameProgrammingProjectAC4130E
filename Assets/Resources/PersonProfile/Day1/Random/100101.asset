@@ -17,13 +17,14 @@ MonoBehaviour:
   hasGatePass: 0
   hasIntlCertificate: 0
   hasLabCertificate: 0
+  boothAvatarImage: {fileID: -4265418274275913161, guid: 735af539cef2f594da972120584d4578, type: 3}
   cardStudentName: "Nguy\u1EC5n Minh Khang"
   cardStudentID: 20218472
-  cardStudentDoB: 14032003
+  cardStudentDoB: 14/03/2003
   cardStudentFaculty: SEEE
-  cardStudentMajor: "ET1: \u0110i\u1EC7n t\u1EED vi\u1EC5n th\xF4ng"
-  cardStudentExpirationDate: 31122027
-  cardStudentImage: {fileID: 0}
+  cardStudentMajor: ET1
+  cardStudentExpirationDate: 31/12/2027
+  cardStudentImage: {fileID: -4265418274275913161, guid: 735af539cef2f594da972120584d4578, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -41,3 +42,8 @@ MonoBehaviour:
   isPhotoMatching: 1
   isNameMatching: 1
   isDataMatching: 1
+  isMajorMatching: 1
+  greetingDialogue: {fileID: 11400000, guid: 6c8dbbbb2d7743147a03ff065e727311, type: 2}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}
+  isAvatarMatching: 1

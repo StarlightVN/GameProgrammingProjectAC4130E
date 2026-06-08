@@ -17,14 +17,14 @@ MonoBehaviour:
   hasGatePass: 0
   hasIntlCertificate: 0
   hasLabCertificate: 0
+  boothAvatarImage: {fileID: 1781931450439470191, guid: edce19e2c9c824544bf0c32fecd52209, type: 3}
   cardStudentName: "Tr\u1EA7n Ng\u1ECDc Linh"
   cardStudentID: 202409638
-  cardStudentDoB: 22082006
+  cardStudentDoB: 22/08/2006
   cardStudentFaculty: SEEE
-  cardStudentMajor: "ET-E16: Truy\u1EC1n th\xF4ng s\u1ED1 v\xE0 K\u1EF9 thu\u1EADt
-    \u0111a ph\u01B0\u01A1ng ti\u1EC7n"
-  cardStudentExpirationDate: 31122028
-  cardStudentImage: {fileID: 0}
+  cardStudentMajor: ET-E16
+  cardStudentExpirationDate: 31/12/2028
+  cardStudentImage: {fileID: 1781931450439470191, guid: edce19e2c9c824544bf0c32fecd52209, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -42,3 +42,8 @@ MonoBehaviour:
   isPhotoMatching: 1
   isNameMatching: 1
   isDataMatching: 1
+  isMajorMatching: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}
+  isAvatarMatching: 1

@@ -17,6 +17,10 @@ public class PersonProfile : ScriptableObject
     public bool hasGatePass = false;       
     public bool hasIntlCertificate = false; 
     public bool hasLabCertificate = false;  
+    
+    [Header("--- HỆ THỐNG AVATAR BỐT TRỰC (BOOTH CAMERA) ---")]
+    [Tooltip("Ảnh thực tế của nhân vật khi đứng ở bốt trực")]
+    public Sprite boothAvatarImage;
 
     [Header("--- 1. THÔNG TIN THẺ SINH VIÊN (Chỉ dùng nếu là Student) ---")]
     public string cardStudentName;
@@ -61,5 +65,21 @@ public class PersonProfile : ScriptableObject
     public bool isDataMatching = true; 
     [Tooltip("Nếu tích chọn là True, ngành thuộc đơn vị. Nếu False, ngành không thuộc đơn vị hoặc bị gõ sai")]
     public bool isMajorMatching = true;
+
+    [Tooltip("True là ảnh trên thẻ và ảnh bốt trực trùng khớp. False là kẻ gian hoán đổi ảnh/mạo danh.")]
+    public bool isAvatarMatching = true;
+
+    [Tooltip("True nghĩa là giấy tờ còn thời hạn hiệu lực. False nghĩa là giấy tờ đã hết hạn sử dụng.")]
+    public bool IsPaperValid = true;
+
+    [Header("--- HỆ THỐNG HỘI THOẠI ĐA DẠNG (DIALOGUE SYSTEM) ---")]
+    [Tooltip("Chuỗi hội thoại khi vừa bắt đầu gặp mặt (Độ dài tùy biến)")]
+    public DialogueData greetingDialogue;
+
+    [Tooltip("Chuỗi hội thoại khi bấm ĐỒNG Ý (Độ dài tùy biến)")]
+    public DialogueData approveDialogue;
+
+    [Tooltip("Chuỗi hội thoại khi bấm TỪ CHỐI (Độ dài tùy biến)")]
+    public DialogueData denyDialogue;
 
 }

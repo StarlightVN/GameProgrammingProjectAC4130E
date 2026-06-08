@@ -11,15 +11,16 @@ public class SmallDeskZone : MonoBehaviour, IDropHandler
         GameObject draggedObject = eventData.pointerDrag;
         if (draggedObject == null) return;
 
+        // BẮT TRÚNG TÍN HIỆU KHI NGƯỜI CHƠI KÉO XẤP GIẤY TO THẢ VỀ BÀN NHỎ
         if (draggedObject.CompareTag("LargeCard"))
         {
             CardDisplay largeCardDisplay = draggedObject.GetComponent<CardDisplay>();
             if (largeCardDisplay != null && gateManager != null)
             {
-                // 1. Tắt ẩn xấp giấy to
+                // 1. Tắt ẩn ngay xấp giấy to
                 largeCardDisplay.gameObject.SetActive(false);
 
-                // 2. Dò tìm loại giấy tờ đang hiển thị để cất
+                // 2. Tự động dò tìm xem tờ giấy to nào đang hiển thị để cất đúng loại phôi mini
                 DocumentType cattedDocType = DocumentType.MainCard;
 
                 if (largeCardDisplay.gatePassGroup != null && largeCardDisplay.gatePassGroup.activeSelf)
@@ -44,9 +45,8 @@ public class SmallDeskZone : MonoBehaviour, IDropHandler
                     cattedDocType = DocumentType.MainCard;
                 }
                 
-                // 3. KHẮC PHỤC LỖI: Lấy chính xác vị trí chuột của sự kiện UI thả
-                // và bắn sang cho GameManager điều phối
-                gateManager.ReturnToSmallCard(eventData.position, cattedDocType);
+                // 3. Ra lệnh hồi vị (Toạ độ rơi đã được xử lý tự động trong GameManager)
+                gateManager.ReturnToSmallCard(Vector3.zero, cattedDocType);
             }
         }
     }
