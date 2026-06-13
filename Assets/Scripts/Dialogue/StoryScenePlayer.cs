@@ -13,12 +13,6 @@ namespace LetMeIn.Dialogue
         [SerializeField] private string nextSceneName;
         [SerializeField] private bool playOnStart = true;
 
-        [Header("Effects")]
-        [SerializeField] private GameObject explosionEffect;
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip explosionClip;
-        [SerializeField] private AudioClip lightOnClip;
-
         private bool isTransitioning;
 
         private void Start()
@@ -57,15 +51,18 @@ namespace LetMeIn.Dialogue
 
         private void OnDestroy()
         {
-            if (controller != null)
+            if (controller == null)
             {
-                controller.onSequenceFinished.RemoveListener(
-                    HandleSequenceFinished
-                );
-                controller.onDialogueEvent.RemoveListener(
-                    HandleDialogueEvent
-                );
+                return;
             }
+
+            controller.onSequenceFinished.RemoveListener(
+                HandleSequenceFinished
+            );
+
+            controller.onDialogueEvent.RemoveListener(
+                HandleDialogueEvent
+            );
         }
 
         private void HandleSequenceFinished()
@@ -94,27 +91,15 @@ namespace LetMeIn.Dialogue
             switch (eventKey)
             {
                 case "Explosion":
-                    if (explosionEffect != null)
-                    {
-                        explosionEffect.SetActive(true);
-                    }
-
-                    if (audioSource != null && explosionClip != null)
-                    {
-                        audioSource.PlayOneShot(explosionClip);
-                    }
+                    Debug.Log("[StoryScenePlayer] Explosion event");
                     break;
 
                 case "LightOn":
-                    if (explosionEffect != null)
-                    {
-                        explosionEffect.SetActive(false);
-                    }
+                    Debug.Log("[StoryScenePlayer] LightOn event");
+                    break;
 
-                    if (audioSource != null && lightOnClip != null)
-                    {
-                        audioSource.PlayOneShot(lightOnClip);
-                    }
+                case "ShowUncleHaiBurned":
+                    Debug.Log("[StoryScenePlayer] Show burned Uncle Hai");
                     break;
             }
         }

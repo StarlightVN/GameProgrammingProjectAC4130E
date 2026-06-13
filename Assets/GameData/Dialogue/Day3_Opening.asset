@@ -1,0 +1,272 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c88cd61bf2e01f4b8d7158102f86a23, type: 3}
+  m_Name: Day3_Opening
+  m_EditorClassIdentifier: Assembly-CSharp::LetMeIn.Dialogue.StoryDialogueSequence
+  sequenceId: DAY3_OPENING_SCENE
+  sequenceTitle: Day3_Opening
+  description: "Cu\u1ED1i ng\xE0y 2 + title ng\xE0y 3 + m\u1EDF \u0111\u1EA7u ng\xE0y
+    3."
+  defaultCharacterInterval: 0.025
+  hideAfterFinished: 1
+  lines:
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "Cu\u1ED1i ng\xE0y, v\xE0i sinh vi\xEAn \u0111i ngang qua c\u1ED5ng
+      C7."
+    displayMode: 1
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: -165899576139747431, guid: 53062d33ea634c9438a45f12a08a853f, type: 3}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: ChangeBG_Day2_C7Gate_Evening
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Ng\u01B0\u1EDDi qua \u0111\u01B0\u1EDDng 1"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "Mai l\xE0 Ng\xE0y h\u1ED9i sinh vi\xEAn \u0111\u1EA5y, \u0111\u01B0\u1EE3c
+      ngh\u1EC9 h\u1ECDc nh\xE9. \u0110i net kh\xF4ng anh em?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Ng\u01B0\u1EDDi qua \u0111\u01B0\u1EDDng 2"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "Ok \u0111i l\xE0m t\xED Javalorant."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Ng\u01B0\u1EDDi qua \u0111\u01B0\u1EDDng 3"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "\u0110i\u1EC3m r\xE8n luy\u1EC7n th\xEC sao m?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Ng\u01B0\u1EDDi qua \u0111\u01B0\u1EDDng 1"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "Quan tr\u1ECDng g\xEC t\u1EA1ch L\xFD thuy\u1EBFt m\u1EA1ch l\u1EA7n
+      3 r\u1ED3i. Chill."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "\u2014 H\u1EBFt ng\xE0y 2 \u2014"
+    displayMode: 4
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: Day2EndTitle
+    inputLockDuration: 0
+    autoContinue: 1
+    autoContinueDelay: 1
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "Ng\xE0y 3\nTh\u1EE9 ba, ng\xE0y 2/6/2026"
+    displayMode: 4
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: Day3TitleCard
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 1
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "C\u1ED5ng C7 h\xF4m nay \u0111\u01B0\u1EE3c d\xE1n m\u1ED9t t\u1EDD
+      gi\u1EA5y vi\u1EBFt tay m\u1EDBi c\u1EE7a V\u0169."
+    displayMode: 1
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: -165899576139747431, guid: 53062d33ea634c9438a45f12a08a853f, type: 3}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: ChangeBG_Day3_C7Gate
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "Tr\xEAn gi\u1EA5y ghi: \u201CNg\xE0y h\u1ED9i sinh vi\xEAn - Vui l\xE0
+      ch\xEDnh, gi\u1EA5y t\u1EDD l\xE0 b\u1EAFt bu\u1ED9c.\u201D"
+    displayMode: 1
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "Nay l\xE0 Ng\xE0y h\u1ED9i sinh vi\xEAn."
+    displayMode: 0
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: 2826988517474644282, guid: e16da847f27a4d547903e4052f6ee8d2, type: 3}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
+    content: "Yasss, v\u1EADy l\xE0 em kh\xF4ng c\u1EA7n check gi\u1EA5y t\u1EDD
+      n\u1EEFa \u0111\xFAng kh\xF4ng \u1EA1?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "Kh\xF4ng, h\xF4m nay s\u1EBD c\xF3 r\u1EA5t nhi\u1EC1u ng\u01B0\u1EDDi,
+      check c\u1EA9n th\u1EADn v\xE0o. H\xF4m nay kh\xF4ng c\xF3 l\u1EDBp h\u1ECDc.
+      Ai v\xE0o v\u1EDBi m\u1EE5c \u0111\xEDch \u0111i h\u1ECDc th\xEC t\u1EEB ch\u1ED1i."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
+    content: "V\u1EADy l\xE0 ch\u1EC9 \u0111\u01B0\u1EE3c v\xE0o v\xEC m\u1EE5c \u0111\xEDch
+      S\u1EF1 ki\u1EC7n ho\u1EB7c Nghi\xEAn c\u1EE9u \u1EA1?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "\u0110\xFAng. Nh\u01B0ng sinh vi\xEAn nghi\xEAn c\u1EE9u ph\u1EA3i
+      c\xF3 Gi\u1EA5y Ch\u1EE9ng Nh\u1EADn Th\xE0nh Vi\xEAn Ph\xF2ng Nghi\xEAn C\u1EE9u."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
+    content: "N\u1EBFu kh\xF4ng c\xF3 gi\u1EA5y th\xEC sao \u1EA1?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: 0}
+    content: "Th\xEC d\u1EEBng \u1EDF c\u1ED5ng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a
+      kia k\xECa."
+    displayMode: 0
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: -3147731539537379298, guid: e20a96b050e82d548af3f2d0b574c635, type: 3}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: Day3OpeningFinished
+    inputLockDuration: 0
+    autoContinue: 0
+    autoContinueDelay: 2
