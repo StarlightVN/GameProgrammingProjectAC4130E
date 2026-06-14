@@ -4,87 +4,98 @@ using System.Collections;
 
 public class InspectionDeskZone : MonoBehaviour, IDropHandler
 {
-    [Header("Card Display (Kéo đối tượng cha CardGroup tổng ngoài Hierarchy vào đây)")]
-    public CardDisplay largeCardDisplay;
+    [Header("Kéo đối tượng đầu não _GameManager ngoài Hierarchy vào đây")]
+    public SchoolGateManager gateManager;
 
     [Header("Rulebook Display")]
     public RulebookDisplay largeBookDisplay;
+
+    [Header("Newspaper Display (TỰ TRỊ ĐỘC LẬP Y XÌ ĐÚC RULEBOOK)")]
+    [Tooltip("Kéo đối tượng NewspaperLarge standalone ngoài Hierarchy vào đây")]
+    public NewspaperDisplay largeNewspaperDisplay;
 
     public void OnDrop(PointerEventData eventData)
     {
         GameObject draggedObject = eventData.pointerDrag;
         if (draggedObject == null) return;
 
-        // XỬ LÝ KHI NGƯỜI CHƠI THẢ PHÔI GIẤY TỜ MINI XUỐNG BÀN LỚN
+        // =========================================================================
+        // NHÁNH 1: XỬ LÝ KHI NGƯỜI CHƠI THẢ PHÔI GIẤY TỜ MINI XUỐNG BÀN LỚN
+        // =========================================================================
         if (draggedObject.CompareTag("SmallCard"))
         {
             CardDisplay smallCardDisplay = draggedObject.GetComponent<CardDisplay>();
-            if (smallCardDisplay != null && largeCardDisplay != null)
+            if (smallCardDisplay != null && gateManager != null)
             {
-                // 1. Chuyển giao tham chiếu hồ sơ PersonProfile từ túi chứa thẻ nhỏ sang xấp lớn
-                largeCardDisplay.currentProfile = smallCardDisplay.currentProfile;
+                GameObject targetLargeObject = null;
 
-                RectTransform smallRect = draggedObject.GetComponent<RectTransform>();
-                RectTransform largeRect = largeCardDisplay.GetComponent<RectTransform>();
-                
-                // Đồng bộ tọa độ xuất hiện bám sát theo vị trí chuột buông tay
-                largeRect.position = smallRect.position; 
-                largeRect.rotation = Quaternion.identity; 
-
-                // 2. Kích hoạt bật cụm Panel cha CardGroup tổng lên
-                largeCardDisplay.gameObject.SetActive(true);
-                
-                // Bộ lọc an toàn giải phóng tia va chạm chuột để kéo rê lần 2 không bị mờ đơ
-                if (largeCardDisplay.TryGetComponent<CanvasGroup>(out CanvasGroup largeCardCG))
-                {
-                    largeCardCG.alpha = 1f;
-                    largeCardCG.blocksRaycasts = true; 
-                }
-
-                // 3. Ép xấp lớn đổ toàn bộ dữ liệu chữ vào các linh kiện TMP ẩn bên dưới
-                largeCardDisplay.RenderCardData();
-
-                // 4. CƠ CHẾ KIỂM SOÁT LẬT MỞ TỪNG TỜ:
-                // Quét thông tin loại phôi kéo lên để bật kích hoạt DUY NHẤT tờ giấy to tương ứng
+                // Radar quét phân loại tài liệu nhỏ để lấy chính xác thực thể thẻ to standalone tương ứng từ GameManager
                 switch (smallCardDisplay.smallCardDocType)
                 {
                     case DocumentType.MainCard:
-                        if (largeCardDisplay.currentProfile.personType == PersonType.Student && largeCardDisplay.studentCardGroup != null)
-                            largeCardDisplay.studentCardGroup.SetActive(true);
-                        else if (largeCardDisplay.currentProfile.personType == PersonType.Staff && largeCardDisplay.staffCardGroup != null)
-                            largeCardDisplay.staffCardGroup.SetActive(true);
+                        if (gateManager.GetCurrentProfile() != null)
+                        {
+                            if (gateManager.GetCurrentProfile().personType == PersonType.Student)
+                                targetLargeObject = gateManager.largeStudentCardObject;
+                            else if (gateManager.GetCurrentProfile().personType == PersonType.Staff)
+                                targetLargeObject = gateManager.largeStaffCardObject;
+                        }
                         break;
 
                     case DocumentType.GatePass:
-                        if (largeCardDisplay.gatePassGroup != null) 
-                            largeCardDisplay.gatePassGroup.SetActive(true);
+                        targetLargeObject = gateManager.largeGatePassObject;
                         break;
 
                     case DocumentType.IntlCertificate:
-                        if (largeCardDisplay.intlCertGroup != null) 
-                            largeCardDisplay.intlCertGroup.SetActive(true);
+                        targetLargeObject = gateManager.largeIntlCertObject;
                         break;
 
                     case DocumentType.LabCertificate:
-                        if (largeCardDisplay.labCertGroup != null) 
-                            largeCardDisplay.labCertGroup.SetActive(true);
+                        targetLargeObject = gateManager.largeLabCertObject;
                         break;
                 }
 
-                // Đẩy layer vật thể vừa sinh lên trên cùng bề mặt bàn làm việc
-                largeCardDisplay.transform.SetAsLastSibling(); 
-
-                UIDragDrop largeCardDrag = largeCardDisplay.GetComponent<UIDragDrop>();
-                if (largeCardDrag != null)
+                // Kích hoạt bật đối tượng thẻ lớn độc lập tương ứng ngay tại vị trí chuột buông tay
+                if (targetLargeObject != null)
                 {
-                    largeCardDrag.SetStablePosition(largeRect.position);
-                }
+                    RectTransform smallRect = draggedObject.GetComponent<RectTransform>();
+                    RectTransform largeRect = targetLargeObject.GetComponent<RectTransform>();
+                    
+                    // Đồng bộ tọa độ xuất hiện bám sát theo vị trí chuột buông tay
+                    if (largeRect != null && smallRect != null)
+                    {
+                        largeRect.position = smallRect.position; 
+                        largeRect.rotation = Quaternion.identity; 
+                    }
 
-                // 5. Tiêu hủy chính xác mảnh phôi nhỏ vừa kéo lên, giữ lại các phôi khác ở bàn dưới
-                Destroy(draggedObject); 
+                    // Bật thực thể lớn lên màn hình (Nó sẽ tự kích hoạt OnEnable để nạp chữ)
+                    targetLargeObject.SetActive(true);
+                    
+                    // Giải phóng tia va chạm chuột để kéo rê mượt mà không bị đơ mờ
+                    if (targetLargeObject.TryGetComponent<CanvasGroup>(out CanvasGroup largeCardCG))
+                    {
+                        largeCardCG.alpha = 1f;
+                        largeCardCG.blocksRaycasts = true; 
+                    }
+
+                    // Đẩy thứ tự layer hiển thị lên trên cùng bề mặt bàn làm việc
+                    targetLargeObject.transform.SetAsLastSibling(); 
+
+                    // Ghi nhận điểm neo ổn định cho cơ chế giật vị trí
+                    UIDragDrop largeCardDrag = targetLargeObject.GetComponent<UIDragDrop>();
+                    if (largeCardDrag != null && largeRect != null)
+                    {
+                        largeCardDrag.SetStablePosition(largeRect.position);
+                    }
+
+                    // Tiêu hủy chính xác mảnh phôi nhỏ vừa kéo lên, giữ sạch rác mặt bàn gỗ
+                    Destroy(draggedObject); 
+                }
             }
         }
-        // XỬ LÝ SỔ TRA CỨU QUY TẮC
+        // =========================================================================
+        // NHÁNH 2: XỬ LÝ SỔ TRA CỨU QUY TẮC
+        // =========================================================================
         else if (draggedObject.CompareTag("SmallBook"))
         {
             if (largeBookDisplay != null)
@@ -105,12 +116,51 @@ public class InspectionDeskZone : MonoBehaviour, IDropHandler
 
                 largeBookDisplay.transform.SetAsLastSibling();
 
+                // 🔥 ĐÃ SỬA LỖI TYPO: Chuyển đổi chính xác thành Component UIDragDrop hợp lệ
                 UIDragDrop largeBookDrag = largeBookDisplay.GetComponent<UIDragDrop>();
-                if (largeBookDrag != null)
+                if (largeBookDrag != null && largeRect != null)
                 {
                     largeBookDrag.SetStablePosition(largeRect.position);
                 }
 
+                Destroy(draggedObject);
+            }
+        }
+        // =========================================================================
+        // NHÁNH 3: XỬ LÝ LẬT MỞ TỜ BÁO LỚN
+        // =========================================================================
+        else if (draggedObject.CompareTag("SmallNewspaper"))
+        {
+            if (largeNewspaperDisplay != null)
+            {
+                RectTransform smallRect = draggedObject.GetComponent<RectTransform>();
+                RectTransform largeRect = largeNewspaperDisplay.GetComponent<RectTransform>();
+
+                // Đồng bộ hồng tâm xuất hiện của Báo lớn bám khít theo vị trí chuột buông tay
+                largeRect.position = smallRect.position;
+                largeRect.rotation = Quaternion.identity; 
+
+                // Kích hoạt bật tờ báo lớn lên
+                largeNewspaperDisplay.gameObject.SetActive(true);
+
+                // Ép nổi sáng rõ và nhận tia chuột
+                if (largeNewspaperDisplay.TryGetComponent<CanvasGroup>(out CanvasGroup largeNewsCG))
+                {
+                    largeNewsCG.alpha = 1f;
+                    largeNewsCG.blocksRaycasts = true; 
+                }
+
+                // Đẩy hiển thị đè lên trên đỉnh bàn trực
+                largeNewspaperDisplay.transform.SetAsLastSibling();
+
+                // Lưu điểm neo ổn định cho bộ kéo thả của Báo lớn
+                UIDragDrop largeNewsDrag = largeNewspaperDisplay.GetComponent<UIDragDrop>();
+                if (largeNewsDrag != null && largeRect != null)
+                {
+                    largeNewsDrag.SetStablePosition(largeRect.position);
+                }
+
+                // Tiêu hủy phôi báo nhỏ, dọn sạch rác không gian soi phẳng
                 Destroy(draggedObject);
             }
         }

@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 123, y: 194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2450201494492346169
 CanvasRenderer:
@@ -58,14 +58,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.24873619, b: 0.24873619, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7202345669254946556, guid: cc5a51e678fbcdb4c83566c6d0b398d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 249.98653, y: -104.31936}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 123, y: 194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7623954300957567778
 MonoBehaviour:
@@ -126,6 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cb91df94bda194a81def8ce29f0990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIDragDrop
+  smallDeskZoneRect: {fileID: 0}
+  largeDeskBoundaryRect: {fileID: 0}
+  isSmallCard: 1
+  largeDocType: 3
 --- !u!225 &1959713590210813791
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -150,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025bcaadc20e21649b7217e0d4352c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StudentCardDisplay
-  smallCardDocType: 3
+  thisCardType: 4
   currentProfile: {fileID: 0}
-  studentCardGroup: {fileID: 0}
+  smallCardDocType: 3
   studentNameText: {fileID: 0}
   studentIdText: {fileID: 0}
   studentDobText: {fileID: 0}
@@ -160,21 +164,17 @@ MonoBehaviour:
   studentMajorText: {fileID: 0}
   studentExpDateText: {fileID: 0}
   studentPhotoImage: {fileID: 0}
-  staffCardGroup: {fileID: 0}
   staffNameText: {fileID: 0}
   staffFacultyText: {fileID: 0}
   staffDobText: {fileID: 0}
   staffPhotoImage: {fileID: 0}
-  gatePassGroup: {fileID: 0}
   passNameText: {fileID: 0}
   passIdOrTagText: {fileID: 0}
   passPurposeText: {fileID: 0}
   passDurationText: {fileID: 0}
-  intlCertGroup: {fileID: 0}
   intlNameText: {fileID: 0}
   intlIdText: {fileID: 0}
   intlFacultyText: {fileID: 0}
-  labCertGroup: {fileID: 0}
   labNameText: {fileID: 0}
   labIdText: {fileID: 0}
   labFacultyText: {fileID: 0}

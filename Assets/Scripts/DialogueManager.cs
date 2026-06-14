@@ -45,42 +45,40 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator ExecuteDialogueRoutine(DialogueData data)
     {
-        IsInConversation = true;
+        IsInConversation = true; // Báo bận
 
         for (int i = 0; i < data.lines.Count; i++)
         {
             DialogueLine currentLine = data.lines[i];
 
-            // BƯỚC 1: CHỜ THỜI GIAN TRƯỚC KHI XUẤT HIỆN BUBBLE TIẾP THEO
-            if (i > 0) // Từ câu thứ 2 trở đi mới áp dụng thời gian trễ nghỉ nhịp
-            {
-                yield return new WaitForSeconds(timeBeforeNextLine);
-            }
+            // 1. Chờ thời gian trước khi xuất hiện câu thoại tiếp theo (Trễ nhịp)
+            if (i > 0) yield return new WaitForSeconds(timeBeforeNextLine);
 
-            // BƯỚC 2: SINH PHÔI BONG BÓNG THOẠI MỚI (Tự động đẩy câu cũ lên trên nhờ Vertical Layout)
+            // 2. Sinh phôi bong bóng thoại mới vào Container
             GameObject prefabToSpawn = (currentLine.speaker == Speaker.Player) ? playerBubblePrefab : npcBubblePrefab;
             if (prefabToSpawn != null && dialogueContainer != null)
             {
                 GameObject spawnedBubble = Instantiate(prefabToSpawn, dialogueContainer);
-                spawnedBubble.transform.SetAsLastSibling(); // Ép luôn nằm dưới cùng để đẩy câu cũ lên
+                spawnedBubble.transform.SetAsLastSibling();
 
-                // Tìm linh kiện TextMeshPro con bên trong phôi vừa sinh
                 TextMeshProUGUI textUI = spawnedBubble.GetComponentInChildren<TextMeshProUGUI>();
                 if (textUI != null)
                 {
-                    // Chạy hiệu ứng máy đánh chữ cho bong bóng thoại mới sinh này
+                    // Chạy hiệu ứng máy đánh chữ (Hàm này chạy song song, không chặn vòng lặp cha)
                     StartCoroutine(TypeTextRoutine(currentLine.text, textUI));
                 }
 
-                // BƯỚC 3: CÀI ĐẶT THÔNG SỐ TỰ HỦY CHO BONG BÓNG THOẠI NÀY SAU VÀI GIÂY
+                // Cài đặt thời gian tự hủy cho bong bóng thoại này
                 Destroy(spawnedBubble, bubbleLifeTime);
             }
         }
 
-        // Đợi nốt bong bóng thoại cuối cùng biến mất thì mới mở khóa hệ thống
+        // ĐỢI NỐT CÂU THOẠI CUỐI CÙNG HIỂN THỊ XONG (Khoảng bằng thời gian tồn tại)
         yield return new WaitForSeconds(bubbleLifeTime);
-        IsInConversation = false;
+        
+        IsInConversation = false; // CHÍNH THỨC GIẢI PHÓNG LUỒNG HỘI THOẠI
     }
+
 
     private IEnumerator TypeTextRoutine(string fullText, TextMeshProUGUI textUI)
     {

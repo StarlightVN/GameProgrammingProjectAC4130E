@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
@@ -9,15 +8,13 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private CanvasGroup canvasGroup;
     private Vector3 lastStablePosition; 
 
-    [Header("--- CẤU HÌNH THU HỒI (RULEBOOK STYLE) ---")]
-    [Tooltip("Kéo đối tượng phân vùng gỗ Bàn Nhỏ (Desk_Small) ngoài Hierarchy vào đây")]
-    public RectTransform smallDeskZoneRect;
-
-    [Tooltip("TÍCH CHỌN nếu đây là phôi giấy nhỏ bàn dưới. BỎ TÍCH nếu đây là giấy lớn bàn soi phẳng.")]
+    [Header("--- PHÂN LOẠI ĐỐI TƯỢNG KÉO THẢ ---")]
+    [Tooltip("Tích chọn nếu đây là phôi nhỏ ở bàn dưới. Bỏ tích nếu đây là vật thể lớn.")]
     public bool isSmallCard = false;
 
-    [Tooltip("CHỈ DÀNH CHO GIẤY TỜ LỚN: Xác định loại giấy tờ này để cất về đúng phôi nhỏ")]
-    public DocumentType largeDocType = DocumentType.MainCard;
+    [Header("--- RANH GIỚI DI CHUYỂN PHẲNG (CHỐNG VĂNG GIẤY) ---")]
+    [Tooltip("Kéo đối tượng GameplayCanvas ngoài Hierarchy vào đây để khóa rìa viền màn hình bốt trực")]
+    public RectTransform deskBoundaryRect;
 
     private void Awake()
     {
@@ -33,7 +30,6 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Click vào tờ nào, tờ đó lập tức nổi lên trên cùng của lớp vẽ hiện tại
         transform.SetAsLastSibling(); 
     }
 
@@ -41,21 +37,11 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         lastStablePosition = rectTransform.position; 
         transform.SetAsLastSibling();       
-
-        // Xuyên thấu hoàn toàn tia chuột trong lúc di chuyển để không tự chặn chính mình
         canvasGroup.blocksRaycasts = false; 
 
-        if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook"))
+        if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook") || gameObject.CompareTag("SmallNewspaper"))
         {
             canvasGroup.alpha = 0.6f; 
-
-            // ÉP NỔI TRÊN CÙNG: Giúp phôi nhỏ đè lên trên tấm nền bàn lớn khi đang di chuyển
-            Canvas dynamicCanvas = gameObject.GetComponent<Canvas>();
-            if (dynamicCanvas == null) dynamicCanvas = gameObject.AddComponent<Canvas>();
-            dynamicCanvas.overrideSorting = true;
-            dynamicCanvas.sortingOrder = 999;
-
-            if (gameObject.GetComponent<GraphicRaycaster>() == null) gameObject.AddComponent<GraphicRaycaster>();
         }
         else
         {
@@ -65,67 +51,38 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (rectTransform != null && canvas != null)
+        if (rectTransform == null || canvas == null) return;
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+
+        // Khóa biên ranh giới an toàn cho các vật thể to standalone
+        if (!isSmallCard && deskBoundaryRect != null)
         {
-            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            Vector2 localPos = deskBoundaryRect.InverseTransformPoint(rectTransform.position);
+            float halfWidth = rectTransform.rect.width / 2f;
+            float halfHeight = rectTransform.rect.height / 2f;
+            
+            float minX = deskBoundaryRect.rect.xMin + halfWidth;
+            float maxX = deskBoundaryRect.rect.xMax - halfWidth;
+            float minY = deskBoundaryRect.rect.yMin + halfHeight;
+            float maxY = deskBoundaryRect.rect.yMax - halfHeight;
+            
+            localPos.x = Mathf.Clamp(localPos.x, minX, maxX);
+            localPos.y = Mathf.Clamp(localPos.y, minY, maxY);
+            
+            rectTransform.position = deskBoundaryRect.TransformPoint(localPos);
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1f;
-
-        // =========================================================================
-        // NHÁNH 1: QUY TRÌNH THẢ DÀNH CHO VẬT THỂ NHỎ (GIỮ NGUYÊN LOGIC GỐC)
-        // =========================================================================
-        if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook"))
-        {
-            canvasGroup.blocksRaycasts = true; 
-
-            if (gameObject.GetComponent<GraphicRaycaster>() != null) Destroy(gameObject.GetComponent<GraphicRaycaster>());
-            if (gameObject.GetComponent<Canvas>() != null) Destroy(gameObject.GetComponent<Canvas>());
-
-            bool droppedOnValidZone = (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<IDropHandler>() != null);
-            
-            if (!droppedOnValidZone) rectTransform.position = lastStablePosition; 
-            else lastStablePosition = rectTransform.position; 
-            
-            return; 
-        }
-
-        // =========================================================================
-        // NHÁNH 2: XỬ LÝ CẤT GIẤY THEO PHONG CÁCH RULEBOOK (CHỈ ẢNH HƯỞNG CHÍNH NÓ)
-        // =========================================================================
-        if (smallDeskZoneRect != null && RectTransformUtility.RectangleContainsScreenPoint(smallDeskZoneRect, eventData.position, eventData.pressEventCamera))
-        {
-            // Trường hợp A: Nếu là SỔ LUẬT LỚN
-            RulebookDisplay rulebookDisplay = GetComponent<RulebookDisplay>();
-            if (rulebookDisplay != null || gameObject.CompareTag("LargeBook"))
-            {
-                canvasGroup.blocksRaycasts = true; 
-                if (rulebookDisplay != null) rulebookDisplay.CloseBook(); 
-                return;
-            }
-
-            // Trường hợp B: Nếu là CÁC TỜ GIẤY TỜ LỚN (studentCardGroup, gatePassGroup...)
-            SchoolGateManager gateManager = Object.FindFirstObjectByType<SchoolGateManager>();
-            if (gateManager != null)
-            {
-                // CHỈ TẮT ẨN DUY NHẤT CHÍNH NÓ (Tờ giấy đang bị kéo thả)
-                gameObject.SetActive(false);
-                
-                // Trả lại vị trí tâm cục bộ để lần sau bấm mở ra không bị lệch vị trí ban đầu
-                rectTransform.anchoredPosition = Vector2.zero;
-                canvasGroup.blocksRaycasts = true;
-
-                // Gọi lệnh GameManager hồi sinh phôi nhỏ tương ứng dưới bàn gỗ
-                gateManager.ReturnToSmallCard(Vector3.zero, largeDocType);
-                return;
-            }
-        }
-
-        // Nếu buông chuột ngoài không trung bàn lớn -> Nằm im tại vị trí đó (Cơ chế Rulebook)
         canvasGroup.blocksRaycasts = true; 
-        lastStablePosition = rectTransform.position;
+
+        if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook") || gameObject.CompareTag("SmallNewspaper"))
+        {
+            bool droppedOnValidZone = (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<IDropHandler>() != null);
+            if (!droppedOnValidZone) rectTransform.position = lastStablePosition; 
+            else lastStablePosition = rectTransform.position;
+        }
     }
 }

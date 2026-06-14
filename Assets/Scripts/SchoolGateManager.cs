@@ -2,12 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.InputSystem;
-using UnityEngine.UI; // Thư viện UI để điều khiển khung ảnh Avatar bốt trực
+using UnityEngine.UI;
 using TMPro;
 
-// =========================================================================
-// STRUCT ĐÓNG GÓI CẤU HÌNH NHÂN VẬT CỐ ĐỊNH (STORY LINE)
-// =========================================================================
+// 🔥 ĐÃ THÊM LẠI: Struct đóng gói cấu hình nhân vật cốt truyện (Sửa lỗi dòng 28)
 [System.Serializable]
 public struct FixedCharacterConfig
 {
@@ -31,40 +29,52 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject mainCardSmallPrefab;         
     public GameObject gatePassSmallPrefab;        
     public GameObject intlCertSmallPrefab;        
-    public GameObject labCertSmallPrefab;         
+    public GameObject labCertSmallPrefab; 
+    public GameObject newspaperSmallPrefab;        
 
     [Header("--- KHUNG ẢNH BỐT TRỰC (BOOTH CAMERA UI) ---")]
     [Tooltip("Kéo cấu phần Image con nằm trong ô màu nâu phẳng bốt trực vào đây")]
     public Image boothAvatarDisplayUI;
 
     [Header("--- CƠ CHẾ NHÂN VẬT CỐ ĐỊNH (STORY LINE) ---")]
-    public List<FixedCharacterConfig> fixedCharactersToday;
+    public List<FixedCharacterConfig> fixedCharactersToday; // Lỗi dòng 28 đã được xóa sạch!
 
     [Header("--- LEVEL SETTINGS ---")]
     [Tooltip("Tổng số lượng người cần xét duyệt trong ngày hôm nay")]
     public int totalStudentsToday = 5;          
     private int studentsProcessedCount = 0;     
     public Transform studentReturnZone;        
-    public GameObject largeCardDisplay;        
+
+    [Header("--- DANH SÁCH 5 THẺ LỚN STANDALONE NGOÀI HIERARCHY ---")]
+    public GameObject largeStudentCardObject;
+    public GameObject largeStaffCardObject;
+    public GameObject largeGatePassObject;
+    public GameObject largeIntlCertObject;
+    public GameObject largeLabCertObject;
+    public GameObject largeNewspaperObject;
+
+
 
     [Header("--- HỆ THỐNG VÉ PHẠT UI AUTOHIDE ---")]
     public GameObject citationPanelUI; 
     public TextMeshProUGUI citationReasonText; 
 
     [Header("--- THỐNG KÊ KẾT QUẢ CUỐI NGÀY ---")]
-    public int correctDecisionsCount = 0;     // Đếm số lượt xử lý đúng quy chế
-    public int incorrectDecisionsCount = 0;   // Đếm số lượt xử lý sai (Bị vé phạt hoặc phạt nhầm)
-    [Tooltip("Kéo đối tượng SummaryCanvas (Bảng tổng kết điểm) ngoài Hierarchy vào ô này")]
+    public int correctDecisionsCount = 0;     
+    public int incorrectDecisionsCount = 0;   
     public GameObject summaryCanvas;
-
-    [Tooltip("Kéo đối tượng GameplayCanvas ngoài Hierarchy vào ô này")]
     public GameObject gameplayCanvas;
 
-    // Biến quản lý luồng nội bộ
     private bool isProcessingStudent = false;
     private PersonProfile currentPersonProfile; 
     private List<PersonProfile> activeStudentDayPool = new List<PersonProfile>();
     private Coroutine citationHideCoroutine;
+
+    // Hàm Getter tối cao giúp các thẻ lớn tự trị rút dữ liệu hồ sơ hành chính
+    public PersonProfile GetCurrentProfile()
+    {
+        return currentPersonProfile;
+    }
 
     void Start()
     {
@@ -73,8 +83,15 @@ public class SchoolGateManager : MonoBehaviour
             activeStudentDayPool = new List<PersonProfile>(studentPool);
         }
         if (citationPanelUI != null) citationPanelUI.SetActive(false);
-        if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false); // Ẩn ảnh lúc đầu game
-        if (summaryCanvas != null) summaryCanvas.SetActive(false); // Ẩn bảng tổng kết lúc vào màn
+        if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false); 
+        if (summaryCanvas != null) summaryCanvas.SetActive(false); 
+        if (newspaperSmallPrefab != null)
+        {
+            ReturnToSmallCard(Vector3.zero, DocumentType.Newspaper);
+        }
+
+        // Ẩn tất cả các thẻ lớn standalone lúc bắt đầu vào game
+        HideAllLargeCards();
     }
 
     void Update()
@@ -89,15 +106,11 @@ public class SchoolGateManager : MonoBehaviour
 
     public void SpawnNextStudent()
     {
-        if (DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.ForceStopDialogue(); 
-        }
+        if (DialogueManager.Instance != null) DialogueManager.Instance.ForceStopDialogue(); 
 
         isProcessingStudent = true; 
         currentPersonProfile = null;
 
-        // 1. Kiểm tra nhân vật cốt truyện cố định
         foreach (FixedCharacterConfig fixedChar in fixedCharactersToday)
         {
             if (fixedChar.appearanceTurn == studentsProcessedCount && fixedChar.personProfile != null)
@@ -107,7 +120,6 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        // 2. Bốc ngẫu nhiên từ bể chứa nếu lượt này không có truyện cố định
         if (currentPersonProfile == null)
         {
             if (activeStudentDayPool != null && activeStudentDayPool.Count > 0)
@@ -124,13 +136,11 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        // ĐỒNG BỘ BỘ LỌC FORMAT: Tự động biến chuỗi 8 số thô thành định dạng dd/mm/yyyy trước khi đẩy lên UI bàn lớn
         currentPersonProfile.cardStudentDoB = FormatToDateString(currentPersonProfile.cardStudentDoB);
         currentPersonProfile.cardStudentExpirationDate = FormatToDateString(currentPersonProfile.cardStudentExpirationDate);
         currentPersonProfile.cardStaffDoB = FormatToDateString(currentPersonProfile.cardStaffDoB);
         currentPersonProfile.passDurationDate = FormatToDateString(currentPersonProfile.passDurationDate);
 
-        // Vẽ hình ảnh diện mạo nhân vật thực tế lên ô khung ảnh màu nâu phẳng ở bốt trực
         if (boothAvatarDisplayUI != null && currentPersonProfile.boothAvatarImage != null)
         {
             boothAvatarDisplayUI.sprite = currentPersonProfile.boothAvatarImage;
@@ -190,8 +200,6 @@ public class SchoolGateManager : MonoBehaviour
 
     public void ReturnToSmallCard(Vector3 dropPosition, DocumentType docType)
     {
-        if (largeCardDisplay != null) largeCardDisplay.SetActive(false);
-
         GameObject targetPrefab = mainCardSmallPrefab; 
         switch (docType)
         {
@@ -199,6 +207,7 @@ public class SchoolGateManager : MonoBehaviour
             case DocumentType.GatePass: targetPrefab = gatePassSmallPrefab; break;
             case DocumentType.IntlCertificate: targetPrefab = intlCertSmallPrefab; break;
             case DocumentType.LabCertificate: targetPrefab = labCertSmallPrefab; break;
+            case DocumentType.Newspaper: targetPrefab = newspaperSmallPrefab; break;
         }
 
         GameObject newSmallCard = Instantiate(targetPrefab, spawnPointSmallDesk);
@@ -229,9 +238,6 @@ public class SchoolGateManager : MonoBehaviour
         int violationCount = 0;
         string specificErrorString = "";
 
-        // ====================================================
-        // KHỐI 1: KIỂM TRA LỖI LẼ THƯỜNG & GIẤY TỜ CƠ BẢN
-        // ====================================================
         bool missingMainCard = !currentPersonProfile.hasMainCard;
         bool photoMismatch = !missingMainCard && !currentPersonProfile.isPhotoMatching;
         bool nameMismatch = !missingMainCard && !currentPersonProfile.isNameMatching;
@@ -257,14 +263,10 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        // ====================================================
-        // KHỐI 2: BỘ CƠ CHẾ QUÉT LUẬT BIẾN ĐỘNG THEO TỪNG NGÀY CHƠI
-        // ====================================================
         if (!missingMainCard)
         {
             switch (currentDay)
             {
-                // LUẬT MỚI NGÀY 1: ĐÃ XÓA bỏ hoàn toàn điều kiện check đầu số 2032. Chỉ quét Khoa SEEE.
                 case 1:
                     if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.cardStudentFaculty != "SEEE")
                     {
@@ -292,7 +294,6 @@ public class SchoolGateManager : MonoBehaviour
                             violationCount++; specificErrorString = "Thiếu tài liệu Ngày 3! Sinh viên vào nghiên cứu phải có Giấy chứng nhận phòng Lab.";
                         }
                     }
-                    else { violationCount++; specificErrorString = "Yêu cầu xuất trình Giấy ra vào tòa nhà để đối chiếu mục đích tham gia Ngày hội."; }
                     break;
 
                 case 4:
@@ -308,37 +309,33 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        if (largeCardDisplay != null) largeCardDisplay.SetActive(false);
-        if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false); // Tắt ẩn ảnh diện mạo bốt trực
+        HideAllLargeCards();
 
-        // ====================================================
-        // KHỐI 3: ĐỐI CHIẾU PHÁN QUYẾT ĐỂ PHÁT VÉ PHẠT UI & ĐẾM ĐIỂM ĐÚNG/SAI
-        // ====================================================
+        if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false); 
+
         bool studentHasAnyViolation = violationCount > 0;
         string finalTicketText = "";
 
         if (playerApproved && studentHasAnyViolation)
         {
-            incorrectDecisionsCount++; // Phán quyết SAI (Cho kẻ gian vượt rào)
+            incorrectDecisionsCount++; 
             finalTicketText = violationCount >= 2 ? "Người này mang theo hồ sơ có nhiều lỗi vi phạm quy chế cùng lúc." : specificErrorString;
         }
         else if (!playerApproved && !studentHasAnyViolation)
         {
-            incorrectDecisionsCount++; // Phán quyết SAI (Đuổi nhầm người vô tội)
+            incorrectDecisionsCount++; 
             finalTicketText = "Từ chối sai lệch! Hồ sơ người này hoàn toàn hợp lệ và đúng quy chế trường.";
         }
         else
         {
-            correctDecisionsCount++; // Phán quyết ĐÚNG (Duyệt chuẩn 100%)
+            correctDecisionsCount++; 
         }
 
         if (!string.IsNullOrEmpty(finalTicketText)) ShowCitationTicket(finalTicketText);
 
-        // Tiêu hủy cưỡng chế sạch phôi rác bàn dưới
         GameObject[] remainingSmallCards = GameObject.FindGameObjectsWithTag("SmallCard");
         foreach (GameObject card in remainingSmallCards) Destroy(card);
 
-        // KHỐI CHẠY HỘI THOẠI KẾT THÚC (1 ĐỐI SỐ THEO MÃ NGUỒN CŨ CỦA BẠN)
         if (DialogueManager.Instance != null && currentPersonProfile != null)
         {
             DialogueData targetDialogue = playerApproved ? currentPersonProfile.approveDialogue : currentPersonProfile.denyDialogue;
@@ -348,11 +345,20 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        // Tăng đếm tổng số lượng người đã qua tay xử lý
         studentsProcessedCount++;
-        isProcessingStudent = false; // Mở khóa tạm thời để nhận lệnh nút bấm tiếp theo
+        isProcessingStudent = false; 
         
         CheckEndOfDay();
+    }
+
+    private void HideAllLargeCards()
+    {
+        if (largeStudentCardObject != null) largeStudentCardObject.SetActive(false);
+        if (largeStaffCardObject != null) largeStaffCardObject.SetActive(false);
+        if (largeGatePassObject != null) largeGatePassObject.SetActive(false);
+        if (largeIntlCertObject != null) largeIntlCertObject.SetActive(false);
+        if (largeLabCertObject != null) largeLabCertObject.SetActive(false);
+        if (largeNewspaperObject != null) largeNewspaperObject.SetActive(false);
     }
 
     private string FormatToDateString(string rawInput)
@@ -388,46 +394,29 @@ public class SchoolGateManager : MonoBehaviour
 
     public void HideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
 
-    // ====================================================
-    // KHỐI ĐIỀU PHỐI TỔNG KẾT: Đã sửa dứt điểm lỗi lệch tên biến totalStudentsToday
-    // ====================================================
     private void CheckEndOfDay()
     {
-        // Sử dụng chuẩn xác tên biến totalStudentsToday đã khai báo ở đầu file
         if (studentsProcessedCount >= totalStudentsToday)
         {
-            Debug.Log($"<color=cyan><b>HẾT NGÀY!</b> Bắt đầu kích hoạt đồng hồ chờ 5 giây để sang bảng tổng kết Ca trực Ngày {currentDay}.</color>");
             StartCoroutine(WaitAndShowSummaryRoutine());
         }
     }
 
     private IEnumerator WaitAndShowSummaryRoutine()
     {
-        // Khóa phím Space cưỡng chế đề phòng người chơi ấn spam trong lúc chờ
         isProcessingStudent = true; 
+        yield return new WaitForSeconds(5.0f); 
 
-        yield return new WaitForSeconds(5.0f); // Đợi đúng 5 giây theo yêu cầu kịch bản
-
-        // THỰC HIỆN ĐỔI TRẠNG THÁI CANVAS: Giải quyết dứt điểm lỗi đè giao diện
-        if (gameplayCanvas != null)
-        {
-            gameplayCanvas.SetActive(false); // 1. TẮT HOÀN TOÀN giao diện chơi game chính
-        }
+        if (gameplayCanvas != null) gameplayCanvas.SetActive(false); 
 
         if (summaryCanvas != null)
         {
-            summaryCanvas.SetActive(true); // 2. BẬT sáng bảng tổng kết cuối ngày lên
-
-            // Bắn dữ liệu sang cấu phần Controller để tự động tính toán %
+            summaryCanvas.SetActive(true); 
             DaySummaryController summaryController = summaryCanvas.GetComponent<DaySummaryController>();
             if (summaryController != null)
             {
                 summaryController.DisplayStats(correctDecisionsCount, incorrectDecisionsCount);
             }
-        }
-        else
-        {
-            Debug.LogError("HỆ THỐNG: Bạn chưa kéo thả đối tượng SummaryCanvas vào ô biến ngoài Hierarchy!");
         }
     }
 }

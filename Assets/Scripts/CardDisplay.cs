@@ -2,20 +2,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// Định nghĩa bộ phân loại giấy tờ cho phôi nhỏ ngoài Editor
-public enum DocumentType { MainCard, GatePass, IntlCertificate, LabCertificate }
+// 🔥 ĐÃ THÊM LẠI: Bộ phân loại gốc cho phôi nhỏ (Sửa lỗi CS0246 cho toàn dự án)
+public enum DocumentType { MainCard, GatePass, IntlCertificate, LabCertificate, Newspaper}
+
+// Bộ phân loại kiểu thẻ lớn standalone ngoài Hierarchy
+public enum CardDisplayType { StudentCard, StaffCard, GatePass, IntlCertificate, LabCertificate }
 
 public class CardDisplay : MonoBehaviour
 {
-    [Header("--- PHÂN LOẠI TÀI LIỆU (CHỈ GÁN TRÊN PREFAB PHÔI NHỎ) ---")]
-    [Tooltip("Nếu đây là Prefab phôi nhỏ ngoài Project, hãy chọn đúng loại giấy tờ tương ứng")]
-    public DocumentType smallCardDocType;
+    [Header("--- PHÂN LOẠI THẺ LỚN TỰ TRỊ ---")]
+    [Tooltip("Hãy chọn đúng phân loại cho đối tượng thẻ lớn này ngoài Hierarchy")]
+    public CardDisplayType thisCardType;
 
-    [Header("--- HỒ SƠ MANG THEO (TÚI CHỨA DỮ LIỆU CHUNG) ---")]
-    public PersonProfile currentProfile; 
+    [HideInInspector] public PersonProfile currentProfile; 
+    public DocumentType smallCardDocType; // Ô biến dòng 15 bị lỗi đã được cứu sạch
 
-    [Header("--- 1. UI CỤM THÈ SINH VIÊN (Chỉ kéo gán trên THÈ TO) ---")]
-    public GameObject studentCardGroup; 
+    [Header("--- CẤU HÌNH TEXT THEO TỪNG LOẠI THẺ ---")]
+    // Nhóm 1: Thẻ sinh viên
     public TextMeshProUGUI studentNameText;
     public TextMeshProUGUI studentIdText;
     public TextMeshProUGUI studentDobText;
@@ -24,28 +27,24 @@ public class CardDisplay : MonoBehaviour
     public TextMeshProUGUI studentExpDateText;
     public Image studentPhotoImage;
 
-    [Header("--- 2. UI CỤM THÈ CÁN BỘ / GIẢNG VIÊN ---")]
-    public GameObject staffCardGroup; 
+    // Nhóm 2: Thẻ cán bộ
     public TextMeshProUGUI staffNameText;
     public TextMeshProUGUI staffFacultyText;
     public TextMeshProUGUI staffDobText;
     public Image staffPhotoImage;
 
-    [Header("--- 3. UI GIẤY RA VÀO TÒA NHÀ ---")]
-    public GameObject gatePassGroup; 
+    // Nhóm 3: Giấy ra vào
     public TextMeshProUGUI passNameText;
     public TextMeshProUGUI passIdOrTagText; 
     public TextMeshProUGUI passPurposeText; 
     public TextMeshProUGUI passDurationText;
 
-    [Header("--- 4. UI GIẤY CHỨNG NHẬN SV QUỐC TẾ ---")]
-    public GameObject intlCertGroup; 
+    // Nhóm 4: Sinh viên quốc tế
     public TextMeshProUGUI intlNameText;
     public TextMeshProUGUI intlIdText;
     public TextMeshProUGUI intlFacultyText;
 
-    [Header("--- 5. UI GIẤY THÀNH VIÊN PHÒNG NGHIÊN CỨU ---")]
-    public GameObject labCertGroup; 
+    // Nhóm 5: Phòng nghiên cứu Lab
     public TextMeshProUGUI labNameText;
     public TextMeshProUGUI labIdText;
     public TextMeshProUGUI labFacultyText;
@@ -57,84 +56,86 @@ public class CardDisplay : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>() ?? gameObject.AddComponent<CanvasGroup>();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
         }
+
+        // TỰ ĐỘNG ĐỒNG BỘ: Rút hồ sơ nhân vật đang đứng ở bốt từ GameManager sang
+        SchoolGateManager gateManager = Object.FindFirstObjectByType<SchoolGateManager>();
+        if (gateManager != null)
+        {
+            currentProfile = gateManager.GetCurrentProfile();
+        }
+
+        RenderCardData();
     }
 
-    // HÀM NẠP CHỮ TOÀN NĂNG: Đã xóa toàn bộ các dòng SetActive tự động cũ để phục vụ luồng lật mở từng tờ một
     public void RenderCardData()
     {
         if (currentProfile == null) return;
 
-        // 1. Điền dữ liệu Thẻ sinh viên
-        if (currentProfile.personType == PersonType.Student)
+        // Tự trị đổ dữ liệu cô lập dựa trên phân loại được chọn ngoài Inspector
+        switch (thisCardType)
         {
-            if (studentNameText != null) studentNameText.text = currentProfile.cardStudentName;
-            if (studentIdText != null) studentIdText.text = currentProfile.cardStudentID;
-            if (studentDobText != null) studentDobText.text = currentProfile.cardStudentDoB;
-            if (studentFacultyText != null) studentFacultyText.text = currentProfile.cardStudentFaculty;
-            if (studentMajorText != null) studentMajorText.text = currentProfile.cardStudentMajor;
-            if (studentExpDateText != null) studentExpDateText.text = currentProfile.cardStudentExpirationDate;
-            if (studentPhotoImage != null && currentProfile.cardStudentImage != null)
-            {
-                studentPhotoImage.sprite = currentProfile.cardStudentImage;
-            }
-        }
-        // 2. Điền dữ liệu Thẻ cán bộ
-        else if (currentProfile.personType == PersonType.Staff)
-        {
-            if (staffNameText != null) staffNameText.text = currentProfile.cardStaffName;
-            if (staffFacultyText != null) staffFacultyText.text = currentProfile.cardStaffFaculty;
-            if (staffDobText != null) staffDobText.text = currentProfile.cardStaffDoB;
-            if (staffPhotoImage != null && currentProfile.cardStaffImage != null)
-            {
-                staffPhotoImage.sprite = currentProfile.cardStaffImage;
-            }
-        }
-
-        // 3. Điền dữ liệu Giấy ra vào tòa nhà
-        if (currentProfile.hasGatePass)
-        {
-            if (passNameText != null) passNameText.text = currentProfile.passName;
-            if (passIdOrTagText != null) passIdOrTagText.text = currentProfile.passIDOrStaffTag; 
-            if (passDurationText != null) passDurationText.text = currentProfile.passDurationDate;
-
-            if (passPurposeText != null)
-            {
-                switch (currentProfile.passPurpose)
+            case CardDisplayType.StudentCard:
+                if (studentNameText != null) studentNameText.text = currentProfile.cardStudentName;
+                if (studentIdText != null) studentIdText.text = currentProfile.cardStudentID;
+                if (studentDobText != null) studentDobText.text = currentProfile.cardStudentDoB;
+                if (studentFacultyText != null) studentFacultyText.text = currentProfile.cardStudentFaculty;
+                if (studentMajorText != null) studentMajorText.text = currentProfile.cardStudentMajor;
+                if (studentExpDateText != null) studentExpDateText.text = currentProfile.cardStudentExpirationDate;
+                if (studentPhotoImage != null && currentProfile.cardStudentImage != null)
                 {
-                    case GatePurpose.HocTap_GiangDay:
-                        passPurposeText.text = currentProfile.personType == PersonType.Student ? "Học tập" : "Giảng dạy";
-                        break;
-                    case GatePurpose.SuKien:
-                        passPurposeText.text = "Sự kiện";
-                        break;
-                    case GatePurpose.NghienCuu:
-                        passPurposeText.text = "Nghiên cứu";
-                        break;
+                    studentPhotoImage.sprite = currentProfile.cardStudentImage;
                 }
-            }
-        }
+                break;
 
-        // 4. Điền dữ liệu Giấy chứng nhận sinh viên quốc tế
-        if (currentProfile.hasIntlCertificate)
-        {
-            if (intlNameText != null) intlNameText.text = currentProfile.intlName;
-            if (intlIdText != null) intlIdText.text = currentProfile.intlStudentID;
-            if (intlFacultyText != null) intlFacultyText.text = currentProfile.intlFaculty;
-        }
+            case CardDisplayType.StaffCard:
+                if (staffNameText != null) staffNameText.text = currentProfile.cardStaffName;
+                if (staffFacultyText != null) staffFacultyText.text = currentProfile.cardStaffFaculty;
+                if (staffDobText != null) staffDobText.text = currentProfile.cardStaffDoB;
+                if (staffPhotoImage != null && currentProfile.cardStaffImage != null)
+                {
+                    staffPhotoImage.sprite = currentProfile.cardStaffImage;
+                }
+                break;
 
-        // 5. Điền dữ liệu Giấy thành viên phòng nghiên cứu
-        if (currentProfile.hasLabCertificate)
-        {
-            if (labNameText != null) labNameText.text = currentProfile.labName;
-            if (labIdText != null) labIdText.text = currentProfile.labStudentID;
-            if (labFacultyText != null) labFacultyText.text = currentProfile.labFaculty;
+            case CardDisplayType.GatePass:
+                if (passNameText != null) passNameText.text = currentProfile.passName;
+                if (passIdOrTagText != null) passIdOrTagText.text = currentProfile.passIDOrStaffTag; 
+                if (passDurationText != null) passDurationText.text = currentProfile.passDurationDate;
+                if (passPurposeText != null)
+                {
+                    switch (currentProfile.passPurpose)
+                    {
+                        case GatePurpose.HocTap_GiangDay:
+                            passPurposeText.text = currentProfile.personType == PersonType.Student ? "Học tập" : "Giảng dạy";
+                            break;
+                        case GatePurpose.SuKien:
+                            passPurposeText.text = "Sự kiện";
+                            break;
+                        case GatePurpose.NghienCuu:
+                            passPurposeText.text = "Nghiên cứu";
+                            break;
+                    }
+                }
+                break;
+
+            case CardDisplayType.IntlCertificate:
+                if (intlNameText != null) intlNameText.text = currentProfile.intlName;
+                if (intlIdText != null) intlIdText.text = currentProfile.intlStudentID;
+                if (intlFacultyText != null) intlFacultyText.text = currentProfile.intlFaculty;
+                break;
+
+            case CardDisplayType.LabCertificate:
+                if (labNameText != null) labNameText.text = currentProfile.labName;
+                if (labIdText != null) labIdText.text = currentProfile.labStudentID;
+                if (labFacultyText != null) labFacultyText.text = currentProfile.labFaculty;
+                break;
         }
     }
 }
