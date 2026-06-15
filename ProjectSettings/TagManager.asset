@@ -9,6 +9,8 @@ TagManager:
   - LargeBook
   - SmallBook
   - LargeStaffCard
+  - SmallNewspaper
+  - LargeNewspaper
   layers:
   - Default
   - TransparentFX
