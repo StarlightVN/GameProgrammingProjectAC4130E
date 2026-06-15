@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 200115
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 0
+  hasIntlCertificate: 0
+  hasLabCertificate: 0
+  boothAvatarImage: {fileID: -2164074484808460216, guid: 83ba7267b6f52f24bbb9b3b6d5a9e3cc, type: 3}
+  cardStudentName: "Tr\u1ECBnh B\u1EA3o Kh\xE1nh"
+  cardStudentID: 20209284
+  cardStudentDoB: 16/04/2002
+  cardStudentFaculty: SME
+  cardStudentMajor: ME1
+  cardStudentExpirationDate: 31/12/2026
+  cardStudentImage: {fileID: -2164074484808460216, guid: 83ba7267b6f52f24bbb9b3b6d5a9e3cc, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: 
+  passIDOrStaffTag: 
+  passPurpose: 0
+  passDurationDate: 
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isPhotoMatching: 1
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

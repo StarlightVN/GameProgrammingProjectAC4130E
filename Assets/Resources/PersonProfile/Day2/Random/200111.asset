@@ -17,14 +17,14 @@ MonoBehaviour:
   hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: 2656984897059647201, guid: 10333aa4c09268148927a3853b7933ba, type: 3}
   cardStudentName: "Ng\xF4 \u0110\u1EE9c Long"
   cardStudentID: 20221397
-  cardStudentDoB: 11122004
+  cardStudentDoB: 11/12/2004
   cardStudentFaculty: SoICT
   cardStudentMajor: IT-E7
-  cardStudentExpirationDate: 31122027
-  cardStudentImage: {fileID: 0}
+  cardStudentExpirationDate: 31/12/2027
+  cardStudentImage: {fileID: 2656984897059647201, guid: 10333aa4c09268148927a3853b7933ba, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -32,7 +32,7 @@ MonoBehaviour:
   passName: "Ng\xF4 \u0110\u1EE9c Long"
   passIDOrStaffTag: 20221397
   passPurpose: 1
-  passDurationDate: 04062026
+  passDurationDate: 01/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 

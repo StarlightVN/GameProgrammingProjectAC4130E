@@ -17,14 +17,14 @@ MonoBehaviour:
   hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: -420084756406509371, guid: 8447ebc19a2365a409e16feb95df6816, type: 3}
   cardStudentName: "Phan H\u01B0\u01A1ng Giang"
   cardStudentID: 202496214
   cardStudentDoB: 19/10/2006
   cardStudentFaculty: SEEE
   cardStudentMajor: EE1
   cardStudentExpirationDate: 31/12/2028
-  cardStudentImage: {fileID: 0}
+  cardStudentImage: {fileID: -420084756406509371, guid: 8447ebc19a2365a409e16feb95df6816, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -32,7 +32,7 @@ MonoBehaviour:
   passName: "Phan H\u01B0\u01A1ng Giang"
   passIDOrStaffTag: 202496214
   passPurpose: 2
-  passDurationDate: 04/06/2026
+  passDurationDate: 01/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 

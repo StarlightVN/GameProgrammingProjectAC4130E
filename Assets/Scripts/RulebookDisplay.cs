@@ -1,17 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI; // BẮT BUỘC: Để điều khiển linh kiện UI Image
 using System.Collections.Generic;
-using TMPro;
 
 public class RulebookDisplay : MonoBehaviour
 {
-    [Header("Nội dung Sổ theo từng trang")]
-    [TextArea(5, 10)]
-    public List<string> bookPages = new List<string>();
+    [Header("--- NỘI DUNG SỔ THEO TỪNG TRANG ĐÔI (ẢNH SPREAD) ---")]
+    [Tooltip("Kéo danh sách các tấm ảnh trang sổ (đã vẽ cả trang trái + phải trên 1 ảnh) vào đây")]
+    public List<Sprite> bookPageSprites = new List<Sprite>();
 
-    [Header("UI Components")]
-    public TextMeshProUGUI pageContentText; 
+    [Header("--- UI COMPONENTS HIỂN THỊ ---")]
+    [Tooltip("Kéo linh kiện UI Image đóng vai trò làm mặt giấy lật mở bên trong Sổ luật vào đây")]
+    public Image bookPageImage; 
 
-    [Header("Spawn New Book Settings")]
+    [Header("--- SPAWN NEW BOOK SETTINGS ---")]
     public GameObject smallBookPrefab; 
     public Transform rulebookSlotTarget; 
 
@@ -25,10 +26,10 @@ public class RulebookDisplay : MonoBehaviour
 
     void OnEnable()
     {
-        currentPageIndex = 0;
+        currentPageIndex = 0; // Luôn mở ra ở trang đầu tiên
         RenderPage();
 
-        // KHẮC PHỤC LỖI CỐ ĐỊNH/MỜ: Ép sổ lớn luôn sáng rõ và nhận tia chuột khi mở ra
+        // Ép sổ lớn luôn sáng rõ và nhận tia chuột khi mở ra
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 1f;
@@ -44,17 +45,39 @@ public class RulebookDisplay : MonoBehaviour
 
     public void RenderPage()
     {
-        if (bookPages == null || bookPages.Count == 0)
+        if (bookPageSprites == null || bookPageSprites.Count == 0)
         {
-            if (pageContentText != null) pageContentText.text = "Sổ trống...";
+            if (bookPageImage != null) bookPageImage.sprite = null;
             return;
         }
-        currentPageIndex = Mathf.Clamp(currentPageIndex, 0, bookPages.Count - 1);
-        if (pageContentText != null) pageContentText.text = bookPages[currentPageIndex];
+        
+        // Nẹp cứng chỉ số trang trong ranh giới số lượng ảnh có sẵn
+        currentPageIndex = Mathf.Clamp(currentPageIndex, 0, bookPageSprites.Count - 1);
+        
+        // Thay đổi Sprite ảnh hiển thị
+        if (bookPageImage != null) 
+        {
+            bookPageImage.sprite = bookPageSprites[currentPageIndex];
+        }
     }
 
-    public void NextPage() { if (currentPageIndex < bookPages.Count - 1) { currentPageIndex++; RenderPage(); } }
+    // Hàm lật trang tịnh tiến lên trước / về sau
+    public void NextPage() { if (currentPageIndex < bookPageSprites.Count - 1) { currentPageIndex++; RenderPage(); } }
     public void PreviousPage() { if (currentPageIndex > 0) { currentPageIndex--; RenderPage(); } }
+
+    // =========================================================================
+    // 🔥 CHỨC NĂNG MỚI: TÍNH NĂNG BOOKMARK ĐIỀU HƯỚNG NHẢY TRANG CẤP TỐC
+    // =========================================================================
+    public void GoToPage(int pageIndex)
+    {
+        if (bookPageSprites == null || bookPageSprites.Count == 0) return;
+
+        // Gán cứng số trang và ép vẽ lại giao diện tức thì
+        currentPageIndex = Mathf.Clamp(pageIndex, 0, bookPageSprites.Count - 1);
+        RenderPage();
+        
+        Debug.Log($"HỆ THỐNG SỔ: Đã nhảy nhanh đến trang số {currentPageIndex} thông qua Bookmark.");
+    }
 
     public void CloseBook()
     {
@@ -78,11 +101,11 @@ public class RulebookDisplay : MonoBehaviour
             }
         }
 
-        // ĐỒNG BỘ: Đưa RectTransform về vị trí tâm bàn lớn trước khi tắt ẩn
+        // Đưa RectTransform về vị trí tâm bàn lớn trước khi tắt ẩn
         RectTransform myRect = GetComponent<RectTransform>();
         if (myRect != null)
         {
-            myRect.anchoredPosition = Vector2.zero; // Reset về vị trí trung tâm bàn lớn chuẩn chỉnh
+            myRect.anchoredPosition = Vector2.zero; 
         }
         
         gameObject.SetActive(false);

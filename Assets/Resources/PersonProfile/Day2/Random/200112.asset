@@ -17,14 +17,14 @@ MonoBehaviour:
   hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: -7391572815722183507, guid: 4c290c02c0d597045a81082f6e76d906, type: 3}
   cardStudentName: "D\u01B0\u01A1ng Mai Anh"
   cardStudentID: 20234819
   cardStudentDoB: 25/09/2005
   cardStudentFaculty: SME
   cardStudentMajor: ME2
   cardStudentExpirationDate: 31/12/2027
-  cardStudentImage: {fileID: 0}
+  cardStudentImage: {fileID: -7391572815722183507, guid: 4c290c02c0d597045a81082f6e76d906, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -32,7 +32,7 @@ MonoBehaviour:
   passName: "D\u01B0\u01A1ng Mai Anh"
   passIDOrStaffTag: 20234819
   passPurpose: 0
-  passDurationDate: 04/06/2026
+  passDurationDate: 01/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 

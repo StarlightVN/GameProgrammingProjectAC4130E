@@ -17,7 +17,7 @@ MonoBehaviour:
   hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: -5826003151130273993, guid: 12adaece65cf5394da31ee0194f37ec8, type: 3}
   cardStudentName: 
   cardStudentID: 
   cardStudentDoB: 
@@ -28,11 +28,11 @@ MonoBehaviour:
   cardStaffName: "L\xFD Nam Khoa"
   cardStaffFaculty: SEEE
   cardStaffDoB: 04/04/1985
-  cardStaffImage: {fileID: 0}
+  cardStaffImage: {fileID: -5826003151130273993, guid: 12adaece65cf5394da31ee0194f37ec8, type: 3}
   passName: "L\xFD Nam Khoa"
   passIDOrStaffTag: "C\xE1n b\u1ED9"
   passPurpose: 0
-  passDurationDate: 04/06/2026
+  passDurationDate: 01/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
