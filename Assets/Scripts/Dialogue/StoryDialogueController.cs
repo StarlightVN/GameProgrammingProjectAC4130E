@@ -282,22 +282,25 @@ namespace LetMeIn.Dialogue
             bool isBlackScreen =
                 currentLine.displayMode == DialogueDisplayMode.BlackScreen;
 
+            bool isTitleCard =
+                currentLine.displayMode == DialogueDisplayMode.TitleCard;
+
             bool isNarration =
                 currentLine.displayMode == DialogueDisplayMode.Narration;
 
             if (dialogueBox != null)
             {
-                dialogueBox.SetActive(!isNotification);
+                dialogueBox.SetActive(!isNotification && !isTitleCard);
             }
 
             if (notificationRoot != null)
             {
-                notificationRoot.SetActive(isNotification);
+                notificationRoot.SetActive(isNotification || isTitleCard);
             }
 
             if (blackOverlay != null)
             {
-                blackOverlay.gameObject.SetActive(isBlackScreen);
+                blackOverlay.gameObject.SetActive(isBlackScreen || isTitleCard);
                 blackOverlay.color = Color.black;
             }
 
@@ -362,7 +365,8 @@ namespace LetMeIn.Dialogue
             isTyping = true;
 
             TMP_Text targetText =
-                currentLine.displayMode == DialogueDisplayMode.Notification
+                currentLine.displayMode == DialogueDisplayMode.Notification ||
+                currentLine.displayMode == DialogueDisplayMode.TitleCard
                     ? notificationText
                     : dialogueContentText;
 
@@ -609,5 +613,6 @@ namespace LetMeIn.Dialogue
             backgroundImage.color = Color.clear;
             backgroundImage.gameObject.SetActive(false);
         }
+
     }
 }

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 1
   hasMainCard: 1
-  hasGatePass: 1
+  hasGatePass: 0
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: -1500924319995769889, guid: 912445b1f195b9d4ab72fe5d9625954b, type: 3}
+  boothAvatarImage: {fileID: 7502980536230901509, guid: 58361f3d3b6d1394983985d830a2d8fa, type: 3}
   cardStudentName: 
   cardStudentID: 
   cardStudentDoB: 
@@ -28,7 +28,7 @@ MonoBehaviour:
   cardStaffName: "Nguy\u1EC5n \u0110\u1ECBnh V\xE2n"
   cardStaffFaculty: SEEE
   cardStaffDoB: 15/03/1990
-  cardStaffImage: {fileID: -1500924319995769889, guid: 912445b1f195b9d4ab72fe5d9625954b, type: 3}
+  cardStaffImage: {fileID: 7502980536230901509, guid: 58361f3d3b6d1394983985d830a2d8fa, type: 3}
   passName: 
   passIDOrStaffTag: 
   passPurpose: 0

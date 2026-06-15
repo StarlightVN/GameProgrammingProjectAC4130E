@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6301887, g: 0.52510595, b: 0.28893554, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3808,7 +3808,7 @@ MonoBehaviour:
   txtIncorrectCount: {fileID: 1225597371}
   txtAccuracy: {fileID: 1738984874}
   btnNextDay: {fileID: 742988543}
-  nextSceneName: Day1_Ending
+  nextSceneName: Day2_Opening
 --- !u!114 &859555368
 MonoBehaviour:
   m_ObjectHideFlags: 0

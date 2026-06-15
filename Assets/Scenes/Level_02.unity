@@ -3808,7 +3808,7 @@ MonoBehaviour:
   txtIncorrectCount: {fileID: 1225597371}
   txtAccuracy: {fileID: 1738984874}
   btnNextDay: {fileID: 742988543}
-  nextSceneName: Day1_Ending
+  nextSceneName: Main Menu
 --- !u!114 &859555368
 MonoBehaviour:
   m_ObjectHideFlags: 0
