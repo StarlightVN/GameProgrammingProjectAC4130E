@@ -10,6 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
-  m_Name: Student Denied 3
+  m_Name: Accept
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  lines: []
+  lines:
+  - speaker: 0
+    text: "Gi\u1EA5y t\u1EDD c\u1EE7a th\u1EA7y h\u1EE3p l\u1EC7 \u1EA1"
+  - speaker: 1
+    text: "Th\u1EBF th\xEC t\u1ED1t r\u1ED3i, \\n ti\u1EBFp t\u1EE5c l\xE0m vi\u1EC7c
+      em nh\xE9."

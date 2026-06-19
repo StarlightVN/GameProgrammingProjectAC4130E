@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
   m_Name: Student Denied 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  lines:
-  - speaker: 0
-    text: "Gi\u1EA5y t\u1EDD l\u1ECF th\xEC cook."
-  - speaker: 1
-    text: "Cho v\xE0o \u0111i m\xE0 ~"
-  - speaker: 0
-    text: "H\u1EB9n bu\u1ED5i sau b\u1EA1n nh\xE9 ~"
+  lines: []

@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
   m_Name: Student Openning 3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  lines:
-  - speaker: 0
-    text: "\u0110\u1EC1 ngh\u1ECB xu\u1EA5t tr\xECnh gi\u1EA5y t\u1EDD!"
+  lines: []

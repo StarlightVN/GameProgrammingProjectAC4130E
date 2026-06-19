@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
-  m_Name: 110001
+  m_Name: 101103
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
   hasGatePass: 0
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: -8964882521386143562, guid: 90d9b28335a80874cbe772d41ab283b0, type: 3}
-  cardStudentName: "Mi Ch\xEA Lin"
-  cardStudentID: 20222222
-  cardStudentDoB: 02/02/2022
-  cardStudentFaculty: SEEE
-  cardStudentMajor: ET2
-  cardStudentExpirationDate: 31/12/2026
-  cardStudentImage: {fileID: -8964882521386143562, guid: 90d9b28335a80874cbe772d41ab283b0, type: 3}
+  boothAvatarImage: {fileID: 0}
+  cardStudentName: 
+  cardStudentID: 
+  cardStudentDoB: 
+  cardStudentFaculty: 
+  cardStudentMajor: 
+  cardStudentExpirationDate: 
+  cardStudentImage: {fileID: 0}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -45,6 +45,6 @@ MonoBehaviour:
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 11400000, guid: e3836662c2977ac4a82dc59f837162c0, type: 2}
-  approveDialogue: {fileID: 11400000, guid: 7eb692f6424a0c84590ed7e18bc73a25, type: 2}
-  denyDialogue: {fileID: 11400000, guid: 792321a19a0b58d458f525f01ba383ae, type: 2}
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}
