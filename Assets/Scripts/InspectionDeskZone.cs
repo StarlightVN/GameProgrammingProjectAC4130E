@@ -70,6 +70,11 @@ public class InspectionDeskZone : MonoBehaviour, IDropHandler
 
                     // Bật thực thể lớn lên màn hình (Nó sẽ tự kích hoạt OnEnable để nạp chữ)
                     targetLargeObject.SetActive(true);
+                    UIDragDrop largeCardDrag = targetLargeObject.GetComponent<UIDragDrop>();
+                    if (largeCardDrag != null)
+                    {
+                        largeCardDrag.ClampToBoundary(); // Khóa cứng thẻ to lọt vào vùng an toàn ngay lập tức!
+                    }
                     
                     // Giải phóng tia va chạm chuột để kéo rê mượt mà không bị đơ mờ
                     if (targetLargeObject.TryGetComponent<CanvasGroup>(out CanvasGroup largeCardCG))
@@ -81,12 +86,7 @@ public class InspectionDeskZone : MonoBehaviour, IDropHandler
                     // Đẩy thứ tự layer hiển thị lên trên cùng bề mặt bàn làm việc
                     targetLargeObject.transform.SetAsLastSibling(); 
 
-                    // Ghi nhận điểm neo ổn định cho cơ chế giật vị trí
-                    UIDragDrop largeCardDrag = targetLargeObject.GetComponent<UIDragDrop>();
-                    if (largeCardDrag != null && largeRect != null)
-                    {
-                        largeCardDrag.SetStablePosition(largeRect.position);
-                    }
+
 
                     // Tiêu hủy chính xác mảnh phôi nhỏ vừa kéo lên, giữ sạch rác mặt bàn gỗ
                     Destroy(draggedObject); 

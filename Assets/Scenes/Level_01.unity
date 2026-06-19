@@ -4910,9 +4910,9 @@ RectTransform:
   m_Children:
   - {fileID: 1515525412}
   - {fileID: 307296949}
-  - {fileID: 539800672}
   - {fileID: 1293382695}
   - {fileID: 494162210}
+  - {fileID: 539800672}
   - {fileID: 401573010}
   - {fileID: 1184826372}
   - {fileID: 1559234161}
@@ -6107,7 +6107,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef0657ad85bc3ef4a9bed99dc6c1bac4, type: 2}
   - {fileID: 11400000, guid: 84a571ea49c47ea42bfa0167280c3362, type: 2}
   spawnPointSmallDesk: {fileID: 539800672}
-  mainCardSmallPrefab: {fileID: 8599904813929051999, guid: 883be2be5e8bb1f4fa3d80b56110449f, type: 3}
+  studentCardSmallPrefab: {fileID: 8599904813929051999, guid: 883be2be5e8bb1f4fa3d80b56110449f, type: 3}
+  staffCardSmallPrefab: {fileID: 793359129955964003, guid: 183d4bfbf7582724fba9abe21207f922, type: 3}
   gatePassSmallPrefab: {fileID: 8599904813929051999, guid: 26a902a3ac23fec408b6d9e7045ff1c9, type: 3}
   intlCertSmallPrefab: {fileID: 8599904813929051999, guid: 1117daab8a152124aba0667002f48cab, type: 3}
   labCertSmallPrefab: {fileID: 8599904813929051999, guid: 0f4042a510479cc4d88e3fee51cbc40f, type: 3}

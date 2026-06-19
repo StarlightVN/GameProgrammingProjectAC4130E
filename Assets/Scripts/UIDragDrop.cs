@@ -37,11 +37,20 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         lastStablePosition = rectTransform.position; 
         transform.SetAsLastSibling();       
-        canvasGroup.blocksRaycasts = false; 
+        canvasGroup.blocksRaycasts = false; // Xuyên thấu tia chuột để vùng thả nhận diện được
 
+        // 🔥 GIẢI PHÁP 2: Ép nổi phôi nhỏ lên trên cùng bốt trực khi đang cầm kéo rê
         if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook") || gameObject.CompareTag("SmallNewspaper"))
         {
             canvasGroup.alpha = 0.6f; 
+
+            // Rút linh kiện Canvas gán cứng trên Prefab nhỏ để ép nổi tầng hiển thị
+            Canvas myCanvas = GetComponent<Canvas>();
+            if (myCanvas != null)
+            {
+                myCanvas.overrideSorting = true;
+                myCanvas.sortingOrder = 999; // Đẩy lên tầng mây cao nhất, đè lên cả bàn lớn và sổ luật
+            }
         }
         else
         {
@@ -54,22 +63,10 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (rectTransform == null || canvas == null) return;
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
 
-        // Khóa biên ranh giới an toàn cho các vật thể to standalone
+        // Vòng lặp nẹp viền liên tục khi đang rê chuột
         if (!isSmallCard && deskBoundaryRect != null)
         {
-            Vector2 localPos = deskBoundaryRect.InverseTransformPoint(rectTransform.position);
-            float halfWidth = rectTransform.rect.width / 2f;
-            float halfHeight = rectTransform.rect.height / 2f;
-            
-            float minX = deskBoundaryRect.rect.xMin + halfWidth;
-            float maxX = deskBoundaryRect.rect.xMax - halfWidth;
-            float minY = deskBoundaryRect.rect.yMin + halfHeight;
-            float maxY = deskBoundaryRect.rect.yMax - halfHeight;
-            
-            localPos.x = Mathf.Clamp(localPos.x, minX, maxX);
-            localPos.y = Mathf.Clamp(localPos.y, minY, maxY);
-            
-            rectTransform.position = deskBoundaryRect.TransformPoint(localPos);
+            ClampToBoundary();
         }
     }
 
@@ -80,9 +77,39 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         if (isSmallCard || gameObject.CompareTag("SmallCard") || gameObject.CompareTag("SmallBook") || gameObject.CompareTag("SmallNewspaper"))
         {
+            // 🔥 Tắt chế độ ép nổi khi buông tay để phôi nhỏ chìm lại về khay gỗ bàn dưới đúng quy chế
+            Canvas myCanvas = GetComponent<Canvas>();
+            if (myCanvas != null)
+            {
+                myCanvas.overrideSorting = false;
+            }
+
             bool droppedOnValidZone = (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<IDropHandler>() != null);
             if (!droppedOnValidZone) rectTransform.position = lastStablePosition; 
             else lastStablePosition = rectTransform.position;
         }
+    }
+
+    // =========================================================================
+    // 🔥 GIẢI PHÁP 1: HÀM BO VIỀN CƯỠNG CHẾ (Giải quyết dứt điểm lỗi chờm biên lần đầu)
+    // =========================================================================
+    public void ClampToBoundary()
+    {
+        if (isSmallCard || deskBoundaryRect == null || rectTransform == null) return;
+
+        Vector2 localPos = deskBoundaryRect.InverseTransformPoint(rectTransform.position);
+        float halfWidth = rectTransform.rect.width / 2f;
+        float halfHeight = rectTransform.rect.height / 2f;
+        
+        float minX = deskBoundaryRect.rect.xMin + halfWidth;
+        float maxX = deskBoundaryRect.rect.xMax - halfWidth;
+        float minY = deskBoundaryRect.rect.yMin + halfHeight;
+        float maxY = deskBoundaryRect.rect.yMax - halfHeight;
+        
+        localPos.x = Mathf.Clamp(localPos.x, minX, maxX);
+        localPos.y = Mathf.Clamp(localPos.y, minY, maxY);
+        
+        rectTransform.position = deskBoundaryRect.TransformPoint(localPos);
+        lastStablePosition = rectTransform.position; // Cập nhật luôn điểm tọa độ an toàn
     }
 }

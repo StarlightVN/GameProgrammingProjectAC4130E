@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
   m_Name: 101103
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
-  personType: 0
+  personType: 1
   hasMainCard: 1
   hasGatePass: 0
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: -5389446087775742899, guid: f1eb9bf04e4dc7c4e939e90a02b6eb61, type: 3}
   cardStudentName: 
   cardStudentID: 
   cardStudentDoB: 
@@ -25,10 +25,10 @@ MonoBehaviour:
   cardStudentMajor: 
   cardStudentExpirationDate: 
   cardStudentImage: {fileID: 0}
-  cardStaffName: 
-  cardStaffFaculty: 
-  cardStaffDoB: 
-  cardStaffImage: {fileID: 0}
+  cardStaffName: "Ph\u1EA1m V\u0103n Ti\u1EC5n"
+  cardStaffFaculty: SEEE
+  cardStaffDoB: 12/05/1982
+  cardStaffImage: {fileID: -5389446087775742899, guid: f1eb9bf04e4dc7c4e939e90a02b6eb61, type: 3}
   passName: 
   passIDOrStaffTag: 
   passPurpose: 0

@@ -25,21 +25,24 @@ public class SchoolGateManager : MonoBehaviour
     public Transform spawnPointSmallDesk;      
 
     [Header("--- DANH SÁCH PREFAB PHÔI NHỎ RIÊNG BIỆT ---")]
-    public GameObject mainCardSmallPrefab;         
+    // 🔥 ĐÃ THAY ĐỔI: Tách mainCardSmallPrefab cũ thành 2 mẫu độc lập cho Sinh viên và Cán bộ
+    [Tooltip("Kéo mẫu Prefab phôi Thẻ Sinh Viên nhỏ ngoài Project vào đây")]
+    public GameObject studentCardSmallPrefab;         
+    [Tooltip("Kéo mẫu Prefab phôi Thẻ Cán Bộ nhỏ ngoài Project vào đây")]
+    public GameObject staffCardSmallPrefab;        
+    
     public GameObject gatePassSmallPrefab;        
     public GameObject intlCertSmallPrefab;        
     public GameObject labCertSmallPrefab;         
     public GameObject newspaperSmallPrefab; 
 
     [Header("--- KHUNG ẢNH BỐT TRỰC (BOOTH CAMERA UI) ---")]
-    [Tooltip("Kéo cấu phần Image hiển thị diện mạo nhân vật vào đây")]
     public Image boothAvatarDisplayUI;
 
     [Header("--- CƠ CHẾ NHÂN VẬT CỐ ĐỊNH (STORY LINE) ---")]
     public List<FixedCharacterConfig> fixedCharactersToday;
 
     [Header("--- LEVEL SETTINGS ---")]
-    [Tooltip("Tổng số lượng người cần xét duyệt định mức trong ngày hôm nay")]
     public int totalStudentsToday = 5;          
     private int studentsProcessedCount = 0;     
     public Transform studentReturnZone;        
@@ -52,18 +55,14 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject largeLabCertObject;
     public GameObject largeNewspaperObject;
 
-    [Header("--- 🔥 HỆ THỐNG ĐỒNG HỒ ĐIỆN TỬ (TIMER SYSTEM) ---")]
-    [Tooltip("Kéo linh kiện TextMeshPro hiển thị thời gian (04:00) ngoài Hierarchy vào đây")]
+    [Header("--- HỆ THỐNG ĐỒNG HỒ ĐIỆN TỬ (TIMER SYSTEM) ---")]
     public TextMeshProUGUI timerText;
-    [Tooltip("Tùy chỉnh thời lượng của ca trực ngày hôm nay tính bằng GIÂY (Ví dụ: 240)")]
     public float dayDurationSeconds = 240f;
     private float timeRemaining;
     private bool isDayEnded = false;
 
-    [Header("--- 🔥 THỜI GIAN CHỜ GỌI NGƯỜI TỰ ĐỘNG ---")]
-    [Tooltip("Thời gian delay tối thiểu trước khi gọi người tiếp theo (giây)")]
+    [Header("--- THỜI GIAN CHỜ GỌI NGƯỜI TỰ ĐỘNG ---")]
     public float minSpawnDelay = 1f;
-    [Tooltip("Thời gian delay tối đa trước khi gọi người tiếp theo (giây)")]
     public float maxSpawnDelay = 3f;
 
     [Header("--- HỆ THỐNG VÉ PHẠT UI AUTOHIDE ---")]
@@ -76,15 +75,15 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject summaryCanvas;
     public GameObject gameplayCanvas;
 
-    // Biến điều phối luồng Coroutine nội bộ
     private bool isProcessingStudent = false;
     private PersonProfile currentPersonProfile; 
     private List<PersonProfile> activeStudentDayPool = new List<PersonProfile>();
     private Coroutine citationHideCoroutine;
 
-    // Bộ token quản lý chu kỳ thoại nghiêm ngặt
     private bool canInteractButtons = false; 
     private bool hasPlayerDecided = false;    
+
+    private List<FixedCharacterConfig> remainingFixedChars = new List<FixedCharacterConfig>();
 
     public PersonProfile GetCurrentProfile() { return currentPersonProfile; }
 
@@ -97,37 +96,37 @@ public class SchoolGateManager : MonoBehaviour
         if (citationPanelUI != null) citationPanelUI.SetActive(false);
         if (summaryCanvas != null) summaryCanvas.SetActive(false); 
 
-        // Khởi tạo trạng thái đồng hồ
         timeRemaining = dayDurationSeconds;
         isDayEnded = false;
 
-        // Ẩn toàn bộ giấy tờ to và avatar lúc vào bàn trực
+        if (fixedCharactersToday != null)
+        {
+            remainingFixedChars = new List<FixedCharacterConfig>(fixedCharactersToday);
+            remainingFixedChars.Sort((a, b) => a.appearanceTurn.CompareTo(b.appearanceTurn));
+        }
+
         HideAllLargeCards();
         if (boothAvatarDisplayUI != null)
         {
-            boothAvatarDisplayUI.color = new Color(0f, 0f, 0f, 0f); // Mờ đen tuyền trong suốt
+            boothAvatarDisplayUI.color = new Color(0f, 0f, 0f, 0f); 
             boothAvatarDisplayUI.gameObject.SetActive(false);
         }
 
-        // Cấp phôi báo đầu ngày
         if (newspaperSmallPrefab != null)
         {
             ReturnToSmallCard(Vector3.zero, DocumentType.Newspaper);
         }
 
-        // 🔥 KÍCH HOẠT: Bật chuỗi vòng lặp ca trực tự động gọi người
         StartCoroutine(GameWorkflowRoutine());
     }
 
     void Update()
     {
-        // 🔥 ĐỒNG HỒ ĐẾM NGƯỢC TỰ ĐỘNG KHÔNG DÙNG SPACEBAR NỮA
         if (!isDayEnded && timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
             if (timeRemaining < 0) timeRemaining = 0;
 
-            // Quy đổi thời gian thực sang định dạng hiển thị điện tử MM:SS
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
             if (timerText != null)
@@ -137,66 +136,61 @@ public class SchoolGateManager : MonoBehaviour
         }
     }
 
-    // =========================================================================
-    // 🔥 MA TRẬN VÒNG LẶP CA TRỰC TỰ ĐỘNG TOÀN NĂNG (CORE WORKFLOW)
-    // =========================================================================
     private IEnumerator GameWorkflowRoutine()
     {
-        // Chờ 1 giây đầu ngày cho người chơi ổn định bốt trực
         yield return new WaitForSeconds(1.0f);
 
         while (!isDayEnded)
         {
-            // 🛑 ĐIỀU KIỆN KIỂM TRA BÙ GIỜ / HẾT NGÀY CHÍNH XÁC:
-            bool hasStoryNPCLeft = false;
-            foreach (FixedCharacterConfig fixedChar in fixedCharactersToday)
+            if (remainingFixedChars.Count == 0)
             {
-                if (fixedChar.appearanceTurn >= studentsProcessedCount && fixedChar.personProfile != null)
+                if (timeRemaining <= 0 || studentsProcessedCount >= totalStudentsToday)
                 {
-                    hasStoryNPCLeft = true;
+                    isDayEnded = true;
                     break;
                 }
             }
 
-            // Nếu đã hết thời gian VÀ không còn nhân vật cốt truyện đặc biệt nào chờ hiệu lực -> ĐÓNG CỬA KHẨU!
-            if (timeRemaining <= 0 && !hasStoryNPCLeft)
-            {
-                isDayEnded = true;
-                break;
-            }
-
-            // Nếu chưa hết giờ nhưng đã xử lý hết định mức người quy định (và không có NPC cốt truyện chờ kích hoạt gấp)
-            if (timeRemaining > 0 && studentsProcessedCount >= totalStudentsToday && !hasStoryNPCLeft)
-            {
-                isDayEnded = true;
-                break;
-            }
-
-            // 1. Chờ một khoảng delay tùy chỉnh giữa các NPC (Tạo nhịp thở cho game)
             float randomDelay = Random.Range(minSpawnDelay, maxSpawnDelay);
             yield return new WaitForSeconds(randomDelay);
 
-            // Ẩn bảng vé phạt cũ của người trước nếu có
             if (citationPanelUI != null && citationPanelUI.activeSelf) HideCitationTicket();
 
-            // 2. Thiết lập dữ liệu cho nhân vật tiếp theo bước vào bốt
             isProcessingStudent = true;
             hasPlayerDecided = false;
-            canInteractButtons = false; // Khóa cứng nút bấm
+            canInteractButtons = false; 
             currentPersonProfile = null;
 
-            // Dò tìm nhân vật đặc biệt cốt truyện
-            foreach (FixedCharacterConfig fixedChar in fixedCharactersToday)
+            FixedCharacterConfig foundFixed = default;
+            bool isFixedTurn = false;
+
+            if (timeRemaining > 0)
             {
-                if (fixedChar.appearanceTurn == studentsProcessedCount && fixedChar.personProfile != null)
+                foreach (var fixedChar in remainingFixedChars)
                 {
-                    currentPersonProfile = fixedChar.personProfile;
-                    break;
+                    if (fixedChar.appearanceTurn == studentsProcessedCount)
+                    {
+                        foundFixed = fixedChar;
+                        isFixedTurn = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (remainingFixedChars.Count > 0)
+                {
+                    foundFixed = remainingFixedChars[0];
+                    isFixedTurn = true;
                 }
             }
 
-            // Nếu không phải lượt đặc biệt -> Bốc ngẫu nhiên từ bể chứa (Chỉ bốc khi còn thời gian)
-            if (currentPersonProfile == null)
+            if (isFixedTurn)
+            {
+                currentPersonProfile = foundFixed.personProfile;
+                remainingFixedChars.Remove(foundFixed); 
+            }
+            else
             {
                 if (timeRemaining > 0 && activeStudentDayPool != null && activeStudentDayPool.Count > 0)
                 {
@@ -206,19 +200,16 @@ public class SchoolGateManager : MonoBehaviour
                 }
                 else
                 {
-                    // Nếu hết giờ hoặc cạn pool random mà vẫn còn kẹt điều kiện câu chuyện -> Bỏ qua vòng này để quét lại điều kiện kết thúc
                     yield return null;
                     continue;
                 }
             }
 
-            // Định dạng chuỗi hành chính văn thư
             currentPersonProfile.cardStudentDoB = FormatToDateString(currentPersonProfile.cardStudentDoB);
             currentPersonProfile.cardStudentExpirationDate = FormatToDateString(currentPersonProfile.cardStudentExpirationDate);
             currentPersonProfile.cardStaffDoB = FormatToDateString(currentPersonProfile.cardStaffDoB);
             currentPersonProfile.passDurationDate = FormatToDateString(currentPersonProfile.passDurationDate);
 
-            // 3. 🔥 HIỆU ỨNG XUẤT HIỆN FADE-IN (2 GIÂY): Từ mờ đen tuyền trong suốt sang rõ trắng đúng
             if (boothAvatarDisplayUI != null && currentPersonProfile.boothAvatarImage != null)
             {
                 boothAvatarDisplayUI.sprite = currentPersonProfile.boothAvatarImage;
@@ -226,10 +217,17 @@ public class SchoolGateManager : MonoBehaviour
                 yield return StartCoroutine(FadeAvatarRoutine(true, 2.0f)); 
             }
 
-            // 4. Sinh phôi giấy tờ mini rải ra bàn gỗ nhỏ dưới
+            // =========================================================================
+            // 🔥 ĐÃ CẬP NHẬT LUỒNG SINH BAN ĐẦU: Phân tách Prefab dựa trên nhóm nhân vật
+            // =========================================================================
             Vector3 basePos = spawnPointSmallDesk.position;
             if (currentPersonProfile.hasMainCard)
-                SpawnSmallCardObject(basePos, currentPersonProfile, mainCardSmallPrefab, DocumentType.MainCard, true);
+            {
+                // Radar kiểm tra xem NPC hiện tại là Sinh viên hay Cán bộ để nạp đúng file Prefab nhỏ thiết kế riêng
+                GameObject targetMainPrefab = (currentPersonProfile.personType == PersonType.Student) ? studentCardSmallPrefab : staffCardSmallPrefab;
+                SpawnSmallCardObject(basePos, currentPersonProfile, targetMainPrefab, DocumentType.MainCard, true);
+            }
+
             if (currentPersonProfile.hasGatePass)
                 SpawnSmallCardObject(basePos + new Vector3(1f, -0.3f, 0f), currentPersonProfile, gatePassSmallPrefab, DocumentType.GatePass, true);
             if (currentPersonProfile.hasIntlCertificate)
@@ -237,65 +235,48 @@ public class SchoolGateManager : MonoBehaviour
             if (currentPersonProfile.hasLabCertificate)
                 SpawnSmallCardObject(basePos + new Vector3(0f, -0.1f, 0f), currentPersonProfile, labCertSmallPrefab, DocumentType.LabCertificate, true);
 
-            // 5. Chạy thoại mở đầu (Greeting Dialogue)
             if (DialogueManager.Instance != null && currentPersonProfile.greetingDialogue != null)
             {
                 DialogueManager.Instance.PlayDialogue(currentPersonProfile.greetingDialogue);
-                
-                // 🔥 ÉP HOÀN THÀNH ĐỐI THOẠI: Đóng băng nút bấm, đợi cho đến khi DialogueManager chạy xong chữ hoàn toàn
-                while (DialogueManager.Instance.IsInConversation)
+                while (DialogueManager.Instance.isDialoguePlaying)
                 {
                     yield return null;
                 }
             }
 
-            // Giải phóng mở khóa nút bấm Duyệt / Từ chối sau khi dứt câu thoại mở đầu
-            canInteractButtons = true;
+            canInteractButtons = true; 
 
-            // 6. Treo luồng chờ người chơi đưa ra phán quyết (Bấm Approve hoặc Deny)
             while (!hasPlayerDecided)
             {
                 yield return null;
             }
 
-            // Người chơi đã bấm nút $\rightarrow$ Lúc này HandleDecision đã chạy xong và kích hoạt thoại phản hồi kết thúc
-            canInteractButtons = false; // Tái khóa nút bấm đề phòng spam
+            canInteractButtons = false; 
 
-            // 7. 🔥 ÉP HOÀN THÀNH ĐỐI THOẠI KẾT THÚC: Chờ dứt câu phản hồi rồi mới cho nhân vật biến mất
             if (DialogueManager.Instance != null)
             {
-                while (DialogueManager.Instance.IsInConversation)
+                while (DialogueManager.Instance.isDialoguePlaying)
                 {
                     yield return null;
                 }
             }
 
-            // 8. 🔥 HIỆU ỨNG BIẾN MẤT FADE-OUT (0.5 GIÂY): Nhạt dần về màu đen trong suốt ngược lại
             yield return StartCoroutine(FadeAvatarRoutine(false, 0.5f));
             if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false);
 
-            // Tiêu hủy cưỡng chế phôi rác còn sót lại trên bàn soi
             GameObject[] remainingSmallCards = GameObject.FindGameObjectsWithTag("SmallCard");
             foreach (GameObject card in remainingSmallCards) Destroy(card);
 
-            // Tăng đếm chỉ số hành chính, hoàn tất chu kỳ 1 nhân vật
             studentsProcessedCount++;
             isProcessingStudent = false;
         }
 
-        // Thỏa mãn điều kiện đóng ca trực $\rightarrow$ Chạy sang bảng tổng kết điểm cuối ngày
         StartCoroutine(WaitAndShowSummaryRoutine());
     }
 
-    // =========================================================================
-    // 🔥 LINH KIỆN TỰ TRỊ FADE LERP MÀU SẮC AVATAR THEO THỜI GIAN
-    // =========================================================================
     private IEnumerator FadeAvatarRoutine(bool fadeIn, float duration)
     {
         if (boothAvatarDisplayUI == null) yield break;
-
-        // FadeIn: Từ Đen tuyền trong suốt (0,0,0,0) sang Trắng gốc nguyên bản (1,1,1,1)
-        // FadeOut: Từ Trắng gốc (1,1,1,1) về lại Đen tuyền trong suốt (0,0,0,0) theo nửa giây
         Color startColor = fadeIn ? new Color(0f, 0f, 0f, 0f) : new Color(1f, 1f, 1f, 1f);
         Color endColor = fadeIn ? new Color(1f, 1f, 1f, 1f) : new Color(0f, 0f, 0f, 0f);
 
@@ -387,10 +368,8 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        // Tắt ẩn các thẻ lớn soi tài liệu phẳng phẳng
         HideAllLargeCards();
 
-        // Tính điểm phán quyết phát hành vé phạt hành chính
         bool studentHasAnyViolation = violationCount > 0;
         string finalTicketText = "";
 
@@ -411,7 +390,6 @@ public class SchoolGateManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(finalTicketText)) ShowCitationTicket(finalTicketText);
 
-        // Kích hoạt nạp câu thoại kết thúc
         if (DialogueManager.Instance != null && currentPersonProfile != null)
         {
             DialogueData targetDialogue = playerApproved ? currentPersonProfile.approveDialogue : currentPersonProfile.denyDialogue;
@@ -421,8 +399,7 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        // Mở khóa tín hiệu báo chu kỳ thoại lặp kết thúc
-        hasPlayerDecided = true;
+        hasPlayerDecided = true; 
     }
 
     private void SpawnSmallCardObject(Vector3 spawnPos, PersonProfile profile, GameObject prefabToSpawn, DocumentType docType, bool randomRotation)
@@ -455,17 +432,34 @@ public class SchoolGateManager : MonoBehaviour
         newSmallCard.tag = "SmallCard";
     }
 
+    // =========================================================================
+    // 🔥 ĐÃ CẬP NHẬT LUỒNG THU HỒI: Sinh lại đúng loại phôi nhỏ khi cất thẻ to về bàn gỗ
+    // =========================================================================
     public void ReturnToSmallCard(Vector3 dropPosition, DocumentType docType)
     {
-        GameObject targetPrefab = mainCardSmallPrefab; 
+        GameObject targetPrefab = null; 
+
         switch (docType)
         {
-            case DocumentType.MainCard: targetPrefab = mainCardSmallPrefab; break;
-            case DocumentType.GatePass: targetPrefab = gatePassSmallPrefab; break;
+            case DocumentType.MainCard:
+                // Nếu là thẻ chính, check xem nhân vật đang đứng ở quầy là Sinh viên hay Cán bộ để sinh lại đúng phôi mini tương ứng
+                if (currentPersonProfile != null)
+                {
+                    targetPrefab = (currentPersonProfile.personType == PersonType.Student) ? studentCardSmallPrefab : staffCardSmallPrefab;
+                }
+                else
+                {
+                    targetPrefab = studentCardSmallPrefab; // Bảo hiểm mặc định phòng xa
+                }
+                break;
+
+            case DocumentType.GatePass:         targetPrefab = gatePassSmallPrefab; break;
             case DocumentType.IntlCertificate: targetPrefab = intlCertSmallPrefab; break;
-            case DocumentType.LabCertificate: targetPrefab = labCertSmallPrefab; break;
-            case DocumentType.Newspaper: targetPrefab = newspaperSmallPrefab; break;
+            case DocumentType.LabCertificate:  targetPrefab = labCertSmallPrefab; break;
+            case DocumentType.Newspaper:       targetPrefab = newspaperSmallPrefab; break;
         }
+
+        if (targetPrefab == null) return;
 
         GameObject newSmallCard = Instantiate(targetPrefab, spawnPointSmallDesk);
         RectTransform cardRect = newSmallCard.GetComponent<RectTransform>();
