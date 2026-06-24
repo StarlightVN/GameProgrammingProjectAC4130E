@@ -10,41 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
-  m_Name: 100101
+  m_Name: 300127
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
-  hasGatePass: 0
+  hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: -4265418274275913161, guid: 735af539cef2f594da972120584d4578, type: 3}
-  cardStudentName: "Nguy\u1EC5n Minh Khang"
-  cardStudentID: 20218472
-  cardStudentDoB: 14/03/2003
-  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  cardStudentMajor: "ET1: \u0110i\u1EC7n t\u1EED vi\u1EC5n th\xF4ng"
-  cardStudentExpirationDate: 31/12/2027
-  cardStudentImage: {fileID: -4265418274275913161, guid: 735af539cef2f594da972120584d4578, type: 3}
+  boothAvatarImage: {fileID: 6957178765423432864, guid: f86d44a30ab1ed84bbf9e73cdbd80552, type: 3}
+  cardStudentName: "Ph\u1EA1m H\u1EA3i Trung"
+  cardStudentID: 20249812
+  cardStudentDoB: 02/05/2006
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
+  cardStudentMajor: 'IT-E7: Global ICT'
+  cardStudentExpirationDate: 31/12/2028
+  cardStudentImage: {fileID: 6957178765423432864, guid: f86d44a30ab1ed84bbf9e73cdbd80552, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
   cardStaffImage: {fileID: 0}
-  passName: 
-  passIDOrStaffTag: 
-  passPurpose: 0
-  passDurationDate: 
+  passName: "Ph\u1EA1m H\u1EA3i Trung"
+  passIDOrStaffTag: 20249812
+  passPurpose: 2
+  passDurationDate: 01/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
-  labName: 
-  labStudentID: 
-  labFaculty: 
+  labName: "Ph\u1EA1m H\u1EA3i Trung"
+  labStudentID: 20249812
+  labFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
   isPhotoMatching: 1
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1
   isAvatarMatching: 1
-  IsPaperValid: 1
+  IsPaperValid: 0
   greetingDialogue: {fileID: 0}
   approveDialogue: {fileID: 0}
   denyDialogue: {fileID: 0}

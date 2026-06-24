@@ -20,10 +20,11 @@ MonoBehaviour:
   boothAvatarImage: {fileID: -4720209362488002605, guid: fd7a5de4021fb984183b87f94b082dd5, type: 3}
   cardStudentName: "L\xEA Ph\u01B0\u01A1ng Anh"
   cardStudentID: 20227591
-  cardStudentDoB: 09112004
-  cardStudentFaculty: SoICT
-  cardStudentMajor: IT1
-  cardStudentExpirationDate: 31122027
+  cardStudentDoB: 09/11/2004
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 truy\u1EC1n
+    th\xF4ng"
+  cardStudentMajor: "IT1: Khoa h\u1ECDc m\xE1y t\xEDnh"
+  cardStudentExpirationDate: 31/12/2027
   cardStudentImage: {fileID: -4720209362488002605, guid: fd7a5de4021fb984183b87f94b082dd5, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
@@ -43,7 +44,8 @@ MonoBehaviour:
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
   greetingDialogue: {fileID: 0}
   approveDialogue: {fileID: 0}
   denyDialogue: {fileID: 0}
-  isAvatarMatching: 1

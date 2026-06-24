@@ -21,8 +21,9 @@ MonoBehaviour:
   cardStudentName: "Ng\xF4 \u0110\u1EE9c Long"
   cardStudentID: 20221397
   cardStudentDoB: 11/12/2004
-  cardStudentFaculty: SoICT
-  cardStudentMajor: IT-E7
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
+  cardStudentMajor: 'IT-E7: Global ICT'
   cardStudentExpirationDate: 31/12/2027
   cardStudentImage: {fileID: 2656984897059647201, guid: 10333aa4c09268148927a3853b7933ba, type: 3}
   cardStaffName: 

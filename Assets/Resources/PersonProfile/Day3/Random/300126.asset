@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
-  m_Name: 100101
+  m_Name: 300126
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
-  hasGatePass: 0
-  hasIntlCertificate: 0
+  hasGatePass: 1
+  hasIntlCertificate: 1
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: -4265418274275913161, guid: 735af539cef2f594da972120584d4578, type: 3}
-  cardStudentName: "Nguy\u1EC5n Minh Khang"
-  cardStudentID: 20218472
-  cardStudentDoB: 14/03/2003
+  boothAvatarImage: {fileID: 8679692215179074424, guid: a9dba71b291424a498b6590988db315a, type: 3}
+  cardStudentName: "L\xEA Ng\u1ECDc H\xE0"
+  cardStudentID: 20218495
+  cardStudentDoB: 06/10/2003
   cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  cardStudentMajor: "ET1: \u0110i\u1EC7n t\u1EED vi\u1EC5n th\xF4ng"
+  cardStudentMajor: "EE1: K\u1EF9 thu\u1EADt \u0111i\u1EC7n"
   cardStudentExpirationDate: 31/12/2027
-  cardStudentImage: {fileID: -4265418274275913161, guid: 735af539cef2f594da972120584d4578, type: 3}
+  cardStudentImage: {fileID: 8679692215179074424, guid: a9dba71b291424a498b6590988db315a, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
   cardStaffImage: {fileID: 0}
-  passName: 
-  passIDOrStaffTag: 
-  passPurpose: 0
-  passDurationDate: 
+  passName: "L\xEA Ng\u1ECDc H\xE0"
+  passIDOrStaffTag: 20218495
+  passPurpose: 2
+  passDurationDate: 02/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
-  labName: 
-  labStudentID: 
-  labFaculty: 
+  labName: "L\xEA Ng\u1ECDc H\xE0"
+  labStudentID: 20218459
+  labFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   isPhotoMatching: 1
   isNameMatching: 1
-  isDataMatching: 1
+  isDataMatching: 0
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1

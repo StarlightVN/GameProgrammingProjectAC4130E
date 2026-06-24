@@ -26,7 +26,7 @@ MonoBehaviour:
   cardStudentExpirationDate: 
   cardStudentImage: {fileID: 0}
   cardStaffName: "Nguy\u1EC5n \u0110\u1ECBnh V\xE2n"
-  cardStaffFaculty: SEEE
+  cardStaffFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   cardStaffDoB: 15/03/1990
   cardStaffImage: {fileID: 7502980536230901509, guid: 58361f3d3b6d1394983985d830a2d8fa, type: 3}
   passName: 

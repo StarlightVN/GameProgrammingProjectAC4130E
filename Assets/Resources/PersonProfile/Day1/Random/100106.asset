@@ -19,11 +19,11 @@ MonoBehaviour:
   hasLabCertificate: 0
   boothAvatarImage: {fileID: -4378876194312665482, guid: 26b07427affaf6a40ad8742ea0ccfa35, type: 3}
   cardStudentName: "V\u0169 Kim Ng\xE2n"
-  cardStudentID: 202591352
-  cardStudentDoB: 18072007
-  cardStudentFaculty: SEEE
-  cardStudentMajor: ME1
-  cardStudentExpirationDate: 31122029
+  cardStudentID: 20259135
+  cardStudentDoB: 18/07/2007
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "ME1: K\u1EF9 thu\u1EADt c\u01A1 \u0111i\u1EC7n t\u1EED"
+  cardStudentExpirationDate: 31/12/2029
   cardStudentImage: {fileID: -4378876194312665482, guid: 26b07427affaf6a40ad8742ea0ccfa35, type: 3}
   cardStaffName: 
   cardStaffFaculty: 

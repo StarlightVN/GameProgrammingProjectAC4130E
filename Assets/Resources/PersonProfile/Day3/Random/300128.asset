@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
-  m_Name: 110001
+  m_Name: 300128
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
   hasGatePass: 0
   hasIntlCertificate: 0
-  hasLabCertificate: 0
-  boothAvatarImage: {fileID: -8964882521386143562, guid: 90d9b28335a80874cbe772d41ab283b0, type: 3}
-  cardStudentName: "Mi Ch\xEA Lin"
-  cardStudentID: 20222222
-  cardStudentDoB: 02/02/2022
-  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  cardStudentMajor: "ET2: K\u1EF9 thu\u1EADt Y sinh"
+  hasLabCertificate: 1
+  boothAvatarImage: {fileID: 258431877748069216, guid: c3e420f564174204d882e9bc1f29b80e, type: 3}
+  cardStudentName: "Ho\xE0ng Y\u1EBFn Nhi"
+  cardStudentID: 20207314
+  cardStudentDoB: 17/01/2002
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
+  cardStudentMajor: "ME2: K\u1EF9 thu\u1EADt c\u01A1 kh\xED"
   cardStudentExpirationDate: 31/12/2026
-  cardStudentImage: {fileID: -8964882521386143562, guid: 90d9b28335a80874cbe772d41ab283b0, type: 3}
+  cardStudentImage: {fileID: 258431877748069216, guid: c3e420f564174204d882e9bc1f29b80e, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
@@ -36,15 +36,15 @@ MonoBehaviour:
   intlName: 
   intlStudentID: 
   intlFaculty: 
-  labName: 
-  labStudentID: 
-  labFaculty: 
+  labName: "Ho\xE0ng Y\u1EBFn Nhi"
+  labStudentID: 20207314
+  labFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
   isPhotoMatching: 1
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 11400000, guid: e3836662c2977ac4a82dc59f837162c0, type: 2}
-  approveDialogue: {fileID: 11400000, guid: 7eb692f6424a0c84590ed7e18bc73a25, type: 2}
-  denyDialogue: {fileID: 11400000, guid: 792321a19a0b58d458f525f01ba383ae, type: 2}
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

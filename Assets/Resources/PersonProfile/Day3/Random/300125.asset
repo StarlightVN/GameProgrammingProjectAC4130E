@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
-  m_Name: 101103
+  m_Name: 300125
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
-  personType: 1
+  personType: 0
   hasMainCard: 1
-  hasGatePass: 0
+  hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: -5389446087775742899, guid: f1eb9bf04e4dc7c4e939e90a02b6eb61, type: 3}
-  cardStudentName: 
-  cardStudentID: 
-  cardStudentDoB: 
-  cardStudentFaculty: 
-  cardStudentMajor: 
-  cardStudentExpirationDate: 
-  cardStudentImage: {fileID: 0}
-  cardStaffName: "Ph\u1EA1m V\u0103n Ti\u1EC5n"
-  cardStaffFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  cardStaffDoB: 12/05/1982
-  cardStaffImage: {fileID: -5389446087775742899, guid: f1eb9bf04e4dc7c4e939e90a02b6eb61, type: 3}
-  passName: 
-  passIDOrStaffTag: 
-  passPurpose: 0
-  passDurationDate: 
+  boothAvatarImage: {fileID: -9072983680909481149, guid: abb85b7f32474454482e091b90383e1e, type: 3}
+  cardStudentName: "Tr\u1EA7n H\u1EEFu Ph\xFAc"
+  cardStudentID: 20259142
+  cardStudentDoB: 18/07/2007
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
+  cardStudentMajor: "TE1: K\u1EF9 thu\u1EADt h\xE0ng kh\xF4ng"
+  cardStudentExpirationDate: 31/12/2029
+  cardStudentImage: {fileID: -9072983680909481149, guid: abb85b7f32474454482e091b90383e1e, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: "Tr\u1EA7n H\u1EEFu Ph\xFAc"
+  passIDOrStaffTag: 20259142
+  passPurpose: 2
+  passDurationDate: 02/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 

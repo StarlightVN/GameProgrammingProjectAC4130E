@@ -330,18 +330,18 @@ public class SchoolGateManager : MonoBehaviour
             switch (currentDay)
             {
                 case 1:
-                    if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.cardStudentFaculty != "SEEE")
+                    if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.cardStudentFaculty != "Trường Điện - Điện tử")
                     {
                         violationCount++; 
-                        specificErrorString = "Sai quy định Ngày 1! Tòa nhà hôm nay chỉ tiếp nhận sinh viên thuộc khoa SEEE.";
+                        specificErrorString = "Không phải sinh viên trường Điện - Điện tử.";
                     }
                     break;
                 case 2:
-                    if (!currentPersonProfile.hasGatePass) { violationCount++; specificErrorString = "Thiếu tài liệu! Ngày hôm nay bắt buộc phải xuất trình thêm Giấy ra vào tòa nhà."; }
+                    if (!currentPersonProfile.hasGatePass) { violationCount++; specificErrorString = "Thiếu Giấy ra vào tòa nhà."; }
                     else
                     {
                         if (currentPersonProfile.personType == PersonType.Staff && currentPersonProfile.passIDOrStaffTag != "Cán bộ") { violationCount++; specificErrorString = "Sai quy chế tài liệu! Mục MSSV/Cán bộ trên Giấy ra vào của cán bộ phải ghi chữ 'Cán bộ'."; }
-                        if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.passPurpose == GatePurpose.NghienCuu) { violationCount++; specificErrorString = "Vi phạm lệnh cấm Ngày 2! Sinh viên tuyệt đối không được vào với mục đích Nghiên cứu."; }
+                        if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.passPurpose == GatePurpose.NghienCuu) { violationCount++; specificErrorString = "Sinh viên vào với mục đích nghiên cứu."; }
                     }
                     break;
                 case 3:

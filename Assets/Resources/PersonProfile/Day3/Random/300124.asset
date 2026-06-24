@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
-  m_Name: 110001
+  m_Name: 300124
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
-  hasGatePass: 0
+  hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: -8964882521386143562, guid: 90d9b28335a80874cbe772d41ab283b0, type: 3}
-  cardStudentName: "Mi Ch\xEA Lin"
-  cardStudentID: 20222222
-  cardStudentDoB: 02/02/2022
+  boothAvatarImage: {fileID: 5769543970546702135, guid: 1375afd5d90d99041b039c1cecc8107e, type: 3}
+  cardStudentName: "Nguy\u1EC5n Qu\u1EF3nh Trang"
+  cardStudentID: 20231842
+  cardStudentDoB: 03/02/2005
   cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  cardStudentMajor: "ET2: K\u1EF9 thu\u1EADt Y sinh"
-  cardStudentExpirationDate: 31/12/2026
-  cardStudentImage: {fileID: -8964882521386143562, guid: 90d9b28335a80874cbe772d41ab283b0, type: 3}
+  cardStudentMajor: "EE1: K\u1EF9 thu\u1EADt \u0111i\u1EC7n"
+  cardStudentExpirationDate: 31/12/2027
+  cardStudentImage: {fileID: 5769543970546702135, guid: 1375afd5d90d99041b039c1cecc8107e, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
   cardStaffImage: {fileID: 0}
-  passName: 
-  passIDOrStaffTag: 
+  passName: "Nguy\u1EC5n Qu\u1EF3nh Trang"
+  passIDOrStaffTag: 20231842
   passPurpose: 0
-  passDurationDate: 
+  passDurationDate: 02/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
@@ -45,6 +45,6 @@ MonoBehaviour:
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 11400000, guid: e3836662c2977ac4a82dc59f837162c0, type: 2}
-  approveDialogue: {fileID: 11400000, guid: 7eb692f6424a0c84590ed7e18bc73a25, type: 2}
-  denyDialogue: {fileID: 11400000, guid: 792321a19a0b58d458f525f01ba383ae, type: 2}
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

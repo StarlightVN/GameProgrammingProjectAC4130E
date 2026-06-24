@@ -20,10 +20,10 @@ MonoBehaviour:
   boothAvatarImage: {fileID: 6961267284862531430, guid: 16f8f5f111352214fbbe51abe1b0c08e, type: 3}
   cardStudentName: "B\xF9i Qu\u1EF3nh Chi"
   cardStudentID: 20207358
-  cardStudentDoB: 05052002
-  cardStudentFaculty: SEEE
-  cardStudentMajor: IT1
-  cardStudentExpirationDate: 31122026
+  cardStudentDoB: 05/05/2002
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "IT1: Khoa h\u1ECDc m\xE1y t\xEDnh"
+  cardStudentExpirationDate: 31/12/2026
   cardStudentImage: {fileID: 6961267284862531430, guid: 16f8f5f111352214fbbe51abe1b0c08e, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
