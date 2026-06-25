@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c88cd61bf2e01f4b8d7158102f86a23, type: 3}
+  m_Script: {fileID: 11500000, guid: a4a8969bc13ff844fafdec6dc37187da, type: 3}
   m_Name: Day2_Opening
   m_EditorClassIdentifier: Assembly-CSharp::LetMeIn.Dialogue.StoryDialogueSequence
   sequenceId: DAY2_OPENING_SCENE
@@ -28,7 +28,7 @@ MonoBehaviour:
     displayMode: 1
     changeBackground: 1
     clearBackground: 0
-    background: {fileID: -1085935770007879637, guid: e2a120bcc4f30a44fa82d99854c5317b, type: 3}
+    background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
     background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     voiceClip: {fileID: 0}
-    soundEffect: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: d22822213d54ac830a58d49ebbadf1ef, type: 3}
     eventKey: Explosion
     inputLockDuration: 0
     autoContinue: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
     autoContinueDelay: 1
   - speakerName: "V\u0169"
     showAvatar: 0
-    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
+    avatar: {fileID: 0}
     content: "V\xE3i ch\u01B0\u1EDFng th\u1EADt =))))"
     displayMode: 2
     changeBackground: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
     avatar: {fileID: 0}
     content: "[\u0110\xE8n s\xE1ng l\u1EA1i]"
     displayMode: 1
-    changeBackground: 1
+    changeBackground: 0
     clearBackground: 0
-    background: {fileID: 2826988517474644282, guid: e16da847f27a4d547903e4052f6ee8d2, type: 3}
+    background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
@@ -224,8 +224,8 @@ MonoBehaviour:
     autoContinueDelay: 2
   - speakerName: "V\u0169"
     showAvatar: 1
-    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
-    content: "Sao t\u1EF1 nhi\xEAn c\u0103ng v\u1EADy th\u1EA7y?"
+    avatar: {fileID: 0}
+    content: "Sao t\u1EF1 nhi\xEAn ch\u1EB7t v\u1EADy th\u1EA7y?"
     displayMode: 0
     changeBackground: 0
     clearBackground: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
     autoContinueDelay: 2
   - speakerName: "V\u0169"
     showAvatar: 1
-    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
+    avatar: {fileID: 0}
     content: "\xD4i lu\u1EADt sinh ra t\u1EEB nh\u1EEFng v\u1EE5 n\u1ED5 l\u1EDBn."
     displayMode: 0
     changeBackground: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
     displayMode: 1
     changeBackground: 1
     clearBackground: 0
-    background: {fileID: -165899576139747431, guid: 53062d33ea634c9438a45f12a08a853f, type: 3}
+    background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
@@ -336,14 +336,11 @@ MonoBehaviour:
   - speakerName: "Uncle H\u1EA3i"
     showAvatar: 1
     avatar: {fileID: 0}
-    content: "V\u0169, h\xF4m nay lu\u1EADt m\u1EDBi. T\u1EEB nay, ng\u01B0\u1EDDi
-      ra v\xE0o ph\u1EA3i xu\u1EA5t tr\xECnh Gi\u1EA5y ra v\xE0o c\xF3 hi\u1EC7u
-      l\u1EF1c trong ng\xE0y. C\xF2n n\u1EEFa, h\xF4m nay kh\xF4ng \u0111\u01B0\u1EE3c
-      ra v\xE0o v\u1EDBi m\u1EE5c \u0111\xEDch Nghi\xEAn c\u1EE9u."
+    content: "V\u0169, h\xF4m nay lu\u1EADt m\u1EDBi."
     displayMode: 0
-    changeBackground: 1
+    changeBackground: 0
     clearBackground: 0
-    background: {fileID: 2826988517474644282, guid: e16da847f27a4d547903e4052f6ee8d2, type: 3}
+    background: {fileID: 0}
     backgroundColor: {r: 1, g: 1, b: 1, a: 1}
     voiceClip: {fileID: 0}
     soundEffect: {fileID: 0}
@@ -353,7 +350,7 @@ MonoBehaviour:
     autoContinueDelay: 2
   - speakerName: "V\u0169"
     showAvatar: 1
-    avatar: {fileID: -1026002232520797173, guid: 23a9bb8b8702d1b4f9c79c4798d34fb2, type: 3}
+    avatar: {fileID: 0}
     content: "\u0110\xE3 r\xF5 th\u01B0a s\u1EBFp!"
     displayMode: 0
     changeBackground: 0
