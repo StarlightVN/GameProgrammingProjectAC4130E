@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 400217
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 1
+  hasIntlCertificate: 0
+  hasLabCertificate: 0
+  boothAvatarImage: {fileID: -3965442211791112510, guid: d5420d0d411d9bd45b10c4a77a106776, type: 3}
+  cardStudentName: "Clara M\xFCller"
+  cardStudentID: 20241852
+  cardStudentDoB: 26/02/2006
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
+  cardStudentMajor: "ME2: K\u1EF9 thu\u1EADt c\u01A1 kh\xED"
+  cardStudentExpirationDate: 31/12/2029
+  cardStudentImage: {fileID: -3965442211791112510, guid: d5420d0d411d9bd45b10c4a77a106776, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: "Clara M\xFCller"
+  passIDOrStaffTag: 20241852
+  passPurpose: 0
+  passDurationDate: 03/06/2026
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isForeignStudent: 1
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

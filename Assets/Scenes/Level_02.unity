@@ -6112,7 +6112,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ce998a05b7854647a44931b8bf07a85, type: 2}
   - {fileID: 11400000, guid: d0d2df18e450d314ba0a483bcc04770b, type: 2}
   spawnPointSmallDesk: {fileID: 539800672}
-  mainCardSmallPrefab: {fileID: 8599904813929051999, guid: 883be2be5e8bb1f4fa3d80b56110449f, type: 3}
+  studentCardSmallPrefab: {fileID: 9737262}
+  staffCardSmallPrefab: {fileID: 545301094}
   gatePassSmallPrefab: {fileID: 8599904813929051999, guid: 26a902a3ac23fec408b6d9e7045ff1c9, type: 3}
   intlCertSmallPrefab: {fileID: 8599904813929051999, guid: 1117daab8a152124aba0667002f48cab, type: 3}
   labCertSmallPrefab: {fileID: 8599904813929051999, guid: 0f4042a510479cc4d88e3fee51cbc40f, type: 3}

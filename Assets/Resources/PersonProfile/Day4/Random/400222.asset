@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 400222
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 1
+  hasIntlCertificate: 0
+  hasLabCertificate: 0
+  boothAvatarImage: {fileID: 1854827451217705942, guid: 9ede24b69832cd444be253e58bf2bc92, type: 3}
+  cardStudentName: "\u0110\u1ED7 Minh Ch\xE2u"
+  cardStudentID: 20218735
+  cardStudentDoB: 21/12/2003
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "EE1: K\u1EF9 thu\u1EADt \u0111i\u1EC7n"
+  cardStudentExpirationDate: 31/12/2027
+  cardStudentImage: {fileID: 1854827451217705942, guid: 9ede24b69832cd444be253e58bf2bc92, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: "\u0110\u1ED7 Minh Ch\xE2u"
+  passIDOrStaffTag: 20218735
+  passPurpose: 0
+  passDurationDate: 03/06/2026
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isForeignStudent: 0
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 400213
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 1
+  hasIntlCertificate: 1
+  hasLabCertificate: 0
+  boothAvatarImage: {fileID: -1936783576909264370, guid: 3cabe21424e6d794ab51f0eec47ce702, type: 3}
+  cardStudentName: Elena Rossi
+  cardStudentID: 20249163
+  cardStudentDoB: 08/06/2006
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
+  cardStudentMajor: 'IT-E10: Cyber Security'
+  cardStudentExpirationDate: 31/12/2029
+  cardStudentImage: {fileID: -1936783576909264370, guid: 3cabe21424e6d794ab51f0eec47ce702, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: Elena Rossi
+  passIDOrStaffTag: 20249163
+  passPurpose: 0
+  passDurationDate: 03/06/2026
+  intlName: Elena Rossi
+  intlStudentID: 20249163
+  intlFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isPhotoMatching: 1
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

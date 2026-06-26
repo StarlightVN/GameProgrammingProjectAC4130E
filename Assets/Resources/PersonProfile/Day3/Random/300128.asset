@@ -39,7 +39,7 @@ MonoBehaviour:
   labName: "Ho\xE0ng Y\u1EBFn Nhi"
   labStudentID: 20207314
   labFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1

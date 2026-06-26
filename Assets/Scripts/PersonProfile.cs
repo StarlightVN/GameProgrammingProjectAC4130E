@@ -55,8 +55,7 @@ public class PersonProfile : ScriptableObject
     public string labFaculty;
 
     [Header("--- BỘ KIỂM TRA LỖI THƯỜNG ---")]
-    [Tooltip("Nếu tích chọn là TRUE, hệ thống coi như tất cả ảnh chân dung trên các giấy tờ trùng khớp với khuôn mặt nhân vật. Nếu FALSE, sẽ có giấy tờ bị gán ảnh sai hoặc thiếu ảnh")]
-    public bool isPhotoMatching = true; 
+    public bool isForeignStudent = false;
     
     [Tooltip("Nếu tích chọn là TRUE, tất cả các mục Họ và tên trên mọi giấy tờ của người này đều trùng khớp với nhau. Nếu FALSE, sẽ có giấy tờ bị gõ sai tên")]
     public bool isNameMatching = true;

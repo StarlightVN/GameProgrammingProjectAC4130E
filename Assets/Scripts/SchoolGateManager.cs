@@ -21,19 +21,22 @@ public class SchoolGateManager : MonoBehaviour
     [Range(1, 5)] public int currentDay = 1;
 
     [Header("--- DATA POOL NGẪU NHIÊN ---")]
-    public List<PersonProfile> studentPool;     
-    public Transform spawnPointSmallDesk;      
+    public List<PersonProfile> studentPool;
+    public Transform spawnPointSmallDesk;  
 
     [Header("--- DANH SÁCH PREFAB PHÔI NHỎ RIÊNG BIỆT ---")]
-    // 🔥 ĐÃ THAY ĐỔI: Tách mainCardSmallPrefab cũ thành 2 mẫu độc lập cho Sinh viên và Cán bộ
     [Tooltip("Kéo mẫu Prefab phôi Thẻ Sinh Viên nhỏ ngoài Project vào đây")]
-    public GameObject studentCardSmallPrefab;         
+    public GameObject studentCardSmallPrefab;
+        
     [Tooltip("Kéo mẫu Prefab phôi Thẻ Cán Bộ nhỏ ngoài Project vào đây")]
-    public GameObject staffCardSmallPrefab;        
-    
-    public GameObject gatePassSmallPrefab;        
-    public GameObject intlCertSmallPrefab;        
-    public GameObject labCertSmallPrefab;         
+    public GameObject staffCardSmallPrefab;  
+     
+    public GameObject gatePassSmallPrefab;  
+     
+    public GameObject intlCertSmallPrefab;  
+     
+    public GameObject labCertSmallPrefab;  
+      
     public GameObject newspaperSmallPrefab; 
 
     [Header("--- KHUNG ẢNH BỐT TRỰC (BOOTH CAMERA UI) ---")]
@@ -43,9 +46,11 @@ public class SchoolGateManager : MonoBehaviour
     public List<FixedCharacterConfig> fixedCharactersToday;
 
     [Header("--- LEVEL SETTINGS ---")]
-    public int totalStudentsToday = 5;          
-    private int studentsProcessedCount = 0;     
-    public Transform studentReturnZone;        
+    public int totalStudentsToday = 5;  
+       
+    private int studentsProcessedCount = 0;  
+  
+    public Transform studentReturnZone;  
 
     [Header("--- DANH SÁCH THẺ LỚN STANDALONE NGOÀI HIERARCHY ---")]
     public GameObject largeStudentCardObject;
@@ -54,6 +59,9 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject largeIntlCertObject;
     public GameObject largeLabCertObject;
     public GameObject largeNewspaperObject;
+    // 🔥 BỔ SUNG: Thêm ô gán Sổ hướng dẫn lớn standalone vào bộ quản lý của GameManager
+    [Tooltip("Kéo đối tượng RulebookLarge standalone ngoài Hierarchy vào đây")]
+    public GameObject largeRulebookObject;
 
     [Header("--- HỆ THỐNG ĐỒNG HỒ ĐIỆN TỬ (TIMER SYSTEM) ---")]
     public TextMeshProUGUI timerText;
@@ -70,8 +78,9 @@ public class SchoolGateManager : MonoBehaviour
     public TextMeshProUGUI citationReasonText; 
 
     [Header("--- THỐNG KÊ KẾT QUẢ CUỐI NGÀY ---")]
-    public int correctDecisionsCount = 0;     
-    public int incorrectDecisionsCount = 0;   
+    public int correctDecisionsCount = 0;  
+  
+    public int incorrectDecisionsCount = 0;  
     public GameObject summaryCanvas;
     public GameObject gameplayCanvas;
 
@@ -81,7 +90,7 @@ public class SchoolGateManager : MonoBehaviour
     private Coroutine citationHideCoroutine;
 
     private bool canInteractButtons = false; 
-    private bool hasPlayerDecided = false;    
+    private bool hasPlayerDecided = false;  
 
     private List<FixedCharacterConfig> remainingFixedChars = new List<FixedCharacterConfig>();
 
@@ -105,16 +114,41 @@ public class SchoolGateManager : MonoBehaviour
             remainingFixedChars.Sort((a, b) => a.appearanceTurn.CompareTo(b.appearanceTurn));
         }
 
-        HideAllLargeCards();
+        // 1. Đầu ngày: Chỉ ẩn các giấy tờ tùy thân hành chính của học sinh cũ
+        HideAllLargeCards(false);
+
+        // =========================================================================
+        // 🔥 ĐÃ THAY ĐỔI: KÍCH HOẠT SẴN CÔNG CỤ LÀM VIỆC LỚN ĐẦU NGÀY
+        // =========================================================================
+        // Tự động bật Tờ báo lớn trên bàn và khóa điểm neo kéo thả an toàn
+        if (largeNewspaperObject != null)
+        {
+            largeNewspaperObject.SetActive(true);
+            largeNewspaperObject.transform.SetAsLastSibling();
+            if (largeNewspaperObject.TryGetComponent<UIDragDrop>(out UIDragDrop newsDrag))
+            {
+                newsDrag.SetStablePosition(largeNewspaperObject.transform.position);
+            }
+        }
+
+        // Tự động bật Cuốn sổ luật hướng dẫn lớn trên bàn và khóa điểm neo an toàn
+        if (largeRulebookObject != null)
+        {
+            largeRulebookObject.SetActive(true);
+            largeRulebookObject.transform.SetAsLastSibling();
+            if (largeRulebookObject.TryGetComponent<UIDragDrop>(out UIDragDrop bookDrag))
+            {
+                bookDrag.SetStablePosition(largeRulebookObject.transform.position);
+            }
+        }
+
+        // 🛑 ĐÃ XOÁ: Đoạn code gọi "ReturnToSmallCard(..., DocumentType.Newspaper)" cũ 
+        // để đảm bảo khay gỗ bàn nhỏ trống không, không sinh ra phôi báo nhỏ nữa.
+
         if (boothAvatarDisplayUI != null)
         {
             boothAvatarDisplayUI.color = new Color(0f, 0f, 0f, 0f); 
             boothAvatarDisplayUI.gameObject.SetActive(false);
-        }
-
-        if (newspaperSmallPrefab != null)
-        {
-            ReturnToSmallCard(Vector3.zero, DocumentType.Newspaper);
         }
 
         StartCoroutine(GameWorkflowRoutine());
@@ -217,13 +251,9 @@ public class SchoolGateManager : MonoBehaviour
                 yield return StartCoroutine(FadeAvatarRoutine(true, 2.0f)); 
             }
 
-            // =========================================================================
-            // 🔥 ĐÃ CẬP NHẬT LUỒNG SINH BAN ĐẦU: Phân tách Prefab dựa trên nhóm nhân vật
-            // =========================================================================
             Vector3 basePos = spawnPointSmallDesk.position;
             if (currentPersonProfile.hasMainCard)
             {
-                // Radar kiểm tra xem NPC hiện tại là Sinh viên hay Cán bộ để nạp đúng file Prefab nhỏ thiết kế riêng
                 GameObject targetMainPrefab = (currentPersonProfile.personType == PersonType.Student) ? studentCardSmallPrefab : staffCardSmallPrefab;
                 SpawnSmallCardObject(basePos, currentPersonProfile, targetMainPrefab, DocumentType.MainCard, true);
             }
@@ -301,32 +331,54 @@ public class SchoolGateManager : MonoBehaviour
         string specificErrorString = "";
 
         bool missingMainCard = !currentPersonProfile.hasMainCard;
-        bool photoMismatch = !missingMainCard && !currentPersonProfile.isPhotoMatching;
         bool nameMismatch = !missingMainCard && !currentPersonProfile.isNameMatching;
         bool dataMismatch = !missingMainCard && !currentPersonProfile.isDataMatching;
         bool majorMismatch = !missingMainCard && currentPersonProfile.personType == PersonType.Student && !currentPersonProfile.isMajorMatching;
         bool avatarMismatch = !missingMainCard && !currentPersonProfile.isAvatarMatching;
         bool paperExpired = !missingMainCard && !currentPersonProfile.IsPaperValid;
 
-        if (missingMainCard) { violationCount++; specificErrorString = currentPersonProfile.personType == PersonType.Student ? "Sinh viên không xuất trình được thẻ sinh viên quy định." : "Cán bộ không xuất trình được thẻ công chức/giảng viên."; }
-        if (photoMismatch) { violationCount++; specificErrorString = "Ảnh chân dung giữa các loại giấy tờ đối chiếu không trùng khớp với nhau."; }
-        if (nameMismatch) { violationCount++; specificErrorString = "Thông tin họ và tên giữa các loại giấy tờ bị sai lệch, không đồng nhất."; }
-        if (dataMismatch) { violationCount++; specificErrorString = "Dữ liệu hành chính giữa các tài liệu đối chiếu bị đá nhau."; }
+        if (missingMainCard) { violationCount++; specificErrorString = currentPersonProfile.personType == PersonType.Student ? "Sinh viên không xuất trình được thẻ sinh viên." : "Giảng viên không xuất trình được thẻ cán bộ."; }
+        if (nameMismatch) { violationCount++; specificErrorString = "Thông tin họ và tên không đồng nhất."; }
+        if (dataMismatch) { violationCount++; specificErrorString = "Dữ liệu không đồng nhất."; }
         if (majorMismatch) { violationCount++; specificErrorString = "Sai quy chế hành chính! Ngành học ghi trên thẻ không thuộc thẩm quyền khoa."; }
-        if (avatarMismatch) { violationCount++; specificErrorString = "Vi phạm nghiêm trọng! Ảnh chân dung chụp tại bốt trực không trùng khớp với diện mạo người trên thẻ."; }
-        if (paperExpired) { violationCount++; specificErrorString = "Giấy tờ không hợp lệ! Tài liệu xuất trình đã quá thời hạn sử dụng quy định."; }
-
-        if (!missingMainCard && currentPersonProfile.personType == PersonType.Student && currentPersonProfile.hasGatePass)
-        {
-            if (currentPersonProfile.passIDOrStaffTag != currentPersonProfile.cardStudentID)
-            {
-                violationCount++;
-                specificErrorString = "Mã số sinh viên in trên Giấy ra vào tòa nhà không trùng khớp với Thẻ sinh viên.";
-            }
-        }
+        if (avatarMismatch) { violationCount++; specificErrorString = "Ảnh chân dung không khớp."; }
+        if (paperExpired) { violationCount++; specificErrorString = "Giấy tờ đã hết hạn."; }
 
         if (!missingMainCard)
         {
+            if (currentDay >= 2)
+            {
+                if (!currentPersonProfile.hasGatePass)
+                {
+                    violationCount++;
+                    specificErrorString = "Thiếu Giấy ra vào tòa nhà.";
+                }
+            }
+
+            if (currentDay >= 3)
+            {
+                if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.passPurpose == GatePurpose.NghienCuu)
+                {
+                    if (!currentPersonProfile.hasLabCertificate)
+                    {
+                        violationCount++;
+                        specificErrorString = "Sinh viên thiếu giấy chứng nhận thành viên Lab.";
+                    }
+                }
+            }
+
+            if (currentDay >= 4)
+            {
+                if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.isForeignStudent)
+                {
+                    if (!currentPersonProfile.hasIntlCertificate)
+                    {
+                        violationCount++;
+                        specificErrorString = "Sinh viên quốc tế phải xuất trình thêm Giấy chứng nhận quốc tế.";
+                    }
+                }
+            }
+
             switch (currentDay)
             {
                 case 1:
@@ -336,39 +388,27 @@ public class SchoolGateManager : MonoBehaviour
                         specificErrorString = "Không phải sinh viên trường Điện - Điện tử.";
                     }
                     break;
+
                 case 2:
-                    if (!currentPersonProfile.hasGatePass) { violationCount++; specificErrorString = "Thiếu Giấy ra vào tòa nhà."; }
-                    else
+                    if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.passPurpose == GatePurpose.NghienCuu)
                     {
-                        if (currentPersonProfile.personType == PersonType.Staff && currentPersonProfile.passIDOrStaffTag != "Cán bộ") { violationCount++; specificErrorString = "Sai quy chế tài liệu! Mục MSSV/Cán bộ trên Giấy ra vào của cán bộ phải ghi chữ 'Cán bộ'."; }
-                        if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.passPurpose == GatePurpose.NghienCuu) { violationCount++; specificErrorString = "Sinh viên vào với mục đích nghiên cứu."; }
+                        violationCount++;
+                        specificErrorString = "Sinh viên không được phép vào tòa nhà với mục đích nghiên cứu hôm nay.";
                     }
                     break;
+
                 case 3:
-                    if (currentPersonProfile.hasGatePass)
+                    if (currentPersonProfile.passPurpose == GatePurpose.HocTap_GiangDay)
                     {
-                        if (currentPersonProfile.personType == PersonType.Staff && currentPersonProfile.passIDOrStaffTag != "Cán bộ") { violationCount++; specificErrorString = "Sai quy chế tài liệu! Mục MSSV/Cán bộ trên Giấy ra vào của cán bộ phải ghi chữ 'Cán bộ'."; }
-                        if (currentPersonProfile.passPurpose == GatePurpose.HocTap_GiangDay) { violationCount++; specificErrorString = "Sai mục đích Ngày 3! Hoạt động Học tập/Giảng dạy không được phép diễn ra."; }
-                        if (currentPersonProfile.personType == PersonType.Student && currentPersonProfile.passPurpose == GatePurpose.NghienCuu && !currentPersonProfile.hasLabCertificate)
-                        {
-                            violationCount++; specificErrorString = "Thiếu tài liệu Ngày 3! Sinh viên vào nghiên cứu phải có Giấy chứng nhận phòng Lab.";
-                        }
-                    }
-                    break;
-                case 4:
-                    if (currentPersonProfile.personType == PersonType.Student)
-                    {
-                        if (currentPersonProfile.hasIntlCertificate)
-                        {
-                            if (currentPersonProfile.intlStudentID != currentPersonProfile.cardStudentID) { violationCount++; specificErrorString = "Thông tin đá nhau! Mã số sinh viên trên Giấy chứng nhận quốc tế không khớp."; }
-                        }
-                        else { violationCount++; specificErrorString = "Thiếu giấy tờ Ngày 4! Sinh viên quốc tế phải xuất trình thêm Giấy chứng nhận quốc tế."; }
+                        violationCount++;
+                        specificErrorString = "Không có hoạt động Học tập/Giảng dạy ngày hôm nay.";
                     }
                     break;
             }
         }
 
-        HideAllLargeCards();
+        // Giữ lại công cụ làm việc (false) khi người chơi đưa ra quyết định đóng dấu
+        HideAllLargeCards(false);
 
         bool studentHasAnyViolation = violationCount > 0;
         string finalTicketText = "";
@@ -376,12 +416,12 @@ public class SchoolGateManager : MonoBehaviour
         if (playerApproved && studentHasAnyViolation)
         {
             incorrectDecisionsCount++; 
-            finalTicketText = violationCount >= 2 ? "Người này mang theo hồ sơ có nhiều lỗi vi phạm quy chế cùng lúc." : specificErrorString;
+            finalTicketText = violationCount >= 2 ? "Giấy tờ có nhiều lỗi vi phạm cùng lúc." : specificErrorString;
         }
         else if (!playerApproved && !studentHasAnyViolation)
         {
             incorrectDecisionsCount++; 
-            finalTicketText = "Từ chối sai lệch! Hồ sơ người này hoàn toàn hợp lệ và đúng quy chế trường.";
+            finalTicketText = "Giấy tờ hợp lệ .";
         }
         else
         {
@@ -432,9 +472,6 @@ public class SchoolGateManager : MonoBehaviour
         newSmallCard.tag = "SmallCard";
     }
 
-    // =========================================================================
-    // 🔥 ĐÃ CẬP NHẬT LUỒNG THU HỒI: Sinh lại đúng loại phôi nhỏ khi cất thẻ to về bàn gỗ
-    // =========================================================================
     public void ReturnToSmallCard(Vector3 dropPosition, DocumentType docType)
     {
         GameObject targetPrefab = null; 
@@ -442,14 +479,13 @@ public class SchoolGateManager : MonoBehaviour
         switch (docType)
         {
             case DocumentType.MainCard:
-                // Nếu là thẻ chính, check xem nhân vật đang đứng ở quầy là Sinh viên hay Cán bộ để sinh lại đúng phôi mini tương ứng
                 if (currentPersonProfile != null)
                 {
                     targetPrefab = (currentPersonProfile.personType == PersonType.Student) ? studentCardSmallPrefab : staffCardSmallPrefab;
                 }
                 else
                 {
-                    targetPrefab = studentCardSmallPrefab; // Bảo hiểm mặc định phòng xa
+                    targetPrefab = studentCardSmallPrefab; 
                 }
                 break;
 
@@ -481,14 +517,20 @@ public class SchoolGateManager : MonoBehaviour
         if (docType == DocumentType.Newspaper) newSmallCard.tag = "SmallNewspaper";
     }
 
-    private void HideAllLargeCards()
+    private void HideAllLargeCards(bool hideGlobalDeskTools = false)
     {
         if (largeStudentCardObject != null) largeStudentCardObject.SetActive(false);
         if (largeStaffCardObject != null) largeStaffCardObject.SetActive(false);
         if (largeGatePassObject != null) largeGatePassObject.SetActive(false);
         if (largeIntlCertObject != null) largeIntlCertObject.SetActive(false);
         if (largeLabCertObject != null) largeLabCertObject.SetActive(false);
-        if (largeNewspaperObject != null) largeNewspaperObject.SetActive(false);
+        
+        // 🔥 Nếu hideGlobalDeskTools = true (ví dụ lúc khởi động lại trò chơi), ẩn sạch cả hai công cụ
+        if (hideGlobalDeskTools)
+        {
+            if (largeNewspaperObject != null) largeNewspaperObject.SetActive(false);
+            if (largeRulebookObject != null) largeRulebookObject.SetActive(false);
+        }
     }
 
     private string FormatToDateString(string rawInput) { if (string.IsNullOrEmpty(rawInput)) return ""; string clean = rawInput.Trim(); if (clean.Length == 8) { return $"{clean.Substring(0, 2)}/{clean.Substring(2, 2)}/{clean.Substring(4, 4)}"; } return clean; }

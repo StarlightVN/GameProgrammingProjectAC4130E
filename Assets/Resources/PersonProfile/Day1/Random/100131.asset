@@ -23,7 +23,7 @@ MonoBehaviour:
   cardStudentDoB: 30/02/2005
   cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   cardStudentMajor: "ET-E16: \u0110a ph\u01B0\u01A1ng ti\u1EC7n"
-  cardStudentExpirationDate: 31122028
+  cardStudentExpirationDate: 31/12/2028
   cardStudentImage: {fileID: -8967430111735542640, guid: aa57ba74dc729584db38c0dac0f2c16c, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
@@ -39,7 +39,7 @@ MonoBehaviour:
   labName: 
   labStudentID: 
   labFaculty: 
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 0
   isMajorMatching: 1

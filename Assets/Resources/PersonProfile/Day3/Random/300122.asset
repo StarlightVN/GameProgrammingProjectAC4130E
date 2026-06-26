@@ -39,7 +39,7 @@ MonoBehaviour:
   labName: "V\xF5 Minh \u0110\u1EE9c"
   labStudentID: 20240927
   labFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1
