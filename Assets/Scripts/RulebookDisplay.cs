@@ -15,6 +15,9 @@ public class RulebookDisplay : MonoBehaviour
     [Header("--- SPAWN NEW BOOK SETTINGS ---")]
     public GameObject smallBookPrefab; 
     public Transform rulebookSlotTarget; 
+    
+    [Header("--- SFX LẬT TRANG SỔ ---")]
+    public AudioClip pageFlipSFX;
 
     private int currentPageIndex = 0;
     private CanvasGroup canvasGroup;
@@ -62,8 +65,8 @@ public class RulebookDisplay : MonoBehaviour
     }
 
     // Hàm lật trang tịnh tiến lên trước / về sau
-    public void NextPage() { if (currentPageIndex < bookPageSprites.Count - 1) { currentPageIndex++; RenderPage(); } }
-    public void PreviousPage() { if (currentPageIndex > 0) { currentPageIndex--; RenderPage(); } }
+    public void NextPage() { if (currentPageIndex < bookPageSprites.Count - 1) { currentPageIndex++; RenderPage(); PlayFlipSound(); } }
+    public void PreviousPage() { if (currentPageIndex > 0) { currentPageIndex--; RenderPage(); PlayFlipSound(); } }
 
     // =========================================================================
     // 🔥 CHỨC NĂNG MỚI: TÍNH NĂNG BOOKMARK ĐIỀU HƯỚNG NHẢY TRANG CẤP TỐC
@@ -109,5 +112,14 @@ public class RulebookDisplay : MonoBehaviour
         }
         
         gameObject.SetActive(false);
+    }
+    private void PlayFlipSound()
+    {
+        // Thử tìm GameManager trên Hierarchy để mượn đầu phát SFX chung phát ra tiếng
+        SchoolGateManager gateManager = Object.FindFirstObjectByType<SchoolGateManager>();
+        if (gateManager != null && gateManager.sfxSource != null && pageFlipSFX != null)
+        {
+            gateManager.sfxSource.PlayOneShot(pageFlipSFX);
+        }
     }
 }

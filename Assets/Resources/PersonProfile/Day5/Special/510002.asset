@@ -14,31 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
-  hasGatePass: 0
+  hasGatePass: 1
   hasIntlCertificate: 0
-  hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  hasLabCertificate: 1
+  boothAvatarImage: {fileID: 2203098436837993463, guid: 6d9c11038d2907f419eb60e4e380bceb, type: 3}
   cardStudentName: "Ki\u1EC1u L\u01B0\u01A1ng T\xE2m "
   cardStudentID: 20221787
-  cardStudentDoB: 
-  cardStudentFaculty: 
-  cardStudentMajor: 
-  cardStudentExpirationDate: 
-  cardStudentImage: {fileID: 0}
+  cardStudentDoB: 20/04/2004
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "ET-E16: \u0110a ph\u01B0\u01A1ng ti\u1EC7n "
+  cardStudentExpirationDate: 30/06/2026
+  cardStudentImage: {fileID: 2203098436837993463, guid: 6d9c11038d2907f419eb60e4e380bceb, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 
   cardStaffImage: {fileID: 0}
-  passName: 
-  passIDOrStaffTag: 
-  passPurpose: 0
-  passDurationDate: 
+  passName: "Ki\u1EC1u L\u01B0\u01A1ng T\xE2m"
+  passIDOrStaffTag: 20221787
+  passPurpose: 2
+  passDurationDate: 04/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
-  labName: 
-  labStudentID: 
-  labFaculty: 
+  labName: "Ki\u1EC1u L\u01B0\u01A1ng T\xE2m"
+  labStudentID: 20221787
+  labFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1

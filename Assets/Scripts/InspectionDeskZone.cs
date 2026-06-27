@@ -70,6 +70,10 @@ public class InspectionDeskZone : MonoBehaviour, IDropHandler
 
                     // Bật thực thể lớn lên màn hình (Nó sẽ tự kích hoạt OnEnable để nạp chữ)
                     targetLargeObject.SetActive(true);
+                    if (gateManager != null && gateManager.paperDropSFX != null && gateManager.sfxSource != null)
+                    {
+                        gateManager.sfxSource.PlayOneShot(gateManager.paperDropSFX);
+                    }
                     UIDragDrop largeCardDrag = targetLargeObject.GetComponent<UIDragDrop>();
                     if (largeCardDrag != null)
                     {
