@@ -67,6 +67,9 @@ namespace LetMeIn.Dialogue
         [Tooltip("Tự động chuyển sang câu tiếp theo sau khi chữ hiện xong.")]
         public bool autoContinue;
 
+        [Tooltip("Phát âm thanh gõ chữ cho câu thoại này.")]
+        public bool useTypewriterSound = true;
+
         [Tooltip("Thời gian chờ trước khi tự động chuyển câu.")]
         [Min(0f)]
         public float autoContinueDelay = 2.0f;

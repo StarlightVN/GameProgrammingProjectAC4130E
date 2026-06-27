@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 500303
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 1
+  hasIntlCertificate: 0
+  hasLabCertificate: 1
+  boothAvatarImage: {fileID: 7885742614511603801, guid: bf66cf367506a994abd4db53b78598ae, type: 3}
+  cardStudentName: "Mai Thu\u1EF3 D\u01B0\u01A1ng"
+  cardStudentID: 20234782
+  cardStudentDoB: 29/10/2005
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
+  cardStudentMajor: "TE1: K\u1EF9 thu\u1EADt \xF4 t\xF4"
+  cardStudentExpirationDate: 31/12/2027
+  cardStudentImage: {fileID: 7885742614511603801, guid: bf66cf367506a994abd4db53b78598ae, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: "Mai Thu\u1EF3 D\u01B0\u01A1ng"
+  passIDOrStaffTag: 20234782
+  passPurpose: 2
+  passDurationDate: 04/06/2026
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: "Mai Thu\u1EF3 D\u01B0\u01A1ng"
+  labStudentID: 20234782
+  labFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
+  isForeignStudent: 0
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 0}
+  approveDialogue: {fileID: 0}
+  denyDialogue: {fileID: 0}

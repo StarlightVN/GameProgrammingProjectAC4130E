@@ -1,0 +1,388 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a8969bc13ff844fafdec6dc37187da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LetMeIn.Dialogue.StoryDialogueSequence
+  sequenceId: DAY4_OPENING
+  sequenceTitle: Day4_Opening
+  description: "Cu\u1ED1i ng\xE0y 3, sinh vi\xEAn trao \u0111\u1ED5i xu\u1EA5t hi\u1EC7n
+    v\xE0 m\u1EDF \u0111\u1EA7u ng\xE0y 4."
+  defaultCharacterInterval: 0.025
+  hideAfterFinished: 1
+  lines:
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "Cu\u1ED1i ng\xE0y, khi V\u0169 \u0111ang chu\u1EA9n b\u1ECB d\u1ECDn
+      c\u1ED5ng, m\u1ED9t sinh vi\xEAn l\u1EA1 m\u1EB7t xu\u1EA5t hi\u1EC7n tr\u01B0\u1EDBc
+      C7."
+    displayMode: 1
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: -165899576139747431, guid: 53062d33ea634c9438a45f12a08a853f, type: 3}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: ChangeBG_Day3_C7Gate_Evening
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: Eimi-chan
+    showAvatar: 1
+    avatar: {fileID: 879678384541953357, guid: 6b074f964e4e58e4e859c1650dc6af2a, type: 3}
+    content: "Ara Ara, Koko wa C7 desuka? *\u0110\xE2y l\xE0 t\xF2a C7 ph\u1EA3i
+      kh\xF4ng \u1EA1?*"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: a067d1ca6a25f80509ae907b87028060, type: 3}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 0
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "H\u1EA3?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: 71f8b0afbd5175b04b283da1562b5fc6, type: 3}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 0
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "Hello Ajinomoto. O\u1EAFt can ai h\xE9p du?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: Eimi-chan
+    showAvatar: 1
+    avatar: {fileID: 879678384541953357, guid: 6b074f964e4e58e4e859c1650dc6af2a, type: 3}
+    content: "C7 ni haite mo iidesu ka? *T\u1EDB c\xF3 th\u1EC3 v\xE0o C7 \u0111\u01B0\u1EE3c
+      kh\xF4ng?*"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "N\xE0 n\xED?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: bdbf02ac986da6972b93e2ff8aad98e3, type: 3}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 0
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: -7697912950109865086, guid: 01a73767b53ba1942aa36c60bf4b6493, type: 3}
+    content: "\u1ED2, \u0111\xE2y l\xE0 sinh vi\xEAn trao \u0111\u1ED5i m\u1EDBi
+      \u0111\u1EBFn tr\u01B0\u1EDDng m\xECnh h\xF4m nay. K\u1EC3 t\u1EEB mai tr\u01B0\u1EDDng
+      ch\xFAng ta s\u1EBD \u0111\xF3n \u0111o\xE0n sinh vi\xEAn qu\u1ED1c t\u1EBF."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "Yayyy tuy\u1EC7t qu\xE1!"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "\u2014 H\u1EBFt ng\xE0y 3 \u2014"
+    displayMode: 4
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: Day3EndTitle
+    inputLockDuration: 0
+    autoContinue: 1
+    useTypewriterSound: 1
+    autoContinueDelay: 1.2
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "Ng\xE0y 4\nTh\u1EE9 t\u01B0, ng\xE0y 3/6/2026"
+    displayMode: 4
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: Day4TitleCard
+    inputLockDuration: 0
+    autoContinue: 1
+    useTypewriterSound: 1
+    autoContinueDelay: 1.5
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "C\u1ED5ng C7 h\xF4m nay c\xF3 banner m\u1EDBi "
+    displayMode: 1
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: ChangeBG_Day4_C7Gate
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: 
+    showAvatar: 0
+    avatar: {fileID: 0}
+    content: "<color=#FFD54A>\u201CWellcome Internationnal Students\u201D.</color>"
+    displayMode: 1
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: ChangeBG_Day4_C7Gate
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: -7697912950109865086, guid: 01a73767b53ba1942aa36c60bf4b6493, type: 3}
+    content: "V\u0169, t\u1EEB h\xF4m nay tr\u01B0\u1EDDng m\xECnh s\u1EBD nh\u1EADn
+      sinh vi\xEAn trao \u0111\u1ED5i qu\u1ED1c t\u1EBF."
+    displayMode: 0
+    changeBackground: 1
+    clearBackground: 0
+    background: {fileID: 2826988517474644282, guid: e16da847f27a4d547903e4052f6ee8d2, type: 3}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "V\u1EADy h\xF4m nay em c\xF3 ph\u1EA3i n\xF3i ti\u1EBFng Anh \u1EA1?
+      Hello? How are you?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: -572214486208604857, guid: 93ae804d88b14184289223f733bafd37, type: 3}
+    content: "Kh\xF4ng c\u1EA7n. Em ch\u1EC9 c\u1EA7n ng\xF4n ng\u1EEF chung c\u1EE7a
+      nh\xE2n lo\u1EA1i th\xF4i."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "D\u1EA1? T\xECnh y\xEAu ph\u1EA3i kh\xF4ng th\u1EA7y? Th\u1EADt l\xE3ng
+      m\u1EA1n\u2026"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: -572214486208604857, guid: 93ae804d88b14184289223f733bafd37, type: 3}
+    content: "Gi\u1EA5y t\u1EDD."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: -7783813424544337531, guid: 227e0223fc8f68af08708cfb6ca2102c, type: 3}
+    content: "\xC0\u2026"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: -7697912950109865086, guid: 01a73767b53ba1942aa36c60bf4b6493, type: 3}
+    content: "Sinh vi\xEAn qu\u1ED1c t\u1EBF c\u1EA7n xu\u1EA5t tr\xECnh th\xEAm
+      <color=#FFD54A>Gi\u1EA5y Ch\u1EE9ng Nh\u1EADn Sinh Vi\xEAn Qu\u1ED1c T\u1EBF</color>.
+      Nh\u1EDB <color=#FFD54A>\u0111\u1ED1i chi\u1EBFu th\xF4ng tin</color> gi\u1EEFa
+      c\xE1c lo\u1EA1i gi\u1EA5y t\u1EDD."
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: -7783813424544337531, guid: 227e0223fc8f68af08708cfb6ca2102c, type: 3}
+    content: "N\u1EBFu c\xE1c b\u1EA1n \u1EA5y n\xF3i <color=#FFD54A>\u2018Let me
+      in?\u2019</color> th\xEC sao?"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "Uncle H\u1EA3i"
+    showAvatar: 1
+    avatar: {fileID: -7697912950109865086, guid: 01a73767b53ba1942aa36c60bf4b6493, type: 3}
+    content: "Em n\xF3i \u2018Paper, please.\u2019"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: 
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2
+  - speakerName: "V\u0169"
+    showAvatar: 1
+    avatar: {fileID: 3017366831401090874, guid: 5fbf05b44113edec98b5f4530f1b03ab, type: 3}
+    content: "N\xF3i v\u1EADy l\xE0 b\u1ECB \u0111\xE1nh b\u1EA3n quy\u1EC1n \u0111\xF3
+      th\u1EA7y =)))))))))))"
+    displayMode: 0
+    changeBackground: 0
+    clearBackground: 0
+    background: {fileID: 0}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    voiceClip: {fileID: 0}
+    soundEffect: {fileID: 0}
+    eventKey: Day4OpeningFinished
+    inputLockDuration: 0
+    autoContinue: 0
+    useTypewriterSound: 1
+    autoContinueDelay: 2

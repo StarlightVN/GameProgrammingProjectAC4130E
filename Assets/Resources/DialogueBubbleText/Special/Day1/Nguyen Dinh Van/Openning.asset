@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Openning
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 1
+    text: "Nay l\xE0m vi\u1EC7c \u1EDF \u0111\xE2y \xE0 em ?"
+  - speaker: 0
+    text: "D\u1EA1 v\xE2ng, th\u1EA7y vui l\xF2ng xu\u1EA5t tr\xECnh gi\u1EA5y t\u1EDD
+      gi\xFAp em \u1EA1"

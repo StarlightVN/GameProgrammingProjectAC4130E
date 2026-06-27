@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
   m_Name: Student Denied 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  lines: []
+  lines:
+  - speaker: 0
+    text: "Gi\u1EA5y t\u1EDD gi\u1EA3 th\xEC l\u01B0\u1EDBt"
+  - speaker: 1
+    text: "Cho v\xE0o \u0111i m\xE0 ~"
+  - speaker: 0
+    text: "Ch\xFAc may m\u1EAFn l\u1EA7n sau b\u1EA1n nh\xE9 ~"

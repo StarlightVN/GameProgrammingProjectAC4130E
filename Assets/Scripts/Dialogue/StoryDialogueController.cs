@@ -58,6 +58,23 @@ namespace LetMeIn.Dialogue
         [SerializeField] private AudioSource voiceAudioSource;
         [SerializeField] private AudioSource soundEffectAudioSource;
 
+        [Tooltip("Phát âm thanh gõ chữ cho câu thoại này.")]
+        public bool useTypewriterSound = true;
+        
+
+        [Header("Typewriter Audio")]
+        [SerializeField] private AudioSource typewriterAudioSource;
+        [SerializeField] private AudioClip typewriterClip;
+
+        [Tooltip("Khoảng thời gian tối thiểu giữa hai tiếng gõ.")]
+        [SerializeField] private float typewriterSoundInterval = 0.045f;
+
+        [Range(0f, 1f)]
+        [SerializeField] private float typewriterVolume = 0.2f;
+
+        private float nextTypewriterSoundTime;
+
+
         [Header("Input")]
         [Tooltip("Button trong suốt phủ toàn màn hình.")]
         [SerializeField] private Button screenClickButton;
@@ -376,7 +393,7 @@ namespace LetMeIn.Dialogue
                 yield break;
             }
 
-            string fullContent = currentLine.content ?? string.Empty;
+            string fullContent = currentLine.content ?? string.Empty; 
 
             targetText.text = fullContent;
             targetText.maxVisibleCharacters = 0;
@@ -392,6 +409,15 @@ namespace LetMeIn.Dialogue
             for (int i = 0; i <= totalCharacters; i++)
             {
                 targetText.maxVisibleCharacters = i;
+
+            if (
+                currentLine.useTypewriterSound &&
+                i > 0 &&
+                i - 1 < fullContent.Length
+            )
+            {
+                PlayTypewriterSound(fullContent[i - 1]);
+            }
                 yield return new WaitForSecondsRealtime(interval);
             }
 
@@ -420,6 +446,11 @@ namespace LetMeIn.Dialogue
             {
                 targetText.text = currentLine.content ?? string.Empty;
                 targetText.maxVisibleCharacters = int.MaxValue;
+            }
+
+            if (typewriterAudioSource != null)
+            {
+                typewriterAudioSource.Stop();
             }
 
             FinishTyping();
@@ -575,6 +606,11 @@ namespace LetMeIn.Dialogue
             {
                 soundEffectAudioSource.Stop();
             }
+
+            if (typewriterAudioSource != null)
+            {
+                typewriterAudioSource.Stop();
+            }
         }
 
         public void ShowDimOverlay(float alpha = 0.6f)
@@ -612,6 +648,39 @@ namespace LetMeIn.Dialogue
             backgroundImage.sprite = null;
             backgroundImage.color = Color.clear;
             backgroundImage.gameObject.SetActive(false);
+        }
+
+        // Ham phat tieng go text
+        private void PlayTypewriterSound(char character)
+        {
+            if (
+                typewriterAudioSource == null ||
+                typewriterClip == null
+            )
+            {
+                return;
+            }
+
+            // Không phát âm cho khoảng trắng hoặc xuống dòng.
+            if (char.IsWhiteSpace(character))
+            {
+                return;
+            }
+
+            if (Time.unscaledTime < nextTypewriterSoundTime)
+            {
+                return;
+            }
+
+            typewriterAudioSource.pitch = UnityEngine.Random.Range(0.92f, 1.08f);
+
+            typewriterAudioSource.PlayOneShot(
+                typewriterClip,
+                typewriterVolume
+            );
+
+            nextTypewriterSoundTime =
+                Time.unscaledTime + typewriterSoundInterval;
         }
 
     }

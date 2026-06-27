@@ -19,7 +19,7 @@ MonoBehaviour:
   hasLabCertificate: 0
   boothAvatarImage: {fileID: 1781931450439470191, guid: edce19e2c9c824544bf0c32fecd52209, type: 3}
   cardStudentName: "Tr\u1EA7n Ng\u1ECDc Linh"
-  cardStudentID: 202409638
+  cardStudentID: 20240963
   cardStudentDoB: 22/08/2006
   cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   cardStudentMajor: "ET-E16: \u0110a ph\u01B0\u01A1ng ti\u1EC7n"
@@ -45,6 +45,6 @@ MonoBehaviour:
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  greetingDialogue: {fileID: 11400000, guid: fb68599c7f63cc046ae56658656f1254, type: 2}
+  approveDialogue: {fileID: 11400000, guid: d54bf21a789605444a5429ec872eeb5e, type: 2}
+  denyDialogue: {fileID: 11400000, guid: c7b3780c5dc69d34eb18a6d7f257de24, type: 2}
