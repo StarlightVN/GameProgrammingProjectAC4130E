@@ -4015,7 +4015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &859555367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5059,7 +5059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1090124366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6352,7 +6352,7 @@ MonoBehaviour:
     appearanceTurn: 1
   - personProfile: {fileID: 11400000, guid: 08630e637d214f941b213a89365e5d25, type: 2}
     appearanceTurn: 4
-  day3SpecialCharacterProfile: {fileID: 0}
+  day3SpecialCharacterProfile: {fileID: 11400000, guid: 5444907afa6e3984da2c8ddd231be22d, type: 2}
   day5CharacterAProfile: {fileID: 0}
   day5CharacterBProfile: {fileID: 0}
   totalStudentsToday: 8
@@ -6377,7 +6377,7 @@ MonoBehaviour:
   summaryScoreText: {fileID: 1225597371}
   summaryThresholdText: {fileID: 599856312}
   summaryAccuracyText: {fileID: 1738984874}
-  nextRegularDaySceneName: Day_02
+  nextRegularDaySceneName: Day2_Opening
   sceneBadEndingPerformance: Ending_04
   sceneBadEndingDay3Special: Ending_05
   sceneBadEndingDay5A: Ending_03
