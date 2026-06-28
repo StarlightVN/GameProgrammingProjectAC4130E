@@ -21,8 +21,9 @@ MonoBehaviour:
   cardStudentName: "Qu\xFD V\u0103n B\u1EEDu"
   cardStudentID: 20231836
   cardStudentDoB: 12/12/2005
-  cardStudentFaculty: SoICT
-  cardStudentMajor: IT-E6
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
+  cardStudentMajor: "IT-E6: CNTT Vi\u1EC7t Nh\u1EADt"
   cardStudentExpirationDate: 31/12/2027
   cardStudentImage: {fileID: 2521192129747555122, guid: 320dd2231fb5f894aaef37d8f6a653db, type: 3}
   cardStaffName: 
@@ -32,19 +33,19 @@ MonoBehaviour:
   passName: "Qu\xFD V\u0103n B\u1EEDu"
   passIDOrStaffTag: 20231836
   passPurpose: 0
-  passDurationDate: 01/06/2026
+  passDurationDate: 31/05/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
   labName: 
   labStudentID: 
   labFaculty: 
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1
   isAvatarMatching: 1
-  IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  IsPaperValid: 0
+  greetingDialogue: {fileID: 11400000, guid: 4a849ae9b1686a043b375f2a8fd1908f, type: 2}
+  approveDialogue: {fileID: 11400000, guid: e261b3a4e4fdeed49834ff791b179f89, type: 2}
+  denyDialogue: {fileID: 11400000, guid: 3d4c9169975acff42984e71590f06f48, type: 2}

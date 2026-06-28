@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Deny
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 0
+    text: "Gi\u1EA5y t\u1EDD kh\xF4ng h\u1EE3p l\u1EC7"
+  - speaker: 1
+    text: "\u0110\u1EEBng c\xF3 ph\xE1 h\u1ECFng ng\xE0y vui c\u1EE7a t\xF4i nh\u01B0
+      th\u1EBF"
+  - speaker: 0
+    text: "Gi\u1EA3 s\u1EED, gi\u1EA3 s\u1EED th\xF4i nh\xE9"
+  - speaker: 0
+    text: "Gabriel kh\xF4ng s\xFAt h\u1EE5t pen th\xEC sao"
+  - speaker: 1
+    text: "\xCA ???"

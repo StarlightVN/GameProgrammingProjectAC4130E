@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: 0
-    text: "Gi\u1EA5y t\u1EDD n\xE0y kh\xF4ng \u0111\u01B0\u1EE3c"
+    text: "Xin l\u1ED7i anh, kh\xF4ng c\xF3 gi\u1EA5y t\u1EDD h\u1EE3p l\u1EC7 n\xEAn
+      em kh\xF4ng th\u1EC3 cho v\xE0o"
   - speaker: 1
-    text: ...
+    text: "\xD4i m\u1ED9t tr\xE1i tim \u0111\xE3 v\u1EE1 tan..."
+  - speaker: 1
+    text: "Th\xE0nh ph\u1ED1 bu\u1ED3n, nh\u1EDB kh\xF4ng em..."
+  - speaker: 0
+    text: "Anh b\u1ED5 sung gi\u1EA5y t\u1EDD r\u1ED3i quay l\u1EA1i gi\xFAp em \u1EA1."

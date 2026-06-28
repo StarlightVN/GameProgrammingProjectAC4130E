@@ -41,7 +41,7 @@ public class SchoolGateManager : MonoBehaviour
 
     [Header("--- HỒ SƠ NHÂN VẬT CỐT TRUYỆN ĐẶC BIỆT DÙNG ĐỂ CHECK RẼ NHÁNH ---")]
     public PersonProfile day3SpecialCharacterProfile;
-    public PersonProfile day5CharacterAProfile;
+    public PersonProfile day5CharacterAProfile ;
     public PersonProfile day5CharacterBProfile;
 
     [Header("--- LEVEL SETTINGS ---")]
@@ -56,6 +56,7 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject largeIntlCertObject;
     public GameObject largeLabCertObject;
     public GameObject largeNewspaperObject;
+    [Tooltip("Kéo đối tượng RulebookLarge standalone ngoài Hierarchy vào đây")]
     public GameObject largeRulebookObject;
 
     [Header("--- HỆ THỐNG ĐỒNG HỒ ĐIỆN TỬ (TIMER SYSTEM) ---")]
@@ -76,15 +77,20 @@ public class SchoolGateManager : MonoBehaviour
     [Header("--- THỐNG KÊ KẾT QUẢ CUỐI NGÀY & ĐIỂM KPI ---")]
     public int correctDecisionsCount = 0;  
     public int incorrectDecisionsCount = 0;  
+    [Tooltip("Ngưỡng điểm tổng kết tối thiểu hằng ngày bắt buộc phải đạt được để không bị sa thải")]
     public int totalScoreThreshold = 20;
 
     [Header("--- LINH KIỆN TMP TEXT THỂ HIỆN TRÊN BẢNG TỔNG KẾT ---")]
+    [Tooltip("Ô TMP hiển thị kết quả (Ví dụ: Số người đúng/Tổng số người)")]
     public TextMeshProUGUI summaryRatioText;
+    [Tooltip("Ô TMP hiển thị tổng điểm net tích lũy cuối ngày")]
     public TextMeshProUGUI summaryScoreText;
+    [Tooltip("Ô TMP hiển thị điểm ngưỡng quy định của ca trực")]
     public TextMeshProUGUI summaryThresholdText;
+    [Tooltip("Ô TMP hiển thị phần trăm độ chính xác hành chính")]
     public TextMeshProUGUI summaryAccuracyText;
 
-    [Header("--- TÊN CÁC SCENE CHUYỂN TRONG CÁC TÌNH HUỐNG ---")]
+    [Header("--- TÊN CÁC SCENE CHUYỂN TRONG CÁC TÌNH HUỐNG ENDING ---")]
     public string nextRegularDaySceneName = "Day_02";
     public string sceneBadEndingPerformance = "Scene_BadEnding_Performance";
     public string sceneBadEndingDay3Special = "Scene_BadEnding_Day3_Special";
@@ -96,7 +102,7 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject summaryCanvas;
     public GameObject gameplayCanvas;
 
-    [Header("--- 🔥 HỆ THỐNG ÂM THANH (AUDIO CHANNELS & CLIPS) ---")]
+    [Header("--- HỆ THỐNG ÂM THANH (AUDIO CHANNELS & CLIPS) ---")]
     public AudioSource bgmSource;
     public AudioSource sfxSource;
     [Space(5)]
@@ -106,7 +112,6 @@ public class SchoolGateManager : MonoBehaviour
     public AudioClip dayEndedSFX;
     public AudioClip citationTicketSFX;
     public AudioClip paperDropSFX;
-    // 🔥 ĐÃ BỔ SUNG: Hai ô chứa file âm thanh di chuyển của nhân vật hằng ngày
     [Tooltip("Âm thanh vang lên khi NPC bước đến bốt trực (tiếng mở cửa, bước chân đi vào...)")]
     public AudioClip npcArriveSFX;
     [Tooltip("Âm thanh vang lên khi NPC rời khỏi bốt trực (tiếng bước chân xa dần...)")]
@@ -126,6 +131,9 @@ public class SchoolGateManager : MonoBehaviour
     private bool isDay5CharAAccepted = false;
     private bool isDay5CharBAccepted = false;
 
+    // 🔥 CỜ TRẠNG THÁI: Đóng băng/Chạy tiếp đồng hồ điện tử toàn cục
+    private bool isTimerPaused = false;
+
     public PersonProfile GetCurrentProfile() { return currentPersonProfile; }
 
     void Start()
@@ -140,6 +148,7 @@ public class SchoolGateManager : MonoBehaviour
         timeRemaining = dayDurationSeconds;
         isDayEnded = false;
         hasWarnedOneMinute = false;
+        isTimerPaused = false;
 
         if (fixedCharactersToday != null)
         {
@@ -188,7 +197,8 @@ public class SchoolGateManager : MonoBehaviour
 
     void Update()
     {
-        if (!isDayEnded && timeRemaining > 0)
+        // Kiểm tra cờ đóng băng trước khi trừ thời gian
+        if (!isDayEnded && timeRemaining > 0 && !isTimerPaused)
         {
             timeRemaining -= Time.deltaTime;
             if (timeRemaining < 0) timeRemaining = 0;
@@ -288,8 +298,15 @@ public class SchoolGateManager : MonoBehaviour
                 boothAvatarDisplayUI.sprite = currentPersonProfile.boothAvatarImage;
                 boothAvatarDisplayUI.gameObject.SetActive(true);
                 
-                PlaySFX(npcArriveSFX); // Nổ tiếng NPC đến
+                PlaySFX(npcArriveSFX); 
                 yield return StartCoroutine(FadeAvatarRoutine(true, 2.0f)); 
+            }
+
+            // 🔥 ĐÃ BỔ SUNG: Khóa thời gian ngay khi nhân vật cố định hoàn tất quá trình xuất hiện rõ nét
+            if (isFixedTurn)
+            {
+                isTimerPaused = true;
+                Debug.Log($"[STORYTIME PAUSED] Đã đóng băng đồng hồ cho nhân vật kịch bản: {currentPersonProfile.name}");
             }
 
             // Sinh giấy tờ nhỏ rải ra khay bàn dưới
@@ -336,12 +353,18 @@ public class SchoolGateManager : MonoBehaviour
                 }
             }
 
+            // 🔥 ĐÃ BỔ SUNG: Giải phóng thời gian ngay trước khi lệnh lướt ảnh mờ rời đi kích hoạt
+            if (isFixedTurn)
+            {
+                isTimerPaused = false;
+                Debug.Log("[STORYTIME RESUMED] Tiếp tục chạy lại luồng đếm ngược thời gian.");
+            }
+
             // 🔥 ĐỒNG BỘ LUỒNG ĐI: Kích nổ tiếng rời đi + chạy ngược lerp mờ dần về trong suốt ĐÚNG 2 GIÂY
-            PlaySFX(npcLeaveSFX); // Nổ tiếng NPC đi
+            PlaySFX(npcLeaveSFX); 
             yield return StartCoroutine(FadeAvatarRoutine(false, 2.0f));
             if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false);
 
-            // SỬA LỖI ĐÁNH MÁY: Chuyển đổi chính xác thành hàm FindGameObjectsWithTag hợp lệ của Unity
             GameObject[] remainingSmallCards = GameObject.FindGameObjectsWithTag("SmallCard");
             foreach (GameObject card in remainingSmallCards) Destroy(card);
 
@@ -349,12 +372,11 @@ public class SchoolGateManager : MonoBehaviour
             isProcessingStudent = false;
         }
 
-        // Cửa khẩu chính thức đóng ca trực -> Dập nhạc nền, phát còi hết ngày, đợi dứt tiếng âm thanh
         if (bgmSource != null) bgmSource.Stop();
         if (sfxSource != null && dayEndedSFX != null)
         {
             sfxSource.PlayOneShot(dayEndedSFX);
-            yield return new WaitForSeconds(dayEndedSFX.length); // Chờ tiếng loa phát thanh chạy hết sạch
+            yield return new WaitForSeconds(dayEndedSFX.length); 
         }
 
         StartCoroutine(EvaluateEndingBranchesRoutine());
@@ -464,7 +486,7 @@ public class SchoolGateManager : MonoBehaviour
         if (!string.IsNullOrEmpty(finalTicketText))
         {
             ShowCitationTicket(finalTicketText);
-            PlaySFX(citationTicketSFX); // Tiếng máy in biên bản rẹt rẹt
+            PlaySFX(citationTicketSFX); 
         }
 
         if (DialogueManager.Instance != null && currentPersonProfile != null)
@@ -479,7 +501,6 @@ public class SchoolGateManager : MonoBehaviour
         hasPlayerDecided = true; 
     }
 
-
     private IEnumerator EvaluateEndingBranchesRoutine()
     {
         yield return new WaitForSeconds(4.0f); 
@@ -489,43 +510,33 @@ public class SchoolGateManager : MonoBehaviour
         {
             summaryCanvas.SetActive(true); 
 
-         
             int totalDecisions = correctDecisionsCount + incorrectDecisionsCount; 
             int positiveScore = correctDecisionsCount * 10;                     
             int negativePenalty = incorrectDecisionsCount * 5;                  
-            int netTotalScore = positiveScore - negativePenalty;                
+            int netTotalScore = positiveScore - negativePenalty;                            
             float accuracyPercentage = (totalDecisions > 0) ? ((float)correctDecisionsCount / totalDecisions) * 100f : 0f;
 
-            // 🛑 BƯỚC THẦN KỲ 1: Gọi hàm Controller cũ trước để nó chạy hết các logic nội bộ của nó
             DaySummaryController summaryController = summaryCanvas.GetComponent<DaySummaryController>();
             if (summaryController != null)
             {
                 summaryController.DisplayStats(correctDecisionsCount, incorrectDecisionsCount);
             }
 
-            // 🛑 BƯỚC THẦN KỲ 2: Tiến hành ép đè hiển thị SAU CÙNG. 
-            // Việc này giúp các ô chữ TMP chắc chắn nhận số liệu sạch của chúng ta, không sợ bị code cũ của Controller ghi đè nữa!
-
             if (summaryRatioText != null) 
             {
-                // Biểu diễn thuần túy dưới dạng chuỗi ký tự text nối nhau bằng dấu gạch chéo, không phải phép toán chia!
                 summaryRatioText.text = correctDecisionsCount.ToString() + "/" + totalDecisions.ToString(); 
             }
-
             if (summaryScoreText != null) 
             {
-                // Hiển thị chuẩn xác con số 45đ được tính toán bằng các phép cộng trừ nhân ở trên
-                summaryScoreText.text = netTotalScore.ToString(); 
+                summaryScoreText.text = netTotalScore.ToString() + "đ"; 
             }
-
             if (summaryThresholdText != null) 
             {
-                summaryThresholdText.text = totalScoreThreshold.ToString();
+                summaryThresholdText.text = totalScoreThreshold.ToString() + "đ";
             }
-
             if (summaryAccuracyText != null) 
             {
-                summaryAccuracyText.text = string.Format("{0:0.0}%", accuracyPercentage); // Ví dụ: 83.3%
+                summaryAccuracyText.text = string.Format("{0:0.0}%", accuracyPercentage); 
             }
         }
     }
@@ -638,8 +649,10 @@ public class SchoolGateManager : MonoBehaviour
     }
 
     private string FormatToDateString(string rawInput) { if (string.IsNullOrEmpty(rawInput)) return ""; string clean = rawInput.Trim(); if (clean.Length == 8) { return $"{clean.Substring(0, 2)}/{clean.Substring(2, 2)}/{clean.Substring(4, 4)}"; } return clean; }
+
+    // 🔥 ĐÃ PHỤC HỒI ĐẦY ĐỦ: Nhóm hàm quản lý hiển thị, ẩn hiện và đếm ngược tự động của vé phạt
+    public void HideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
+    public void HandleHideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
     private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
     private IEnumerator AutoHideTicketRoutine(float delaySeconds) { yield return new WaitForSeconds(delaySeconds); HideCitationTicket(); citationHideCoroutine = null; }
-    private void HideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
-    public void HandleHideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
 }

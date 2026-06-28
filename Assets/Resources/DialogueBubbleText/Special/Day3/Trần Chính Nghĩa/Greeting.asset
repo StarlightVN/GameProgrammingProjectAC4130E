@@ -23,3 +23,7 @@ MonoBehaviour:
     text: "H\u1ECDa t\u1EEB mi\u1EC7ng m\xE0 ra"
   - speaker: 0
     text: '?'
+  - speaker: 1
+    text: "N\u1EBFu kh\xF4ng mu\u1ED1n b\u1ECB l\u1ED9 th\xF4ng tin "
+  - speaker: 1
+    text: "Th\xEC ch\u1EA5p nh\u1EADn ch\u1ECBu thi\u1EC7t m\u1ED9t ch\xFAt"

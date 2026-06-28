@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
+  m_Name: 210001
+  m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
+  personType: 0
+  hasMainCard: 1
+  hasGatePass: 1
+  hasIntlCertificate: 0
+  hasLabCertificate: 0
+  boothAvatarImage: {fileID: -8639879268763760237, guid: 4727b66122b950943a7a925d13c8d1c2, type: 3}
+  cardStudentName: "V\xF5 V\u0103n Luy\u1EC7n"
+  cardStudentID: 20226767
+  cardStudentDoB: 06/07/2004
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "EE1: K\u1EF9 thu\u1EADt \u0111i\u1EC7n"
+  cardStudentExpirationDate: 31/12/2026
+  cardStudentImage: {fileID: -8639879268763760237, guid: 4727b66122b950943a7a925d13c8d1c2, type: 3}
+  cardStaffName: 
+  cardStaffFaculty: 
+  cardStaffDoB: 
+  cardStaffImage: {fileID: 0}
+  passName: "V\xF5 V\u0103n Luy\u1EC7n"
+  passIDOrStaffTag: 20226767
+  passPurpose: 1
+  passDurationDate: 01/06/2026
+  intlName: 
+  intlStudentID: 
+  intlFaculty: 
+  labName: 
+  labStudentID: 
+  labFaculty: 
+  isForeignStudent: 0
+  isNameMatching: 1
+  isDataMatching: 1
+  isMajorMatching: 1
+  isAvatarMatching: 1
+  IsPaperValid: 1
+  greetingDialogue: {fileID: 11400000, guid: 17328d88851ab0f459b54d79a9db0e80, type: 2}
+  approveDialogue: {fileID: 11400000, guid: 156889fc955e78341b5163117429f633, type: 2}
+  denyDialogue: {fileID: 11400000, guid: 242b515df45d7384ea910227d70a53c4, type: 2}
