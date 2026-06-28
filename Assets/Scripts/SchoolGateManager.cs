@@ -466,7 +466,7 @@ public class SchoolGateManager : MonoBehaviour
         else if (!playerApproved && !studentHasAnyViolation)
         {
             incorrectDecisionsCount++; 
-            finalTicketText = "Giấy tờ hợp lệ .";
+            finalTicketText = "Giấy tờ hợp lệ.";
         }
         else
         {
@@ -499,6 +499,17 @@ public class SchoolGateManager : MonoBehaviour
         if (summaryCanvas != null)
         {
             summaryCanvas.SetActive(true); 
+            Button continueBtn = summaryCanvas.GetComponentInChildren<Button>();
+            if (continueBtn != null)
+            {
+                continueBtn.onClick.RemoveAllListeners(); // Xóa sạch các lệnh cũ bị kẹt ngoài Inspector
+                continueBtn.onClick.AddListener(OnSummaryContinuePressed); // Gán chuẩn xác hàm của Level hiện tại
+                Debug.Log("[UI BINDING] Đã kết nối thành công nút Continue với bộ não của Ngày: " + currentDay);
+            }
+            else
+            {
+                Debug.LogError("HỆ THỐNG UI: Không tìm thấy linh kiện Button nào bên trong summaryCanvas!");
+            }
 
             int totalDecisions = correctDecisionsCount + incorrectDecisionsCount; 
             int positiveScore = correctDecisionsCount * 10;                     
@@ -646,6 +657,6 @@ public class SchoolGateManager : MonoBehaviour
     public void HideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
     public void HandleHideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
     
-    private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
+    private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
     private IEnumerator AutoHideTicketRoutine(float delaySeconds) { yield return new WaitForSeconds(delaySeconds); HideCitationTicket(); citationHideCoroutine = null; }
 }
