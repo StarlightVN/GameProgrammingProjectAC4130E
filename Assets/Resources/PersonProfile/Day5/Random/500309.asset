@@ -17,14 +17,14 @@ MonoBehaviour:
   hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: -121426266460888513, guid: cc79dba09c903014fbfaca47a3643e6a, type: 3}
   cardStudentName: "B\xF9i Ng\u1ECDc B\xEDch"
   cardStudentID: 20231872
   cardStudentDoB: 05/03/2005
   cardStudentFaculty: "Tr\u01B0\u1EDDng H\xF3a v\xE0 Khoa h\u1ECDc s\u1EF1 s\u1ED1ng"
   cardStudentMajor: "CH2: K\u1EF9 thu\u1EADt h\xF3a h\u1ECDc"
   cardStudentExpirationDate: 31/12/2027
-  cardStudentImage: {fileID: 0}
+  cardStudentImage: {fileID: -121426266460888513, guid: cc79dba09c903014fbfaca47a3643e6a, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 

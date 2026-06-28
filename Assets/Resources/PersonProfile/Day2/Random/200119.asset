@@ -21,8 +21,8 @@ MonoBehaviour:
   cardStudentName: "Tr\u01B0\u01A1ng Ph\xFAc Th\u1ECBnh"
   cardStudentID: 20234729
   cardStudentDoB: 12/04/2005
-  cardStudentFaculty: SEEE
-  cardStudentMajor: EE1
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "EE1: K\u1EF9 thu\u1EADt \u0111i\u1EC7n"
   cardStudentExpirationDate: 31/12/2027
   cardStudentImage: {fileID: -7285558232893814147, guid: a341e4af486d85b4284f06ccdf9d4ff5, type: 3}
   cardStaffName: 

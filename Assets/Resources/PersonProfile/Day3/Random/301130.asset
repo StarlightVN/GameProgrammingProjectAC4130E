@@ -22,12 +22,12 @@ MonoBehaviour:
   cardStudentID: 
   cardStudentDoB: 
   cardStudentFaculty: 
-  cardStudentMajor: 
+  cardStudentMajor: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   cardStudentExpirationDate: 
   cardStudentImage: {fileID: 0}
   cardStaffName: "\u0110\u1ED7 Th\u1ECB Lan"
-  cardStaffFaculty: 13/03/1979
-  cardStaffDoB: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStaffFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStaffDoB: 13/03/1979
   cardStaffImage: {fileID: -6530351110063270134, guid: c8273267089ef0f4c8ec50f36c5c2a2a, type: 3}
   passName: "\u0110\u1ED7 Th\u1ECB Lan"
   passIDOrStaffTag: "C\xE1n b\u1ED9"

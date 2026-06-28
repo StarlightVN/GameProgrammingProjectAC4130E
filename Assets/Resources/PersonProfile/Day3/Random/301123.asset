@@ -21,13 +21,13 @@ MonoBehaviour:
   cardStudentName: 
   cardStudentID: 
   cardStudentDoB: 
-  cardStudentFaculty: 
-  cardStudentMajor: 
+  cardStudentFaculty: 28/08/1997
+  cardStudentMajor: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   cardStudentExpirationDate: 
   cardStudentImage: {fileID: 0}
   cardStaffName: "V\u01B0\u01A1ng \u0110\u1EA1i Nam"
-  cardStaffFaculty: 28/08/1997
-  cardStaffDoB: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStaffFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStaffDoB: 28/08/1997
   cardStaffImage: {fileID: -6722807659818146429, guid: 667d87c82420e5048a58ea528809f5d6, type: 3}
   passName: "V\u01B0\u01A1ng \u0110\u1EA1i Nam"
   passIDOrStaffTag: "C\xE1n b\u1ED9"

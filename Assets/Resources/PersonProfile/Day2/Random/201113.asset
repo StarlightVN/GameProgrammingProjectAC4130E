@@ -26,7 +26,7 @@ MonoBehaviour:
   cardStudentExpirationDate: 
   cardStudentImage: {fileID: 0}
   cardStaffName: "L\xFD Nam Khoa"
-  cardStaffFaculty: SEEE
+  cardStaffFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
   cardStaffDoB: 04/04/1985
   cardStaffImage: {fileID: -5826003151130273993, guid: 12adaece65cf5394da31ee0194f37ec8, type: 3}
   passName: "L\xFD Nam Khoa"

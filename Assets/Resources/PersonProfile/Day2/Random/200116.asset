@@ -21,8 +21,9 @@ MonoBehaviour:
   cardStudentName: "Ch\xE2u Vy Th\u1EA3o"
   cardStudentID: 20242571
   cardStudentDoB: 19122006
-  cardStudentFaculty: SoICT
-  cardStudentMajor: IT-E10
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\xF4ng ngh\u1EC7 th\xF4ng tin v\xE0 Truy\u1EC1n
+    th\xF4ng"
+  cardStudentMajor: 'IT-E10: Cyber Security'
   cardStudentExpirationDate: 31/12/2028
   cardStudentImage: {fileID: -6467040096684108726, guid: b268e659d90afe34eb81a51374954ac4, type: 3}
   cardStaffName: 

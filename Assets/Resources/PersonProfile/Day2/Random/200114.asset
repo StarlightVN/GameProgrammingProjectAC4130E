@@ -21,8 +21,8 @@ MonoBehaviour:
   cardStudentName: "Phan H\u01B0\u01A1ng Giang"
   cardStudentID: 202496214
   cardStudentDoB: 19/10/2006
-  cardStudentFaculty: SEEE
-  cardStudentMajor: EE1
+  cardStudentFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStudentMajor: "EE1: K\u1EF9 thu\u1EADt \u0111i\u1EC7n"
   cardStudentExpirationDate: 31/12/2028
   cardStudentImage: {fileID: -420084756406509371, guid: 8447ebc19a2365a409e16feb95df6816, type: 3}
   cardStaffName: 

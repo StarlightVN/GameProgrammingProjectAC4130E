@@ -21,8 +21,8 @@ MonoBehaviour:
   cardStudentName: "V\xF5 Trung Ki\xEAn"
   cardStudentID: 20217528
   cardStudentDoB: 21/07/2003
-  cardStudentFaculty: SME
-  cardStudentMajor: ME2
+  cardStudentFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
+  cardStudentMajor: "ME2: K\u1EF9 thu\u1EADt c\u01A1 \u0111i\u1EC7n t\u1EED"
   cardStudentExpirationDate: 31/12/2027
   cardStudentImage: {fileID: -7527115411449931550, guid: 0eb25082a2915594791d362da71421e1, type: 3}
   cardStaffName: 
@@ -42,7 +42,7 @@ MonoBehaviour:
   isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1
-  isMajorMatching: 1
+  isMajorMatching: 0
   isAvatarMatching: 1
   IsPaperValid: 1
   greetingDialogue: {fileID: 11400000, guid: fb68599c7f63cc046ae56658656f1254, type: 2}
