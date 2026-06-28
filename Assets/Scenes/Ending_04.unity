@@ -739,61 +739,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneManager
   cutsceneSlides:
-  - slideSprite: {fileID: -855298285791758126, guid: 2a3ee9c781ca6644cbfec36b177d71a6, type: 3}
+  - slideSprite: {fileID: -855298285791758126, guid: 896161336d17f8646aa19ad178440311, type: 3}
     lockDuration: 3
     bgmAction: 1
     newBgmClip: {fileID: 8300000, guid: 91e093183251ef94e995a22afc883fbb, type: 3}
     sfxClip: {fileID: 0}
-  - slideSprite: {fileID: -3170110953543520844, guid: 864987eeb6836cc4fac1d9bd4d713413, type: 3}
+  - slideSprite: {fileID: -3170110953543520844, guid: 83c57cf0daeda274082345df4366ff39, type: 3}
     lockDuration: 2
     bgmAction: 1
-    newBgmClip: {fileID: 8300000, guid: 7cb8de4027ca9da47be0b638c38a9fce, type: 3}
+    newBgmClip: {fileID: 8300000, guid: 70555920e3f72a74c94b6dfe4e0d7d8e, type: 3}
     sfxClip: {fileID: 0}
-  - slideSprite: {fileID: 3516235422905818384, guid: 45eacfddd26355c40b909a2b11249922, type: 3}
+  - slideSprite: {fileID: 3516235422905818384, guid: c0771063090c3754cb4ca11c766a2b4b, type: 3}
     lockDuration: 2
     bgmAction: 0
     newBgmClip: {fileID: 0}
     sfxClip: {fileID: 0}
-  - slideSprite: {fileID: -8372250915488712596, guid: e9cc780506e6bad4e8f9428e5fb12b87, type: 3}
+  - slideSprite: {fileID: -8372250915488712596, guid: 00d08b9987d61b24a8fdc00589c2e042, type: 3}
     lockDuration: 2
     bgmAction: 0
     newBgmClip: {fileID: 0}
     sfxClip: {fileID: 0}
-  - slideSprite: {fileID: -1241328635425971941, guid: 93ff2d9eaa9fcaa4a8ca8e600ea723ff, type: 3}
+  - slideSprite: {fileID: -1241328635425971941, guid: 9244849419249974ab420fbf38d4749e, type: 3}
     lockDuration: 5
     bgmAction: 0
     newBgmClip: {fileID: 0}
     sfxClip: {fileID: 8300000, guid: 0aea472aeaf8ff64cbd6bddcea0af636, type: 3}
-  - slideSprite: {fileID: 8420994399391746316, guid: fcd231aa8cadae94e81e399fc69202df, type: 3}
-    lockDuration: 1
-    bgmAction: 0
-    newBgmClip: {fileID: 0}
-    sfxClip: {fileID: 0}
-  - slideSprite: {fileID: -3170110953543520844, guid: 95bd9e6aa79694849a4ef6001354a01e, type: 3}
+  - slideSprite: {fileID: -855298285791758126, guid: 0ce4ecffb2de81f429cdcc6d8497e69c, type: 3}
     lockDuration: 2
     bgmAction: 0
     newBgmClip: {fileID: 0}
     sfxClip: {fileID: 0}
-  - slideSprite: {fileID: -6470460504253458178, guid: 56c4dc3c53dc5e448ac4bed58bc80581, type: 3}
+  - slideSprite: {fileID: 6937817954938267909, guid: 2df7fa618d588c84a81978bd0e9d15aa, type: 3}
     lockDuration: 2
     bgmAction: 0
     newBgmClip: {fileID: 0}
     sfxClip: {fileID: 0}
-  - slideSprite: {fileID: 5155163167032735316, guid: d004a1ce2b6887e4591bfffc342a0a5d, type: 3}
-    lockDuration: 0
-    bgmAction: 0
-    newBgmClip: {fileID: 0}
-    sfxClip: {fileID: 0}
-  - slideSprite: {fileID: 8420994399391746316, guid: 08dd3cd9e04a7e24ea47252f2454cddc, type: 3}
-    lockDuration: 3
-    bgmAction: 0
-    newBgmClip: {fileID: 0}
+  - slideSprite: {fileID: -6470460504253458178, guid: f8e733aeff9426f4183dd2c20a54c395, type: 3}
+    lockDuration: 2
+    bgmAction: 1
+    newBgmClip: {fileID: 8300000, guid: a7562180e170c4246ba514f69cb8b2e6, type: 3}
     sfxClip: {fileID: 0}
   displayImage: {fileID: 738317682}
   continuePromptText: {fileID: 2085467563}
   bgmAudioSource: {fileID: 1825664653}
   sfxAudioSource: {fileID: 1825664652}
-  nextSceneName: MainMenu
+  nextSceneName: Main Menu
 --- !u!4 &1825664655
 Transform:
   m_ObjectHideFlags: 0

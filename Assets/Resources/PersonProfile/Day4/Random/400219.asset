@@ -45,6 +45,6 @@ MonoBehaviour:
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  greetingDialogue: {fileID: 11400000, guid: cb190d0da1dd467428cae5a1fd88792e, type: 2}
+  approveDialogue: {fileID: 11400000, guid: 96a1b126f7df743458bdba41b1575e2a, type: 2}
+  denyDialogue: {fileID: 11400000, guid: ee4817d3202c3e248855c90491b69dc8, type: 2}

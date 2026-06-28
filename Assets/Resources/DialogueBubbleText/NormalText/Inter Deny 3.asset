@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speaker: 0
-    text: Your paper is wrong
+    text: VAR CHECKING...
   - speaker: 1
-    text: My face is international, you know ?
-  - speaker: 1
-    text: Not your paper
+    text: What ?
+  - speaker: 0
+    text: 'DECISION: NO GOAL!'

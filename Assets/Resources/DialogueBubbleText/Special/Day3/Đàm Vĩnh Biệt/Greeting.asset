@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 1
+    text: "Em c\xF3 th\u1EC3 cho anh v\xE0o l\xE2u \u0111\xE0i t\xECnh \xE1i n\xE0y
+      \u0111\u01B0\u1EE3c kh\xF4ng ?"
+  - speaker: 0
+    text: "Anh cho em ki\u1EC3m tra th\u1EBB ho\u1EB7c gi\u1EA5y t\u1EDD h\u1EE3p
+      l\u1EC7 \u1EA1"
+  - speaker: 1
+    text: "S\u1EF1 xu\u1EA5t hi\u1EC7n c\u1EE7a anh l\xE0 lo\u1EA1i gi\u1EA5y t\u1EDD
+      duy nh\u1EA5t anh c\u1EA7n "
+  - speaker: 0
+    text: "D\u1EA1!???"

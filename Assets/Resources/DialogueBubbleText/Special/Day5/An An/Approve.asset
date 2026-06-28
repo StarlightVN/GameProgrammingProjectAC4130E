@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Approve
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 0
+    text: "C\xF3 th\u1EC3 v\xE0o \u0111\u01B0\u1EE3c r\u1ED3i"
+  - speaker: 1
+    text: "\xD2a"
+  - speaker: 1
+    text: "N\u0103ng l\u01B0\u1EE3ng t\xEDch c\u1EF1c c\u1EE7a An An \u0111\xE3 l\xE0m
+      anh c\u1EA3m \u0111\u1ED9ng r\u1ED3i"
+  - speaker: 0
+    text: "\u1EDC, nhi\u1EC1u nhi\u1EC7t n\u0103ng th\u1EBF n\xE0y gi\u1EEFa c\xE1i
+      m\xF9a h\xE8"
+  - speaker: 0
+    text: "Th\u1EBF n\xE0y \u0111i l\xE0m N\u0103ng l\u01B0\u1EE3ng t\xE1i t\u1EA1o
+      th\xEC ch\u1EA9ng nhi\u1EC7t \u0111i\u1EC7n"
+  - speaker: 1
+    text: "Anh n\xF3i g\xEC v\u1EDBi An An c\u01A1"
+  - speaker: 1
+    text: "An An s\u1EBD coi nh\u01B0 anh ch\u01B0a n\xF3i g\xEC"
+  - speaker: 1
+    text: "An An \u0111i \u0111\xE2y"

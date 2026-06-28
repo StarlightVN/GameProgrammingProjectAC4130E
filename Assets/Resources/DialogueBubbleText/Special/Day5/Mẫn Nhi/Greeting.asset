@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 1
+    text: "V\u0169\u2026 l\xE0 c\u1EADu th\u1EADt sao?"
+  - speaker: 0
+    text: "M\u1EABn Nhi? C\u1EADu ra \u0111\xE2y l\xE0m g\xEC v\u1EADy?"
+  - speaker: 1
+    text: "T\u1EDB s\u1EAFp mu\u1ED9n thi r\u1ED3i!"
+  - speaker: 1
+    text: "Cho t\u1EDB v\xE0o \u0111i m\xE0, t\u1EDB xin c\u1EADu \u0111\u1EA5y!"
+  - speaker: 0
+    text: "C\u1EADu \u0111i thi sao? V\u1EADy \u0111\u01B0a gi\u1EA5y t\u1EDD cho
+      t\u1EDB ki\u1EC3m tra nhanh "
+  - speaker: 1
+    text: "T\u1EDB ch\u1EC9 c\u1EA7n qua c\xE1nh c\u1EEDa n\xE0y th\xF4i..."
+  - speaker: 1
+    text: "C\u01A1 h\u1ED9i c\u1EE7a doanh nghi\u1EC7p,  h\u1ECDc b\u1ED5ng c\u1EE7a
+      t\u1EDB,..."
+  - speaker: 1
+    text: " C\u1EA3 thanh xu\xE2n c\u1EE7a t\u1EDB \u0111\u1EC1u n\u1EB1m trong tay
+      c\u1EADu \u0111\xF3!"

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22448e0ab4ba79c48a505ac8909deae3, type: 3}
   m_Name: 201120
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
-  personType: 0
+  personType: 1
   hasMainCard: 1
-  hasGatePass: 0
+  hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
-  boothAvatarImage: {fileID: 0}
+  boothAvatarImage: {fileID: 1583847726898496589, guid: 7099023ef2e6efd4884f327ec8ac62f8, type: 3}
   cardStudentName: 
   cardStudentID: 
   cardStudentDoB: 
@@ -25,14 +25,14 @@ MonoBehaviour:
   cardStudentMajor: 
   cardStudentExpirationDate: 
   cardStudentImage: {fileID: 0}
-  cardStaffName: 
-  cardStaffFaculty: 
-  cardStaffDoB: 
-  cardStaffImage: {fileID: 0}
-  passName: 
-  passIDOrStaffTag: 
-  passPurpose: 0
-  passDurationDate: 
+  cardStaffName: Mai Quang Huy
+  cardStaffFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
+  cardStaffDoB: 17/06/1984
+  cardStaffImage: {fileID: 1583847726898496589, guid: 7099023ef2e6efd4884f327ec8ac62f8, type: 3}
+  passName: Mai Quang Huy
+  passIDOrStaffTag: "C\xE1n b\u1ED9"
+  passPurpose: 1
+  passDurationDate: 01/06/2026
   intlName: 
   intlStudentID: 
   intlFaculty: 
@@ -45,6 +45,6 @@ MonoBehaviour:
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  greetingDialogue: {fileID: 11400000, guid: a34862e140fc3b04f8d8f542cab77f8f, type: 2}
+  approveDialogue: {fileID: 11400000, guid: 4a109236358ff4c40825346267518dbe, type: 2}
+  denyDialogue: {fileID: 11400000, guid: b9d7845bffe7f3346adf78e9d0cff720, type: 2}

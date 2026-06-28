@@ -16,7 +16,7 @@ MonoBehaviour:
   hasMainCard: 1
   hasGatePass: 1
   hasIntlCertificate: 0
-  hasLabCertificate: 0
+  hasLabCertificate: 1
   boothAvatarImage: {fileID: 1275800495195505280, guid: f9c57c4f6a3b6cd4f943e67b0d340c14, type: 3}
   cardStudentName: "Tr\u1EA7n Ch\xEDnh Ngh\u0129a"
   cardStudentID: 20234953
@@ -39,7 +39,7 @@ MonoBehaviour:
   labName: "Tr\u1EA7n Ch\xEDnh Ngh\u0129a"
   labStudentID: 20234953
   labFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1

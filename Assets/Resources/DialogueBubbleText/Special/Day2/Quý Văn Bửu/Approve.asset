@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Approve
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 0
+    text: "\u1EDC\u2026 th\xF4i v\xE0o \u0111i."
+  - speaker: 1
+    text: "Ehhh? D\u1EC5 v\u1EADy lu\xF4n h\u1EA3 Oniichan?"
+  - speaker: 0
+    text: "T\xF4i \u0111ang m\u1EC7t. C\u1EADu \u0111i nhanh \u0111i tr\u01B0\u1EDBc
+      khi t\xF4i \u0111\u1ED5i \xFD."
+  - speaker: 1
+    text: YATTAAA~ arigatou oniichan!
+  - speaker: 1
+    text: "M\u1ED9t ng\xE0y n\xE0o \u0111\xF3 em s\u1EBD d\u1EABn oniichan t\u1EDBi
+      qu\xE1n c\xE0 ph\xEA h\u1EA7u g\xE1i"
+  - speaker: 1
+    text: "\u1EDE \u0111\xF3 oniichan s\u1EBD bi\u1EBFt th\u1EBF n\xE0o l\xE0 s\u1EE9c
+      m\u1EA1nh ph\xE9p thu\u1EADt th\u1EADt s\u1EF1 ><"

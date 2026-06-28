@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Deny
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 0
+    text: "Xin l\u1ED7i t\u1EDB kh\xF4ng th\u1EC3 cho c\u1EADu v\xE0o \u0111\u01B0\u1EE3c"
+  - speaker: 1
+    text: "C\u1EADu\u2026c\u1EADu kh\xF4ng cho t\u1EDB v\xE0o th\u1EADt sao V\u0169?"
+  - speaker: 0
+    text: "Gi\u1EA5y ph\xE9p h\u1EBFt h\u1EA1n r\u1ED3i, t\u1EDB ph\u1EA3i l\xE0m
+      \u0111\xFAng quy \u0111\u1ECBnh"
+  - speaker: 1
+    text: "M\u1EDBi ch\u1EC9 h\u1EBFt h\u1EA1n t\u1EEB h\xF4m qua th\xF4i m\xE0"
+  - speaker: 1
+    text: "M\u1ED9t ng\xE0y m\xE0 c\u1EADu c\u0169ng kh\xF4ng b\u1ECF qua \u0111\u01B0\u1EE3c
+      sao ?"
+  - speaker: 0
+    text: "T\u1EDB kh\xF4ng th\u1EC3\u2026"
+  - speaker: 1
+    text: "T\u1EDB c\xF2n t\u01B0\u1EDFng t\u1EDB l\xE0 ngo\u1EA1i l\u1EC7 c\u1EE7a
+      c\u1EADu V\u0169 \xE0\u2026"
+  - speaker: 0
+    text: "M\u1EABn Nhi, t\u1EDB th\u1EADt s\u1EF1\u2026 "

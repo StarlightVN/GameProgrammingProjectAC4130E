@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersonProfile
   personType: 0
   hasMainCard: 1
-  hasGatePass: 0
+  hasGatePass: 1
   hasIntlCertificate: 0
   hasLabCertificate: 0
   boothAvatarImage: {fileID: -4822552132651894852, guid: eed8b9114b41eac4d9833a57f60cccb9, type: 3}
@@ -46,6 +46,6 @@ MonoBehaviour:
   isMajorMatching: 0
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  greetingDialogue: {fileID: 11400000, guid: fb68599c7f63cc046ae56658656f1254, type: 2}
+  approveDialogue: {fileID: 11400000, guid: d54bf21a789605444a5429ec872eeb5e, type: 2}
+  denyDialogue: {fileID: 11400000, guid: 8126c963c622c6648be69cce81630c3c, type: 2}

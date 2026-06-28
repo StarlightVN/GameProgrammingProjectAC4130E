@@ -39,12 +39,12 @@ MonoBehaviour:
   labName: Aoi Sora
   labStudentID: 20257342
   labFaculty: "Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED"
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 1
   isDataMatching: 1
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  greetingDialogue: {fileID: 11400000, guid: 31a38b26a2118bb4eaa6ca7ee76ebf44, type: 2}
+  approveDialogue: {fileID: 11400000, guid: 404011981320e3b47a82ee83c80bec9e, type: 2}
+  denyDialogue: {fileID: 11400000, guid: bc957aab8b7e8a94fabcde27b69aea96, type: 2}

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb0a30870010f94291dcb2c30c4c17d, type: 3}
+  m_Name: Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speaker: 1
+    text: "Nhanh! Ki\u1EC3m tra nhanh cho m\xECnh v\u1EDBi"
+  - speaker: 0
+    text: '?'
+  - speaker: 1
+    text: "Nhanh l\xEAn ch\u1EC9 c\xF2n 3 ph\xFAt 6 gi\xE2y n\u1EEFa l\xE0 h\u1EBFt
+      gi\u1EDD check-in minh ch\u1EE9ng r\u1ED3i"
+  - speaker: 0
+    text: "S\u1EF1 ki\u1EC7n g\xEC v\u1EADy?"
+  - speaker: 1
+    text: "Kh\xF4ng bi\u1EBFt"
+  - speaker: 0
+    text: ???
+  - speaker: 1
+    text: "Nh\u01B0ng c\u1ED9ng \u0111i\u1EC3m r\xE8n luy\u1EC7n"
+  - speaker: 0
+    text: "\xD4ng tham gia c\xE1i g\xEC m\xE0 c\xF2n kh\xF4ng bi\u1EBFt n\u1ED9i
+      dung?"
+  - speaker: 1
+    text: "N\u1ED9i dung kh\xF4ng quan tr\u1ECDng"
+  - speaker: 1
+    text: "Quan tr\u1ECDng l\xE0 \u0111i\u1EC3m r\xE8n luy\u1EC7n"
+  - speaker: 1
+    text: "S\xE1ng t\u1ECDa \u0111\xE0m, tr\u01B0a hi\u1EBFn m\xE1u, chi\u1EC1u 10000
+      b\u01B0\u1EDBc ch\u1EA1y,..."
+  - speaker: 1
+    text: "T\u1ED1i quay video \u0111i\u1EC7u nh\u1EA3y gi\u1EA3i t\xEDch, khuya
+      \u0111i\u1EC1n form ph\u1EA3n h\u1ED3i"

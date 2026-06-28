@@ -39,12 +39,12 @@ MonoBehaviour:
   labName: 
   labStudentID: 
   labFaculty: 
-  isPhotoMatching: 1
+  isForeignStudent: 0
   isNameMatching: 0
   isDataMatching: 1
   isMajorMatching: 1
   isAvatarMatching: 1
   IsPaperValid: 1
-  greetingDialogue: {fileID: 0}
-  approveDialogue: {fileID: 0}
-  denyDialogue: {fileID: 0}
+  greetingDialogue: {fileID: 11400000, guid: dfe4a94803088ec459cef78745a5d8f5, type: 2}
+  approveDialogue: {fileID: 11400000, guid: d54bf21a789605444a5429ec872eeb5e, type: 2}
+  denyDialogue: {fileID: 11400000, guid: 60095e6530298834c92e79ebae73f4c5, type: 2}
