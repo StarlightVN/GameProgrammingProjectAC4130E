@@ -15,7 +15,7 @@ MonoBehaviour:
   lines:
   - speaker: 0
     text: "Gi\u1EA5y n\xE0y sai r\u1ED3i"
-  - speaker: 0
+  - speaker: 1
     text: "Anh em c\u1EA3 m\xE0"
   - speaker: 0
     text: "Sai l\xE0 sai"

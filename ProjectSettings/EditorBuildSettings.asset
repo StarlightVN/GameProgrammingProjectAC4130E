@@ -19,7 +19,40 @@ EditorBuildSettings:
     guid: f2f81fd08b2f76d4c8fdd8906b7d32ac
   - enabled: 1
     path: Assets/Scenes/Level_02.unity
-    guid: 54258c8452764b84fb76b0f2690616ab
+    guid: 8814d56fda785fe47bfe3b0834005271
+  - enabled: 1
+    path: Assets/Scenes/Day3_Opening.unity
+    guid: aebd023c63130c3478250f481e0a5f71
+  - enabled: 1
+    path: Assets/Scenes/Level_03.unity
+    guid: 967a757a6df236e46b2400390aac2325
+  - enabled: 1
+    path: Assets/Scenes/Day4_Opening.unity
+    guid: 5b7b44558ea3fff45beb97dfc75f8fe7
+  - enabled: 1
+    path: Assets/Scenes/Level_04.unity
+    guid: 869180352f84f204c99b92d10144b027
+  - enabled: 1
+    path: Assets/Scenes/Day5_Opening.unity
+    guid: fc750ea32d2547f9e9c1f8f84304b21d
+  - enabled: 1
+    path: Assets/Scenes/Level_05.unity
+    guid: 93c86bcc84deda54182720ad9bbda93f
+  - enabled: 1
+    path: Assets/Scenes/Ending_01.unity
+    guid: 1a70d53a3fefa0e418429fc591617d44
+  - enabled: 1
+    path: Assets/Scenes/Ending_02.unity
+    guid: fd7224e07461dcb4aa431f11f0b68eb3
+  - enabled: 1
+    path: Assets/Scenes/Ending_03.unity
+    guid: b40456b452e0d4345a775370e58cf204
+  - enabled: 1
+    path: Assets/Scenes/Ending_04.unity
+    guid: 67582290e6c3bb64885a52706c5eaea4
+  - enabled: 1
+    path: Assets/Scenes/Ending_05.unity
+    guid: 8b4e495eeb341a94198031281fa57ce1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
