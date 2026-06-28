@@ -24,7 +24,7 @@ MonoBehaviour:
   cardStudentFaculty: "Tr\u01B0\u1EDDng C\u01A1 kh\xED"
   cardStudentMajor: "ME1: K\u1EF9 thu\u1EADt c\u01A1 \u0111i\u1EC7n t\u1EED"
   cardStudentExpirationDate: 31/12/2028
-  cardStudentImage: {fileID: 0}
+  cardStudentImage: {fileID: 1771275745778683077, guid: 7ff7aebed59cae841aab8171a2076dc2, type: 3}
   cardStaffName: 
   cardStaffFaculty: 
   cardStaffDoB: 

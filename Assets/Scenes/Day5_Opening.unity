@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LetMeIn.Dialogue.StoryScenePlayer
   controller: {fileID: 338902517}
   sequence: {fileID: 11400000, guid: c02021a6954e0841a924c86a0bc0dc52, type: 2}
-  nextSceneName: Level_03
+  nextSceneName: Level_05
   playOnStart: 1
 --- !u!4 &1947359847
 Transform:

@@ -15,8 +15,8 @@ MonoBehaviour:
   personType: 0
   hasMainCard: 1
   hasGatePass: 1
-  hasIntlCertificate: 1
-  hasLabCertificate: 0
+  hasIntlCertificate: 0
+  hasLabCertificate: 1
   boothAvatarImage: {fileID: 8679692215179074424, guid: a9dba71b291424a498b6590988db315a, type: 3}
   cardStudentName: "L\xEA Ng\u1ECDc H\xE0"
   cardStudentID: 20218495

@@ -41,7 +41,7 @@ public class SchoolGateManager : MonoBehaviour
 
     [Header("--- HỒ SƠ NHÂN VẬT CỐT TRUYỆN ĐẶC BIỆT DÙNG ĐỂ CHECK RẼ NHÁNH ---")]
     public PersonProfile day3SpecialCharacterProfile;
-    public PersonProfile day5CharacterAProfile ;
+    public PersonProfile day5CharacterAProfile;
     public PersonProfile day5CharacterBProfile;
 
     [Header("--- LEVEL SETTINGS ---")]
@@ -56,7 +56,6 @@ public class SchoolGateManager : MonoBehaviour
     public GameObject largeIntlCertObject;
     public GameObject largeLabCertObject;
     public GameObject largeNewspaperObject;
-    [Tooltip("Kéo đối tượng RulebookLarge standalone ngoài Hierarchy vào đây")]
     public GameObject largeRulebookObject;
 
     [Header("--- HỆ THỐNG ĐỒNG HỒ ĐIỆN TỬ (TIMER SYSTEM) ---")]
@@ -112,9 +111,7 @@ public class SchoolGateManager : MonoBehaviour
     public AudioClip dayEndedSFX;
     public AudioClip citationTicketSFX;
     public AudioClip paperDropSFX;
-    [Tooltip("Âm thanh vang lên khi NPC bước đến bốt trực (tiếng mở cửa, bước chân đi vào...)")]
     public AudioClip npcArriveSFX;
-    [Tooltip("Âm thanh vang lên khi NPC rời khỏi bốt trực (tiếng bước chân xa dần...)")]
     public AudioClip npcLeaveSFX;
 
     private bool isProcessingStudent = false;
@@ -131,7 +128,6 @@ public class SchoolGateManager : MonoBehaviour
     private bool isDay5CharAAccepted = false;
     private bool isDay5CharBAccepted = false;
 
-    // 🔥 CỜ TRẠNG THÁI: Đóng băng/Chạy tiếp đồng hồ điện tử toàn cục
     private bool isTimerPaused = false;
 
     public PersonProfile GetCurrentProfile() { return currentPersonProfile; }
@@ -197,7 +193,6 @@ public class SchoolGateManager : MonoBehaviour
 
     void Update()
     {
-        // Kiểm tra cờ đóng băng trước khi trừ thời gian
         if (!isDayEnded && timeRemaining > 0 && !isTimerPaused)
         {
             timeRemaining -= Time.deltaTime;
@@ -292,7 +287,6 @@ public class SchoolGateManager : MonoBehaviour
             currentPersonProfile.cardStaffDoB = FormatToDateString(currentPersonProfile.cardStaffDoB);
             currentPersonProfile.passDurationDate = FormatToDateString(currentPersonProfile.passDurationDate);
 
-            // 🔥 ĐỒNG BỘ LUỒNG ĐẾN: Kích nổ tiếng bước vào + chạy lerp nhạt màu sang trắng rõ ĐÚNG 2 GIÂY
             if (boothAvatarDisplayUI != null && currentPersonProfile.boothAvatarImage != null)
             {
                 boothAvatarDisplayUI.sprite = currentPersonProfile.boothAvatarImage;
@@ -302,14 +296,21 @@ public class SchoolGateManager : MonoBehaviour
                 yield return StartCoroutine(FadeAvatarRoutine(true, 2.0f)); 
             }
 
-            // 🔥 ĐÃ BỔ SUNG: Khóa thời gian ngay khi nhân vật cố định hoàn tất quá trình xuất hiện rõ nét
             if (isFixedTurn)
             {
                 isTimerPaused = true;
                 Debug.Log($"[STORYTIME PAUSED] Đã đóng băng đồng hồ cho nhân vật kịch bản: {currentPersonProfile.name}");
             }
 
-            // Sinh giấy tờ nhỏ rải ra khay bàn dưới
+            if (DialogueManager.Instance != null && currentPersonProfile.greetingDialogue != null)
+            {
+                DialogueManager.Instance.PlayDialogue(currentPersonProfile.greetingDialogue);
+                while (DialogueManager.Instance.isDialoguePlaying)
+                {
+                    yield return null;
+                }
+            }
+
             Vector3 basePos = spawnPointSmallDesk.position;
             bool hasAnyDoc = currentPersonProfile.hasMainCard || currentPersonProfile.hasGatePass || currentPersonProfile.hasIntlCertificate || currentPersonProfile.hasLabCertificate;
             
@@ -326,15 +327,6 @@ public class SchoolGateManager : MonoBehaviour
                 SpawnSmallCardObject(basePos + new Vector3(0f, -0.1f, 0f), currentPersonProfile, labCertSmallPrefab, DocumentType.LabCertificate, true);
 
             if (hasAnyDoc) PlaySFX(paperDropSFX);
-
-            if (DialogueManager.Instance != null && currentPersonProfile.greetingDialogue != null)
-            {
-                DialogueManager.Instance.PlayDialogue(currentPersonProfile.greetingDialogue);
-                while (DialogueManager.Instance.isDialoguePlaying)
-                {
-                    yield return null;
-                }
-            }
 
             canInteractButtons = true; 
 
@@ -353,14 +345,12 @@ public class SchoolGateManager : MonoBehaviour
                 }
             }
 
-            // 🔥 ĐÃ BỔ SUNG: Giải phóng thời gian ngay trước khi lệnh lướt ảnh mờ rời đi kích hoạt
             if (isFixedTurn)
             {
                 isTimerPaused = false;
                 Debug.Log("[STORYTIME RESUMED] Tiếp tục chạy lại luồng đếm ngược thời gian.");
             }
 
-            // 🔥 ĐỒNG BỘ LUỒNG ĐI: Kích nổ tiếng rời đi + chạy ngược lerp mờ dần về trong suốt ĐÚNG 2 GIÂY
             PlaySFX(npcLeaveSFX); 
             yield return StartCoroutine(FadeAvatarRoutine(false, 2.0f));
             if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false);
@@ -513,7 +503,7 @@ public class SchoolGateManager : MonoBehaviour
             int totalDecisions = correctDecisionsCount + incorrectDecisionsCount; 
             int positiveScore = correctDecisionsCount * 10;                     
             int negativePenalty = incorrectDecisionsCount * 5;                  
-            int netTotalScore = positiveScore - negativePenalty;                            
+            int netTotalScore = positiveScore - negativePenalty;                
             float accuracyPercentage = (totalDecisions > 0) ? ((float)correctDecisionsCount / totalDecisions) * 100f : 0f;
 
             DaySummaryController summaryController = summaryCanvas.GetComponent<DaySummaryController>();
@@ -526,14 +516,17 @@ public class SchoolGateManager : MonoBehaviour
             {
                 summaryRatioText.text = correctDecisionsCount.ToString() + "/" + totalDecisions.ToString(); 
             }
+
             if (summaryScoreText != null) 
             {
                 summaryScoreText.text = netTotalScore.ToString() + "đ"; 
             }
+
             if (summaryThresholdText != null) 
             {
                 summaryThresholdText.text = totalScoreThreshold.ToString() + "đ";
             }
+
             if (summaryAccuracyText != null) 
             {
                 summaryAccuracyText.text = string.Format("{0:0.0}%", accuracyPercentage); 
@@ -650,9 +643,9 @@ public class SchoolGateManager : MonoBehaviour
 
     private string FormatToDateString(string rawInput) { if (string.IsNullOrEmpty(rawInput)) return ""; string clean = rawInput.Trim(); if (clean.Length == 8) { return $"{clean.Substring(0, 2)}/{clean.Substring(2, 2)}/{clean.Substring(4, 4)}"; } return clean; }
 
-    // 🔥 ĐÃ PHỤC HỒI ĐẦY ĐỦ: Nhóm hàm quản lý hiển thị, ẩn hiện và đếm ngược tự động của vé phạt
     public void HideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
     public void HandleHideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
-    private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
+    
+    private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
     private IEnumerator AutoHideTicketRoutine(float delaySeconds) { yield return new WaitForSeconds(delaySeconds); HideCitationTicket(); citationHideCoroutine = null; }
 }
