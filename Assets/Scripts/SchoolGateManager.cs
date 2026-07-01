@@ -76,17 +76,12 @@ public class SchoolGateManager : MonoBehaviour
     [Header("--- THỐNG KÊ KẾT QUẢ CUỐI NGÀY & ĐIỂM KPI ---")]
     public int correctDecisionsCount = 0;  
     public int incorrectDecisionsCount = 0;  
-    [Tooltip("Ngưỡng điểm tổng kết tối thiểu hằng ngày bắt buộc phải đạt được để không bị sa thải")]
     public int totalScoreThreshold = 20;
 
     [Header("--- LINH KIỆN TMP TEXT THỂ HIỆN TRÊN BẢNG TỔNG KẾT ---")]
-    [Tooltip("Ô TMP hiển thị kết quả (Ví dụ: Số người đúng/Tổng số người)")]
     public TextMeshProUGUI summaryRatioText;
-    [Tooltip("Ô TMP hiển thị tổng điểm net tích lũy cuối ngày")]
     public TextMeshProUGUI summaryScoreText;
-    [Tooltip("Ô TMP hiển thị điểm ngưỡng quy định của ca trực")]
     public TextMeshProUGUI summaryThresholdText;
-    [Tooltip("Ô TMP hiển thị phần trăm độ chính xác hành chính")]
     public TextMeshProUGUI summaryAccuracyText;
 
     [Header("--- TÊN CÁC SCENE CHUYỂN TRONG CÁC TÌNH HUỐNG ENDING ---")]
@@ -355,8 +350,8 @@ public class SchoolGateManager : MonoBehaviour
             yield return StartCoroutine(FadeAvatarRoutine(false, 2.0f));
             if (boothAvatarDisplayUI != null) boothAvatarDisplayUI.gameObject.SetActive(false);
 
-            GameObject[] remainingSmallCards = GameObject.FindGameObjectsWithTag("SmallCard");
-            foreach (GameObject card in remainingSmallCards) Destroy(card);
+            // Dọn dẹp dự phòng lần cuối cùng trước khi gọi người mới vào
+            ClearAllCurrentDocuments();
 
             studentsProcessedCount++;
             isProcessingStudent = false;
@@ -394,6 +389,10 @@ public class SchoolGateManager : MonoBehaviour
     private void HandleDecision(bool playerApproved)
     {
         if (!isProcessingStudent || hasPlayerDecided) return;
+
+        // 🔥 BƯỚC CẢI TIẾN TỐI CAO: Thu hồi và dọn sạch sành sanh giấy tờ NGAY LẬP TỨC khi vừa bấm nút!
+        // Hành động này bốc hơi toàn bộ phôi thẻ trên bàn làm việc, triệt tiêu hoàn toàn khả năng di chuyển tạo bản sao.
+        ClearAllCurrentDocuments();
 
         if (currentPersonProfile == day3SpecialCharacterProfile && !playerApproved) isDay3SpecialCharacterDenied = true;
         if (currentPersonProfile == day5CharacterAProfile) isDay5CharAAccepted = playerApproved;
@@ -453,8 +452,6 @@ public class SchoolGateManager : MonoBehaviour
             }
         }
 
-        HideAllLargeCards(false);
-
         bool studentHasAnyViolation = violationCount > 0;
         string finalTicketText = "";
 
@@ -466,7 +463,7 @@ public class SchoolGateManager : MonoBehaviour
         else if (!playerApproved && !studentHasAnyViolation)
         {
             incorrectDecisionsCount++; 
-            finalTicketText = "Giấy tờ hợp lệ.";
+            finalTicketText = "Giấy tờ hợp lệ .";
         }
         else
         {
@@ -499,23 +496,19 @@ public class SchoolGateManager : MonoBehaviour
         if (summaryCanvas != null)
         {
             summaryCanvas.SetActive(true); 
+
+            int totalDecisions = correctDecisionsCount + incorrectDecisionsCount;
+            int positiveScore = correctDecisionsCount * 10;
+            int negativePenalty = incorrectDecisionsCount * 5;
+            int netTotalScore = positiveScore - negativePenalty;
+            float accuracyPercentage = (totalDecisions > 0) ? ((float)correctDecisionsCount / totalDecisions) * 100f : 0f;
+
             Button continueBtn = summaryCanvas.GetComponentInChildren<Button>();
             if (continueBtn != null)
             {
-                continueBtn.onClick.RemoveAllListeners(); // Xóa sạch các lệnh cũ bị kẹt ngoài Inspector
-                continueBtn.onClick.AddListener(OnSummaryContinuePressed); // Gán chuẩn xác hàm của Level hiện tại
-                Debug.Log("[UI BINDING] Đã kết nối thành công nút Continue với bộ não của Ngày: " + currentDay);
+                continueBtn.onClick.RemoveAllListeners();
+                continueBtn.onClick.AddListener(OnSummaryContinuePressed);
             }
-            else
-            {
-                Debug.LogError("HỆ THỐNG UI: Không tìm thấy linh kiện Button nào bên trong summaryCanvas!");
-            }
-
-            int totalDecisions = correctDecisionsCount + incorrectDecisionsCount; 
-            int positiveScore = correctDecisionsCount * 10;                     
-            int negativePenalty = incorrectDecisionsCount * 5;                  
-            int netTotalScore = positiveScore - negativePenalty;                
-            float accuracyPercentage = (totalDecisions > 0) ? ((float)correctDecisionsCount / totalDecisions) * 100f : 0f;
 
             DaySummaryController summaryController = summaryCanvas.GetComponent<DaySummaryController>();
             if (summaryController != null)
@@ -527,20 +520,17 @@ public class SchoolGateManager : MonoBehaviour
             {
                 summaryRatioText.text = correctDecisionsCount.ToString() + "/" + totalDecisions.ToString(); 
             }
-
             if (summaryScoreText != null) 
             {
                 summaryScoreText.text = netTotalScore.ToString() + "đ"; 
             }
-
             if (summaryThresholdText != null) 
             {
                 summaryThresholdText.text = totalScoreThreshold.ToString() + "đ";
             }
-
             if (summaryAccuracyText != null) 
             {
-                summaryAccuracyText.text = string.Format("{0:0.0}%", accuracyPercentage); 
+                summaryAccuracyText.text = string.Format("{0:0.0}%", accuracyPercentage);
             }
         }
     }
@@ -578,6 +568,21 @@ public class SchoolGateManager : MonoBehaviour
         SceneManager.LoadScene(nextRegularDaySceneName);
     }
 
+    // 🔥 HÀM TỔNG LỆNH THU HỒI: Triệt tiêu rác và bản sao lọt ca
+    private void ClearAllCurrentDocuments()
+    {
+        // 1. Ẩn ngay lập tức các phôi thẻ lớn standalone trên bàn soi
+        HideAllLargeCards(false);
+
+        // 2. Quét sạch phôi nhỏ có tag "SmallCard" ngoài Hierarchy
+        GameObject[] remainingSmallCards = GameObject.FindGameObjectsWithTag("SmallCard");
+        foreach (GameObject card in remainingSmallCards) Destroy(card);
+
+        // 3. Quét sạch phôi báo nhỏ có tag "SmallNewspaper" nếu người chơi lỡ buông tay cất báo lúc bấm nút
+        GameObject[] remainingNewspapers = GameObject.FindGameObjectsWithTag("SmallNewspaper");
+        foreach (GameObject paper in remainingNewspapers) Destroy(paper);
+    }
+
     private void PlaySFX(AudioClip clip)
     {
         if (sfxSource != null && clip != null)
@@ -612,6 +617,9 @@ public class SchoolGateManager : MonoBehaviour
 
     public void ReturnToSmallCard(Vector3 dropPosition, DocumentType docType)
     {
+        // Nếu người chơi cố gắng cất giấy tờ khi nút đã bấm và ca đã khóa -> Chặn đứng lập tức
+        if (hasPlayerDecided) return;
+
         GameObject targetPrefab = null; 
         switch (docType)
         {
@@ -657,6 +665,6 @@ public class SchoolGateManager : MonoBehaviour
     public void HideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
     public void HandleHideCitationTicket() { if (citationPanelUI != null) citationPanelUI.SetActive(false); }
     
-    private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
+    private void ShowCitationTicket(string errorLog) { if (citationPanelUI != null && citationReasonText != null) { citationReasonText.text = $"<color=#FF3B30><b>HÀNH VI PHẠM:</b></color>\n{errorLog}"; citationPanelUI.SetActive(true); citationPanelUI.transform.SetAsLastSibling(); if (citationHideCoroutine != null) StopCoroutine(citationHideCoroutine); citationHideCoroutine = StartCoroutine(AutoHideTicketRoutine(10f)); } }
     private IEnumerator AutoHideTicketRoutine(float delaySeconds) { yield return new WaitForSeconds(delaySeconds); HideCitationTicket(); citationHideCoroutine = null; }
 }
